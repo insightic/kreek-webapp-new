@@ -1,0 +1,50 @@
+.nav-container {
+  max-width:100%;
+  width:100%;
+  display:flex;
+  justify-content: center;
+  background-color:#222222;
+  z-index:10;
+  /* border-bottom: 2px solid #e7e7e7; */
+}
+
+.logo {
+  height:50px;
+  width:auto;
+}
+
+#basic-nav-dropdown{
+  text-align:left;
+}
+
+.navBar {
+  max-width:100%;
+  color:#ffffff;
+  width:80%;
+  display: flex;
+  justify-content: center;
+}
+
+.nav {
+  width:100%
+}
+
+.nav > div {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mr-auto {
+  font-size:18px;
+  justify-content: center;
+}
+
+.mr-auto > a {
+  width:max-content;
+  margin: 0px 20px
+}
+
+.navbar-collapse {
+  justify-content: flex-end;
+}

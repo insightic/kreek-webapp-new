@@ -1,0 +1,58 @@
+.toggle-button {
+  background-image: var(--gradient);
+  border: 3px solid var(--toogle-border);
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  font-size: 20px;
+  justify-content: space-between;
+  margin: 0 auto;
+  overflow:hidden;
+  padding: 10px;
+  position: relative;
+  height:50px;
+  transition: all 0.3s linear;
+}
+
+.toggle-container {
+    margin-left: 30px;
+}
+
+.sunIcon, .moonIcon {
+    margin:5px 5px;
+    transition: all 0.3s linear;
+}
+
+.sunIcon {
+    color: #e5d7bc
+}
+
+.moonIcon {
+    color: #fffd84
+}
+
+.theme-dark {
+  --dark-text: #F9F8F8;
+  --light-text: #F9F8F8;  
+  --dark-background: #222222;
+  --light-background: #86B3D1;
+  --background: #222222;
+  --accent: #B8DBD9;
+  --border: #B8DBD9;
+  --toggle-border:#6B8096;
+  --gradient: linear-gradient(#091236, #1E215D);
+  --options-border: #B8DBD9;
+}
+
+.theme-light {
+  --dark-text: #292929;
+  --light-text: #F9F8F8;  
+  --dark-background: #222222;
+  --light-background: #86B3D1;
+  --background: #ffffff;
+  --accent: #DBE7E4;
+  --border: #5E4B56;
+  --toggle-border:#ffffff;
+  --gradient: linear-gradient(#39598A, #79D7ED);
+  --options-border: #a5e9d8de;
+}

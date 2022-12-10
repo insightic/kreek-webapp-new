@@ -1,9 +1,11 @@
 .App {
   text-align: center;
+  transition: all 0.5s;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 600px;
   pointer-events: none;
 }
 
@@ -14,14 +16,14 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: var(--background);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--dark-text);
 }
 
 .App-link {
@@ -35,4 +37,49 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.theme-dark {
+  --dark-text: #F9F8F8;
+  --light-text: #F9F8F8;  
+  --dark-background: #222222;
+  --light-background: #86B3D1;
+  --background: #222222;
+  --accent: #B8DBD9;
+  --border: #B8DBD9;
+  --toggle-border:#6B8096;
+  --gradient: linear-gradient(#091236, #1E215D);
+  --options-border: #B8DBD9;
+}
+
+.theme-light {
+  --dark-text: #292929;
+  --light-text: #F9F8F8;  
+  --dark-background: #222222;
+  --light-background: #86B3D1;
+  --background: #ffffff;
+  --accent: #DBE7E4;
+  --border: #5E4B56;
+  --toggle-border:#ffffff;
+  --gradient: linear-gradient(#39598A, #79D7ED);
+  --options-border: #a5e9d8de;
+}
+
+.scrollTop {
+  position: fixed; 
+  right:20px;
+  bottom:350px;
+  align-items: center;
+  height: 50px;
+  width:50px;
+  justify-content:end;
+  z-index: 1000;
+  cursor: pointer;
+  animation: fadeIn 0.3s;
+  transition: opacity 0.4s;
+  opacity: 0.5;
+}
+
+.scrollTop:hover{
+  opacity: 1;
 }

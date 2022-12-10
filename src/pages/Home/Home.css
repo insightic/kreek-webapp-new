@@ -1,0 +1,13 @@
+.home {
+    max-width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    background-color: var(--background);
+    transition: all 0.5s;
+    color: var(--dark-text);
+    padding: 0px;
+    height: 600px
+}
+

@@ -12,7 +12,13 @@ export default class Footer extends React.Component {
         <Container fluid className="footer">
         <Col>
             <Row className="footer-top">
-            <Col xs={3} md={2} lg={1.25} className="footer-width">
+                <Col xs={5} md={6} lg={7} className="footer-brand">KREEK</Col>
+                <Col xs={7} md={6} lg={5} className='footer-logoGroup'>
+                    <Icon.Discord className="footer-icon"/>
+                    <Icon.Github className="footer-icon"/>
+                    <Icon.FiletypeDoc className="footer-icon"/>
+                </Col>
+            {/* <Col xs={3} md={2} lg={1.25} className="footer-width">
                 <Icon.Discord className="footer-icon"/> Discord
             </Col>
 
@@ -22,8 +28,12 @@ export default class Footer extends React.Component {
 
             <Col xs={3} md={2} lg={1.25} className="footer-width">
                 <Icon.FiletypeDoc className="footer-icon"/> Docs
-            </Col>
+            </Col> */}
 
+            </Row>
+
+            <Row className="footer-bottom" xs={12} md={10} lg={8}>
+                <span>©2023 KREEK: ALL RIGHT RESERVED.</span>
             </Row>
         </Col>
         </Container>

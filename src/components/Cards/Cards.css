@@ -1,0 +1,27 @@
+.cards {
+    max-width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    margin:0px;
+    padding:0px;
+    flex-direction: column;
+    background-color: rgb(21, 15, 15);
+    color:#ffffff;
+    margin-top: -80px;
+}
+
+.cardSlot {
+    border: 2px solid #F0C11E;
+    width: 20vw;
+    margin: 0.5vw 10px;
+    display:flex;
+    justify-content: center;
+}
+
+.cardSlot > img { 
+    width: 20vw;
+    margin: 0px -10px;
+    align-self: center;
+}

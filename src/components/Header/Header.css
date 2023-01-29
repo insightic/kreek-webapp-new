@@ -3,18 +3,39 @@
   width:100%;
   display:flex;
   justify-content: center;
-  background-color:#222222;
+  /* background-color:#222222; */
+  background-color: transparent;
   z-index:10;
   /* border-bottom: 2px solid #e7e7e7; */
 }
 
 .logo {
-  height:50px;
+  height:30px;
   width:auto;
 }
 
 #basic-nav-dropdown{
   text-align:left;
+}
+
+.bg-cover {
+  background-attachment: static;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.loginBtn {
+  text-decoration: none;
+  border: 2px solid #03FBBF;
+  border-radius: 10px;
+  width: 80px;
+  color: #03FBBF
+}
+
+.loginBtn:hover {
+  background-color: aquamarine;
+  cursor:pointer;
 }
 
 .navBar {
@@ -26,7 +47,14 @@
 }
 
 .nav {
-  width:100%
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-icon {
+  color:#ffffff;
+  font-size: 22px;
 }
 
 .nav > div {

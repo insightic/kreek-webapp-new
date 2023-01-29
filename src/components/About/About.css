@@ -1,0 +1,95 @@
+.people {
+    max-width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    margin:0px;
+    padding:0px;
+    flex-direction: column;
+    background-color: rgb(21, 15, 15);
+    color:#ffffff
+}
+
+.person {
+    margin: 5px 10px;
+    border: 1px solid #ccc;
+    width: 250px;
+    height: 450px;
+    position:relative;
+}
+
+.people-width {
+    max-width:100%;
+    width:80%;
+    justify-content: center;
+    flex-direction: column;
+    display:flex;
+    align-items:center;
+}
+
+.banner {
+    max-width:100%;
+    width: 100%;
+    height:calc(100vh);
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -80px;
+    padding:80px;
+}
+
+.person h4 {
+    height:50px;
+    margin: 5px;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.person a {
+    text-decoration: none;    
+    color: #000000;
+}
+
+.person a:hover {
+    text-decoration: none;    
+    color: #999;
+}
+
+.person img {
+    height: 240px;
+    width: 240px;
+    overflow:hidden;
+    object-fit:cover;
+    object-position: 10% 15%;
+}
+
+.person p {
+    text-align:center;
+}
+
+.person:hover {
+    border: 1px solid #777;
+}
+
+.people-width .row {
+    margin:20px 0px;
+}
+
+.people-width .col {
+    margin:0px;
+    padding:0px;
+    display:flex;
+    justify-content: center;
+}
+
+.person .person-footer {
+    position:absolute;
+    bottom:0px;
+    width:100%;
+    background-color: #e7e7e7;
+    
+}

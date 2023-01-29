@@ -4,7 +4,15 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Link, Switch, Route, useLocation} from 'react-router-dom';
 import Header from "./components/Header/Header.js";
 import Footer from "./components/Footer/Footer.js";
-import Home from "./pages/Home/Home.js"
+import Home from "./components/Home/Home.js"
+import About from "./components/About/About.js"
+import FAQ from "./components/FAQ/FAQ.js"
+import Login from "./components/Login/Login.js"
+import Cards from "./components/Cards/Cards.js"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+//import Home from "./components/Home/Home.js"
+
 
 import { keepTheme } from './Theme.js';
 
@@ -34,29 +42,13 @@ function App() {
         <Header togClass={togClass} setTogClass={setTogClass}></Header>
         <ScrollRestoration />
         <Switch>                
-            <Route path='/home' component={Home}/>  
-
-
-            <Route exact path="/">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                  Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                  className="App-link"
-                  href="https://reactjs.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Learn React
-                </a>
-                <p>The current time is {currentTime}.</p>
-                
-            </Route>
-            <Route path="/page2">
-                <p>This is page 2!</p>
-            </Route>
-          </Switch>
+        <Route path='/home' component={Home}/>  
+        <Route path='/about' component={About}/>               
+        <Route path='/faq' component={FAQ}/>   
+        <Route path='/login' component={Login}/>  
+        <Route path='/cards' component={Cards}/>  
+        <Route path='/' component={Home}/>            
+      </Switch>
           <Footer></Footer>
         </BrowserRouter>
         </header>

@@ -29,7 +29,7 @@ export default class NavBar extends React.Component {
             <Col xs={4} md={8} lg={8}>
               <Nav className="mr-auto">
                 <Nav.Link as={Link} to="/home"><Icon.HouseFill className="nav-icon"/></Nav.Link>
-                <Nav.Link as={Link} to="/cards"><Icon.MicrosoftTeams className="nav-icon"/></Nav.Link>
+                <Nav.Link as={Link} to="/cards"><Icon.CollectionFill className="nav-icon"/></Nav.Link>
                 <Nav.Link as={Link} to="/about"><Icon.MicrosoftTeams className="nav-icon"/></Nav.Link>
                 <Nav.Link as={Link} to="/faq"><Icon.SendFill className="nav-icon"/></Nav.Link>
               </Nav>

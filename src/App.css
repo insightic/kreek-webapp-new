@@ -25,6 +25,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: var(--dark-text);
+  transition: all 0.5s
 }
 
 .App-link {
@@ -58,3 +59,26 @@
 .scrollTop:hover{
   opacity: 1;
 }
+
+.main {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 50px;
+}
+
+.sidenav {
+  width: 10%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 2px solid var(--toggle-border);
+}
+
+.content {
+  /* background-color: purple; */
+  width: 90%;
+  height: 80vh;
+}
+
+

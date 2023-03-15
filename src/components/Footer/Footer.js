@@ -12,16 +12,29 @@ export default class Footer extends React.Component {
         <Container fluid className="footer">
         <Col>
             <Row className="footer-top">
-            <Col xs={3} md={2} lg={1.25} className="footer-width">
-                <Icon.Discord className="footer-icon"/> Discord
+            <Col className="footer-width">
+                <Icon.Discord className="footer-icon"/> 
+                <span>Discord</span>
             </Col>
 
-            <Col xs={3} md={2} lg={1.25} className="footer-width">
-                <Icon.Github className="footer-icon"/> Github
+            <Col className="footer-width">
+                <Icon.Medium className="footer-icon"/> 
+                <span>Medium</span>
             </Col>
 
-            <Col xs={3} md={2} lg={1.25} className="footer-width">
-                <Icon.FiletypeDoc className="footer-icon"/> Docs
+            <Col className="footer-width">
+                <Icon.Twitter className="footer-icon"/> 
+                <span>Twitter</span>
+            </Col>
+
+            <Col className="footer-width">
+                <Icon.Github className="footer-icon"/> 
+                <span>Github</span>
+            </Col>
+
+            <Col className="footer-width">
+                <Icon.FiletypeDoc className="footer-icon"/> 
+                <span>Docs</span>
             </Col>
 
             </Row>

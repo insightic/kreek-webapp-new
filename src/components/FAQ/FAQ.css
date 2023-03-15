@@ -33,7 +33,19 @@
 }
 
 .gradient-custom {
-    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+    /* background: -webkit-linear-gradient(left, #3931af, #00c6ff); */
+    
+    /*the alpha value controls the transparency*/
+    background: rgba( 255, 255, 255, 0.3 );
+
+    /* This controls the blurring effect*/
+    backdrop-filter: blur( 7.5px );
+    -webkit-backdrop-filter: blur( 7.5px );
+    
+    /*Adding the shadow*/
+    box-shadow: 0 8px 32px 0 rgba( 0, 0, 0, 0.18 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    
     border-radius: 10px;
     max-width: 100%;
     width:80vw;
@@ -41,9 +53,18 @@
 }
 
 .card-custom {
+    border-radius: 20px;
+    border: 1px solid rgba( 255, 255, 255, 0.25 );
+    border-top: 1px solid rgba( 255, 255, 255, 0.5 );
+    border-left: 1px solid rgba( 255, 255, 255, 0.5 );
+    max-width: 700px;
+    padding: 55px;
+    background: rgba( 255, 255, 255, 0);
+    backdrop-filter: blur(50px);
+
     border-bottom-left-radius: 10% 50%;
     border-top-left-radius: 10% 50%;
-    background-color: #f8f9fa ;
+    background-color: transparent ;
     width:90%;
     height:88%;
     display: flex;
@@ -53,7 +74,15 @@
 input,
 input::placeholder {
     font: 20px sans-serif;
-    padding:5px
+    padding:5px;
+    color:#ffffff
+}
+
+input {
+    border-radius:10px;
+    border: 1px solid rgba( 255, 255, 255, 0.25 );
+    background: rgba( 255, 255, 255, 0.3);
+    backdrop-filter: blur(50px);
 }
 
 .left-col {

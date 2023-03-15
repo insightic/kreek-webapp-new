@@ -11,16 +11,22 @@
   padding: 10px;
   position: relative;
   height:50px;
-  transition: all 0.3s linear;
-}
-
-.toggle-container {
-    margin-left: 30px;
+  transition: all 1s linear;
 }
 
 .sunIcon, .moonIcon {
     margin:5px 5px;
     transition: all 0.3s linear;
+}
+
+
+
+.test {
+  transition: all 0.3s linear;
+}
+
+.test:hover {
+  transform: translateY(100px)
 }
 
 .sunIcon {
@@ -52,7 +58,7 @@
   --background: #ffffff;
   --accent: #DBE7E4;
   --border: #5E4B56;
-  --toggle-border:#ffffff;
+  --toggle-border:#e2e2e2;
   --gradient: linear-gradient(#39598A, #79D7ED);
   --options-border: #a5e9d8de;
 }

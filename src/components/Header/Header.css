@@ -10,38 +10,37 @@
 }
 
 .logo {
-  height:30px;
+  height:70px;
   width:auto;
+  font-size: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  padding:0px;
+  margin-top: 5px;
 }
 
-#basic-nav-dropdown{
-  text-align:left;
+.mr-auto > a {
+  font-weight: 600;
 }
 
-.bg-cover {
-  background-attachment: static;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.loginBtn {
+.title {
+  color: var(--dark-text);
   text-decoration: none;
-  border: 2px solid #03FBBF;
-  border-radius: 10px;
-  width: 80px;
-  color: #03FBBF
+  font-size: 2rem
 }
 
-.loginBtn:hover {
-  background-color: aquamarine;
-  cursor:pointer;
+.title:hover {
+  color: var(--dark-text);
+  text-decoration: none;
 }
+
+
+
 
 .navBar {
   max-width:100%;
   color:#ffffff;
-  width:80%;
+  width:80vw;
   display: flex;
   justify-content: center;
 }

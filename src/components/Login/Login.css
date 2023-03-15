@@ -40,12 +40,3 @@
     margin:10px 0px;
     background-color: #24A0ED;
 }
-
-.gradient-custom {
-    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
-    border-radius: 10px;
-    max-width: 100%;
-    width:80vw;
-    height:70vh;
-}
-

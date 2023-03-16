@@ -19,12 +19,12 @@ const Header = (props) => {
 
         <Navbar className="navBar" expand="lg" variant="dark">
           <Row className='nav'>
-            <Col xs={4} md={6} lg={8}>
+            <Col xs={4} md={8} lg={8}>
                 <a className='title' href='/'>Smart Contract Compliance Validation</a>
             </Col>
-            <Col xs={4} md={2} lg={2}>
+            <Col xs={4} md={1} lg={2}>
             </Col>
-            <Col xs={4} md={4} lg={2}>
+            <Col xs={4} md={3} lg={2}>
               <Navbar.Brand as={Link} className="logo" to="/home">
                 <img src={logo} className="logo"/>
               </Navbar.Brand>

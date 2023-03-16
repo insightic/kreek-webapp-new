@@ -1,3 +1,8 @@
+.home-container {
+    padding:0px;
+    margin:0px 15px;
+}
+
 .home {
     display:flex;
     justify-content: center;
@@ -5,18 +10,24 @@
     width:100%;
     margin:0px;
     padding:0px;
-    align-items: stretch
+    align-items: stretch;
+    height: 70vh;
+    min-height:300px;
 }
 
 .sections {
     /* background-color: aqua; */
     padding:0px;
+    overflow-y: scroll;
+    height: 70vh;
+    min-height:300px;
 }
 
 .section {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    margin-left: 10px;
 }
 
 .section > button {
@@ -75,11 +86,16 @@
 }
 
 .button-main {
-    width: clamp(8rem, 10rem, 12rem)
+    width: 100%;
+    min-width: 140px;
+    max-width: 200px;
+    margin-left: 10px;
 }
 
 .button-sub {
-    width: clamp(6rem, 8rem, 10rem);
+    width: 80%;
+    min-width: 110px;
+    max-width:160px;
     transition: all 0.2s linear;
 }
 
@@ -131,28 +147,84 @@ code {
     font-size: clamp(0.6rem, 0.8rem, 1.6rem);
 }
 
+.label-row {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    height:10vh;
+    min-height:60px;
+    max-height:80px;
+}
+
+.label-row-box {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    margin: 20px 3px;
+    padding: 5px 0px;
+    max-width: 300px;
+    min-width: 140px;
+    width: 20%;
+}
+
+.label-row-title {
+    text-align: left;
+    display:flex;
+    flex-direction: row;
+    margin:5px 0px;
+    padding:0px;
+}
+
+.label-row-title > span {
+    font-size: clamp(0.3rem, 0.5em, 1rem);
+    font-weight: 600;
+    white-space: nowrap;
+    align-self: center;
+}
+
+.label-row-title > .label-icon {
+    margin: 0px 5px;
+    width: 20px;
+    height: auto;
+}
+
+
+.label-row-content {
+    font-size: clamp(0.2rem, 0.4em, 1rem);
+    padding: 0px;
+}
+
 .label-box {
     display: flex;
     flex-direction: column;
     border-radius: 5px;
     margin: 20px 0px;
+    max-width: 300px;
+    min-width: 200px;
 }
 
 .label-title {
     text-align: left;
+    display:flex;
+    flex-direction: row;
+    margin:5px 0px;
 }
 
 .label-title > span {
-    font-size: clamp(0.8rem, 1rem, 2rem);
+    font-size: clamp(0.6rem, 0.7em, 2rem);
     font-weight: 600;
+    white-space: nowrap;
+    align-self: center;
 }
 
 .label-content {
-    font-size: clamp(0.6rem, 0.8rem, 1.6rem);
+    font-size: clamp(0.4rem, 0.5em, 1.6rem);
 }
 
 .label-icon {
-    margin: 0px 12px
+    margin: 0px 12px;
+    width: 20px;
+    height: auto;
 }
 
 .check {

@@ -69,8 +69,43 @@ const Home = () => {
             <meta name="description" content="CivicTech Lab at National University of Singapore is a research hub led by Dr. Weiyu Zhang. We are a team of social scientists, computer scientists, and digital cultural analysts. " />
         </Helmet>
 
+        <Row className="label-row d-none d-md-flex d-lg-none" xs={0} md={0} lg={3}>
+                <Container className="label-row-box check">
+                    <Container className="label-row-title">
+                        <Icon.InfoCircle className="label-icon"/><span>Overall Code Quality</span>
+                    </Container>
+                    {/* <Container className='label-row-content'>
+                        This is an information alert
+                    </Container> */}
+                </Container>
+                <Container className="label-row-box warning">
+                    <Container className="label-row-title">
+                        <Icon.ExclamationCircle className="label-icon"/><span>Explanations</span>
+                    </Container>
+                    {/* <Container className='label-row-content'>
+                        Explain the code in natural languages
+                    </Container> */}
+                </Container>
+                <Container className="label-row-box success">
+                    <Container className="label-row-title">
+                        <Icon.CheckCircle className="label-icon"/><span>Success</span>
+                    </Container>
+                    {/* <Container className='label-row-content'>
+                        Passed # validation tests
+                    </Container> */}
+                </Container>
+                <Container className="label-row-box error">
+                    <Container className="label-row-title">
+                        <Icon.XCircle className="label-icon"/><span>Critical Risks</span>
+                    </Container>
+                    {/* <Container className='label-row-content'>
+                        There are # critical risk(s)
+                    </Container> */}
+                </Container>
+        </Row> 
+
         <Row className="home">
-            <Col className="sections" xs={2} md={2} lg={2}>
+            <Col className="sections" xs={3} md={3} lg={2}>
                 <Container className='section whitepaper'>
                     <Button className='button-main' onClick={() => setIsOpen1(!isOpen1)}>Whitepaper{isOpen1 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>} </Button>
                     <Button className='button-sub' style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Claim 1</Button>
@@ -95,7 +130,7 @@ const Home = () => {
                 </Container>
             </Col>
             
-            <Col className="browser" xs={7} md={7} lg={7}>
+            <Col className="browser" xs={5} md={9} lg={7}>
             <Container className='tabs'>
                 {   
                     codeList.length > 0 &&
@@ -136,13 +171,9 @@ const Home = () => {
             > 
             "No file is selected"
             </SyntaxHighlighter>}
-
-
-
             </Col>  
-            
-                
-            <Col className="label" xs={3} md={3} lg={3}>
+             
+            <Col className="label d-none d-lg-block" xs={0} md={0} lg={3}>
                 <Container className="label-box check">
                     <Container className="label-title">
                         <Icon.InfoCircle className="label-icon"/><span>Overall Code Quality</span>

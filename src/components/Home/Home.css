@@ -15,13 +15,27 @@
     min-height:300px;
 }
 
+@media screen and (min-width: 992px) {
 .sections {
     /* background-color: aqua; */
     padding:0px;
-    overflow-y: scroll;
-    height: 70vh;
+    height: 80vh;
     min-height:300px;
 }
+}
+
+@media screen and (max-width: 992px) {
+    .sections {
+        /* background-color: aqua; */
+        padding:0px;
+        overflow-y: scroll;
+        height: 70vh;
+        min-height:300px;
+        overflow-x: visible;
+    }
+    }
+
+
 
 .section {
     display: flex;

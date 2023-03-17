@@ -17,7 +17,7 @@ const Header = (props) => {
     return (
       <Container className="nav-container">
 
-        <Navbar className="navBar" expand="lg" variant="dark">
+        <Navbar className="d-xs-none navBar" expand="lg" variant="dark">
           <Row className='nav'>
             <Col xs={4} md={8} lg={8}>
                 <a className='title' href='/'>Smart Contract Compliance Validation</a>

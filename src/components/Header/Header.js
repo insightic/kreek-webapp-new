@@ -16,8 +16,10 @@ const Header = (props) => {
   
     return (
       <Container className="nav-container">
-
-        <Navbar className="d-xs-none navBar" expand="lg" variant="dark">
+          <div className='sidenav-padding'>
+          </div>
+        Smart Contract Compliance Validation
+        {/* <Navbar className="d-xs-none navBar" expand="lg" variant="dark">
           <Row className='nav'>
             <Col xs={4} md={8} lg={8}>
                 <a className='title' href='/'>Smart Contract Compliance Validation</a>
@@ -30,9 +32,9 @@ const Header = (props) => {
               </Navbar.Brand>
             </Col>
           </Row>
-          {/* <Toggle togClass={props.togClass} setTogClass={props.setTogClass}/> */}
+          <Toggle togClass={props.togClass} setTogClass={props.setTogClass}/>
 
-        </Navbar>
+        </Navbar> */}
 
       </Container>
     );

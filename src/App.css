@@ -64,11 +64,14 @@
   display: flex;
   flex-direction: row;
   padding: 10px 50px;
-  max-width:85% !important;
+  height:calc(100vh - 45px - 30px);
+  min-height: 600px;
 }
 
 .sidenav {
   width: 10%;
+  max-width: 80px;
+  min-width:60px;
   height: 80vh;
   display: flex;
   align-items: center;

@@ -66,8 +66,12 @@ const Home = () => {
         <Container className="home-container">
         <Helmet>
             <title>Home | Kreek</title>
-            <meta name="description" content="CivicTech Lab at National University of Singapore is a research hub led by Dr. Weiyu Zhang. We are a team of social scientists, computer scientists, and digital cultural analysts. " />
+            {/* <meta name="description" content="CivicTech Lab at National University of Singapore is a research hub led by Dr. Weiyu Zhang. We are a team of social scientists, computer scientists, and digital cultural analysts. " /> */}
         </Helmet>
+
+        <Container className='project-name'>
+            Uniswap V3
+        </Container>
 
         <Row className="label-row d-none d-md-flex d-lg-none" xs={0} md={0} lg={3}>
                 <Container className="label-row-box check">
@@ -105,17 +109,17 @@ const Home = () => {
         </Row> 
 
         <Row className="home">
-            <Col className="sections" xs={3} md={3} lg={2}>
+            <Col className="sections" xs={3} md={3} lg={3}>
                 <Container className='section whitepaper'>
-                    <Button className='button-main' onClick={() => setIsOpen1(!isOpen1)}>Whitepaper{isOpen1 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>} </Button>
-                    <Button className='button-sub' style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Claim 1</Button>
+                    <Button className='button-main' onClick={() => setIsOpen1(!isOpen1)}>Whitepaper (10/50 passed) {isOpen1 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>} </Button>
+                    <Button className='button-sub' style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Total number of tokens issued</Button>
                     <Button className='button-sub' style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Claim 2</Button>
                     <Button className='button-sub' style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Claim 3</Button>
                     <Button className='button-sub' style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Claim 4</Button>
                 </Container>
 
                 <Container className='section regulations'>
-                    <Button className='button-main' onClick={() => setIsOpen2(!isOpen2)}>Regulations{isOpen2 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
+                    <Button className='button-main' onClick={() => setIsOpen2(!isOpen2)}>Regulations (5/5 passed){isOpen2 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
                     <Button className='button-sub' style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Rule 1</Button>
                     <Button className='button-sub' style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Rule 2</Button>
                     <Button className='button-sub' style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Rule 3</Button>
@@ -123,14 +127,14 @@ const Home = () => {
                 </Container>
 
                 <Container className='section industrial-standard'>
-                    <Button className='button-main' onClick={() => setIsOpen3(!isOpen3)}>Industrial Standard{isOpen3 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
+                    <Button className='button-main' onClick={() => setIsOpen3(!isOpen3)}>Industry Standard{isOpen3 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
                     <Button className='button-sub' style={isOpen3 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Reference 1</Button>
                     <Button className='button-sub' style={isOpen3 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Reference 2</Button>
                     <Button className='button-sub' style={isOpen3 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Reference 3</Button>
                 </Container>
             </Col>
             
-            <Col className="browser" xs={5} md={9} lg={7}>
+            <Col className="browser" xs={5} md={9} lg={6}>
             <Container className='tabs'>
                 {   
                     codeList.length > 0 &&
@@ -176,35 +180,33 @@ const Home = () => {
             <Col className="label d-none d-lg-block" xs={0} md={0} lg={3}>
                 <Container className="label-box check">
                     <Container className="label-title">
-                        <Icon.InfoCircle className="label-icon"/><span>Overall Code Quality</span>
+                        {/* <Icon.InfoCircle className="label-icon"/> */}
+                        <span className='label-indicator'>90</span>
+                        <span>Overall Code Quality</span>
                     </Container>
-                    <Container className='label-content'>
+                    {/* <Container className='label-content'>
                         This is an information alert
-                    </Container>
+                    </Container> */}
                 </Container>
                 <Container className="label-box warning">
                     <Container className="label-title">
-                        <Icon.ExclamationCircle className="label-icon"/><span>Explanations</span>
+                        {/* <Icon.ExclamationCircle className="label-icon"/> */}
+                        <span className='label-indicator'>40</span>
+                        <span>Explanations</span>
                     </Container>
-                    <Container className='label-content'>
+                    {/* <Container className='label-content'>
                         Explain the code in natural languages
-                    </Container>
+                    </Container> */}
                 </Container>
                 <Container className="label-box success">
                     <Container className="label-title">
-                        <Icon.CheckCircle className="label-icon"/><span>Success</span>
+                        {/* <Icon.CheckCircle className="label-icon"/> */}
+                        <span className='label-indicator'>90</span>
+                        <span>Success</span>
                     </Container>
-                    <Container className='label-content'>
+                    {/* <Container className='label-content'>
                         Passed # validation tests
-                    </Container>
-                </Container>
-                <Container className="label-box error">
-                    <Container className="label-title">
-                        <Icon.XCircle className="label-icon"/><span>Critical Risks</span>
-                    </Container>
-                    <Container className='label-content'>
-                        There are # critical risk(s)
-                    </Container>
+                    </Container> */}
                 </Container>
             </Col> 
         </Row>

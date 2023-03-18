@@ -15,6 +15,15 @@
     min-height:300px;
 }
 
+.project-name {
+    display:flex;
+    justify-content:flex-start;
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+  
+
 @media screen and (min-width: 992px) {
 .sections {
     /* background-color: aqua; */
@@ -33,15 +42,12 @@
         min-height:300px;
         overflow-x: visible;
     }
-    }
-
-
+}
 
 .section {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    margin-left: 10px;
 }
 
 .section > button {
@@ -102,15 +108,23 @@
 .button-main {
     width: 100%;
     min-width: 140px;
-    max-width: 200px;
+    max-width: 230px;
     margin-left: 10px;
+    font-weight: 600;
+    align-self: right;
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .button-sub {
     width: 80%;
     min-width: 110px;
-    max-width:160px;
+    max-width:180px;
     transition: all 0.2s linear;
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .browser {
@@ -125,7 +139,7 @@
 }
 
 .tab {
-    font-size: clamp(0.8rem, 1rem, 2rem);
+    font-size: clamp(0.6rem, 0.8rem, 1rem);
     font-weight: 600;
     background-color: #E8F4FF;
     border-radius: 5px;
@@ -158,7 +172,7 @@ code {
 }
 
 .browser span {
-    font-size: clamp(0.6rem, 0.8rem, 1.6rem);
+    font-size: clamp(0.4rem, 0.6rem, 1.0rem);
 }
 
 .label-row {
@@ -222,17 +236,25 @@ code {
     display:flex;
     flex-direction: row;
     margin:5px 0px;
+    justify-content: flex-start;
 }
 
 .label-title > span {
-    font-size: clamp(0.6rem, 0.7em, 2rem);
+    font-size: clamp(0.6rem, 1rem, 2rem);
     font-weight: 600;
     white-space: nowrap;
     align-self: center;
 }
 
+.label-indicator {
+    margin-right:10px;
+    border-radius: 20px;
+    border: 2px solid;
+    padding:5px;
+}
+
 .label-content {
-    font-size: clamp(0.4rem, 0.5em, 1.6rem);
+    font-size: clamp(0.4rem, 0.7rem, 1.6rem);
 }
 
 .label-icon {
@@ -242,7 +264,7 @@ code {
 }
 
 .check {
-    background-color: #86909C;
+    background-color: #22A06B;
     color:  #ffffff
 }
 

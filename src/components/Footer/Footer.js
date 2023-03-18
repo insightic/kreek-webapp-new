@@ -11,7 +11,7 @@ export default class Footer extends React.Component {
     return (
         <Container fluid className="footer">
         <Col>
-            <Row className="footer-top">
+            {/* <Row className="footer-top">
             <Col className="footer-width">
                 <Icon.Discord className="footer-icon"/> 
                 <span>Discord</span>
@@ -37,10 +37,10 @@ export default class Footer extends React.Component {
                 <span>Docs</span>
             </Col>
 
-            </Row>
+            </Row> */}
 
             <Row className="footer-bottom" xs={12} md={10} lg={8}>
-                <span>©2023 KREEK: ALL RIGHT RESERVED.</span>
+                <span>©2023 Kreek: All Riight Reserved.</span>
             </Row>
         </Col>
         </Container>

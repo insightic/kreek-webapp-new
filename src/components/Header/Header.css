@@ -1,12 +1,21 @@
 .nav-container {
-  max-width:100%;
-  width:100%;
   display:flex;
-  justify-content: center;
+  justify-content: flex-start;
   /* background-color:#222222; */
   background-color: transparent;
   z-index:10;
   /* border-bottom: 2px solid #e7e7e7; */
+  font-weight: 600;
+  font-size:30px;
+}
+
+.sidenav-padding {
+  width: calc(10%+40px);
+  max-width: 120px;
+  min-width:100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo {
@@ -48,11 +57,6 @@
   width:100%;
   display: flex;
   justify-content: center;
-}
-
-.nav-icon {
-  color:#ffffff;
-  font-size: 22px;
 }
 
 .nav > div {

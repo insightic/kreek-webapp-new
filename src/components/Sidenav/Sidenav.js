@@ -25,13 +25,34 @@ const Sidenav = (props) => {
   
     return (
       <div className='sidenav-container'>
-        <OverlayTrigger placement="right" delay={{ show: 10, hide: 10 }} overlay={renderTooltip("User Profile")}>
+        <OverlayTrigger 
+        placement="right" 
+        delay={{ show: 10, hide: 10 }} 
+        overlay={renderTooltip("User Profile")}
+        popperConfig={{
+          modifiers: {
+            preventOverflow: {
+              enabled: false
+            }
+          }
+        }}>
           <img src={user} className="user"/>
         </OverlayTrigger>
 
         {/* <Nav.Link className="nav-icon-container" as={Link} active={location.pathname=='/home'} to="/home"><Icon.Search className="nav-icon"/> </Nav.Link> */}
         <Nav.Link className="nav-icon-container" as={Link} to="/home">
-          <OverlayTrigger placement="right" delay={{ show: 10, hide: 10 }} overlay={renderTooltip("Search")}>
+          <OverlayTrigger 
+          placement="right" 
+          delay={{ show: 10, hide: 10 }} 
+          overlay={renderTooltip("Search")}
+          popperConfig={{
+            modifiers: {
+              preventOverflow: {
+                enabled: false
+              }
+            }
+          }}
+          style={{position:"fixed"}}>
             <Icon.Search className="nav-icon"/> 
           </OverlayTrigger>
 

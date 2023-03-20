@@ -10,17 +10,33 @@ import sample from "./codeblock.js";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import ResizableTable from '../ResizableTable/ResizableTable';
+import Xarrow, {useXarrow, Xwrapper} from 'react-xarrows';
 
 const Home = () => {
     const ADDED = [1, 2];
     const REMOVED = [6];
+    const [showArrow, setShowArrow] = React.useState(false);
+    const [lineFrom, setLineFrom] = React.useState(null);
+    const [lineTo, setLineTo] = React.useState(null);
+    const updateXarrow = useXarrow();
+
+    const data = async () => {
+        const url = 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectName'
+        const response = await fetch(url, {
+            method: 'POST',
+        })
+        .then((res) => res.json())
+        const res = await response
+        alert(res)
+    }
 
     let dummydata = [
         {'file': 'code1.sol', 'ADDED': [1, 2], 'REMOVED': [5,6], 'code': sample['jsx']},
         {'file': 'code2.sol', 'ADDED': [2, 3], 'REMOVED': [4,8], 'code': sample['html']},
         {'file': 'code3.sol', 'ADDED': [1, 3], 'REMOVED': [2,6], 'code': sample['objectivec']},
         {'file': 'code4.sol', 'ADDED': [1, 4], 'REMOVED': [5,7], 'code': sample['python']},
-        {'file': 'code5.sol', 'ADDED': [2, 5], 'REMOVED': [2,8], 'code': sample['java']}
+        {'file': 'code5.sol', 'ADDED': [3, 5], 'REMOVED': [2,8], 'code': sample['java']}
     ]
 
     const [isOpen1, setIsOpen1] = useState(false)
@@ -53,6 +69,14 @@ const Home = () => {
         
     }
 
+    const setClaim = (event) => {
+        updateXarrow()
+        setLineFrom(event.currentTarget.id)
+        setShowArrow(true)
+        setLineTo('end'+ activeItem['ADDED'][0])
+        updateXarrow()
+    }
+
     useEffect(() => {
         if (newFile.current != null) {
             console.log('Fruit', newFile);
@@ -61,7 +85,7 @@ const Home = () => {
       }, [codeList])
 
       const activeItem = codeList.findIndex((elem) => elem['file'] == activeFile) != -1 ? codeList[codeList.findIndex((elem) => elem['file'] == activeFile)] : null
-    
+
       return (
         <Container className="home-container">
         <Helmet>
@@ -72,6 +96,9 @@ const Home = () => {
         <Container className='project-name'>
             Uniswap V3
         </Container>
+
+        {/* <Button onClick={data}>test</Button> */}
+
 
         <Row className="label-row d-none d-md-flex d-lg-none" xs={0} md={0} lg={3}>
                 <Container className="label-row-box check">
@@ -108,33 +135,50 @@ const Home = () => {
                 </Container>
         </Row> 
 
-        <Row className="home">
-            <Col className="sections" xs={3} md={3} lg={3}>
+
+        <Xwrapper>
+        <Xarrow
+                start={lineFrom}
+                end={lineTo}
+                startAnchor={'right'}
+                path={"grid"}
+                dashness={{ strokeLen: 10, nonStrokeLen: 15, animation: -2 }}
+                showHead={false}
+                showXarrow = {true}
+                strokeWidth={5}
+                // animateDrawing={1}
+        />
+        <ResizableTable resizable={true} resizeOptions={{liveDrag:true, onDrag:updateXarrow}}>
+        <tbody className="home">
+          <tr>
+            <td className="sections" xs={3} md={3} lg={3}>
                 <Container className='section whitepaper'>
                     <Button className='button-main' onClick={() => setIsOpen1(!isOpen1)}>Whitepaper (10/50 passed) {isOpen1 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>} </Button>
-                    <Button className='button-sub' style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Total number of tokens issued</Button>
-                    <Button className='button-sub' style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Claim 2</Button>
-                    <Button className='button-sub' style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Claim 3</Button>
-                    <Button className='button-sub' style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Claim 4</Button>
+                    <Button id='sec1but1' className='button-sub' onClick={setClaim} style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Total number of tokens issued</Button>
+                    <Button id='sec1but2' className='button-sub' onClick={setClaim} style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Claim 2</Button>
+                    <Button id='sec1but3' className='button-sub' onClick={setClaim} style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Claim 3</Button>
+                    <Button id='sec1but4' className='button-sub' onClick={setClaim} style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Claim 4</Button>
                 </Container>
 
                 <Container className='section regulations'>
                     <Button className='button-main' onClick={() => setIsOpen2(!isOpen2)}>Regulations (5/5 passed){isOpen2 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
-                    <Button className='button-sub' style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Rule 1</Button>
-                    <Button className='button-sub' style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Rule 2</Button>
-                    <Button className='button-sub' style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Rule 3</Button>
-                    <Button className='button-sub' style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Rule 4</Button>
+                    <Button id='sec2but1' className='button-sub' onClick={setClaim} style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Rule 1</Button>
+                    <Button id='sec2but2' className='button-sub' onClick={setClaim} style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Rule 2</Button>
+                    <Button id='sec2but3' className='button-sub' onClick={setClaim} style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Rule 3</Button>
+                    <Button id='sec2but4' className='button-sub' onClick={setClaim} style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Rule 4</Button>
                 </Container>
 
                 <Container className='section industrial-standard'>
                     <Button className='button-main' onClick={() => setIsOpen3(!isOpen3)}>Industry Standard{isOpen3 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
-                    <Button className='button-sub' style={isOpen3 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Reference 1</Button>
-                    <Button className='button-sub' style={isOpen3 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Reference 2</Button>
-                    <Button className='button-sub' style={isOpen3 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Reference 3</Button>
+                    <Button id='sec3but1' className='button-sub' onClick={setClaim} style={isOpen3 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Reference 1</Button>
+                    <Button id='sec3but2' className='button-sub' onClick={setClaim} style={isOpen3 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Reference 2</Button>
+                    <Button id='sec3but3' className='button-sub' onClick={setClaim} style={isOpen3 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Reference 3</Button>
                 </Container>
-            </Col>
             
-            <Col className="browser" xs={5} md={9} lg={6}>
+            </td>
+
+            <td className="browser" xs={6} md={6} lg={6}>
+                
             <Container className='tabs'>
                 {   
                     codeList.length > 0 &&
@@ -155,13 +199,14 @@ const Home = () => {
                 showLineNumbers = {true}
                 wrapLines={true}
                 lineProps={lineNumber => {
+                    let id = 'end' + lineNumber
                     let style = { display: 'block' };
                     if (activeItem['ADDED'].includes(lineNumber)) {
                       style.backgroundColor = '#dbffdb';
                     } else if (activeItem['REMOVED'].includes(lineNumber)) {
                       style.backgroundColor = '#ffecec';
                     }
-                    return { style };
+                    return { style, id };
                   }}
             > 
             {activeItem['code']}
@@ -175,10 +220,12 @@ const Home = () => {
             > 
             "No file is selected"
             </SyntaxHighlighter>}
-            </Col>  
-             
-            <Col className="label d-none d-lg-block" xs={0} md={0} lg={3}>
-                <Container className="label-box check">
+                
+            </td>
+
+            <td className="label" xs={3} md={3} lg={3}>
+                
+            <Container className="label-box check">
                     <Container className="label-title">
                         {/* <Icon.InfoCircle className="label-icon"/> */}
                         <span className='label-indicator'>90</span>
@@ -208,8 +255,13 @@ const Home = () => {
                         Passed # validation tests
                     </Container> */}
                 </Container>
-            </Col> 
-        </Row>
+                
+            </td>
+          </tr>
+
+        </tbody>
+      </ResizableTable>
+      </Xwrapper>
 
 
         </Container>

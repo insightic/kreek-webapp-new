@@ -12,6 +12,7 @@ import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import ResizableTable from '../ResizableTable/ResizableTable';
 import Xarrow, {useXarrow, Xwrapper} from 'react-xarrows';
+import axios from "axios";
 
 const Home = () => {
     const ADDED = [1, 2];
@@ -22,11 +23,12 @@ const Home = () => {
     const updateXarrow = useXarrow();
 
     const data = async () => {
-        const url = 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectName'
+        // const url = 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectName'
+        const url = 'http://localhost:9000/getSecurityRisk'
         const response = await fetch(url, {
-            method: 'POST',
+            method: 'GET',
         })
-        .then((res) => res.json())
+        .then((res) => res.text())
         const res = await response
         alert(res)
     }

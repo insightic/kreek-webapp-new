@@ -11,11 +11,12 @@ import About from "./components/About/About.js"
 import FAQ from "./components/FAQ/FAQ.js"
 import Login from "./components/Login/Login.js"
 import Cards from "./components/Cards/Cards.js"
+import NewProject from './components/NewProject/NewProject';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 //import Home from "./components/Home/Home.js"
 import { withRouter } from "react-router";
-
+import useToken from './components/useToken';
 
 
 import { keepTheme } from './Theme.js';
@@ -30,6 +31,7 @@ function ScrollRestoration() {
 }
 
 function App() {
+  const { token, removeToken, setToken } = useToken();
   const [currentTime, setCurrentTime] = useState(0);
   const [togClass, setTogClass] = useState('light');
 
@@ -47,16 +49,22 @@ function App() {
     <div className="App">
       <header className="App-header">
         <BrowserRouter>
-        <Header togClass={togClass} setTogClass={setTogClass}></Header>
+        {console.log(token)}
+        {!token || token== undefined || token == ""?  
+        <Login setToken={setToken} />
+        :(
+          <>
+          <Header togClass={togClass} setTogClass={setTogClass}></Header>
         {/* <HeaderWithRouter togClass={togClass} setTogClass={setTogClass}/> */}
         <ScrollRestoration />
         <Container className='main'>
           <div className='sidenav'>
-            <Sidenav togClass={togClass} setTogClass={setTogClass}/>
+            <Sidenav token={token} setToken={setToken} togClass={togClass} setTogClass={setTogClass}/>
           </div>
           <div className='content'>
             <Switch>                
-              <Route path='/home' component={Home}/>  
+              <Route path='/home' component={Home}/> 
+              <Route path='/new-project' component={NewProject}/>   
               <Route path='/about' component={About}/>               
               <Route path='/faq' component={FAQ}/>   
               <Route path='/login' component={Login}/>  
@@ -66,6 +74,8 @@ function App() {
           </div>
         </Container>
           <Footer></Footer>
+          </>
+        )}
         </BrowserRouter>
         </header>
     </div>

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 import user from "../../assets/user.png"
 import Toggle from '../../Toggle.js'
 import * as Icon from 'react-bootstrap-icons';
-
+import axios from "axios";
 
 
 const Sidenav = (props) => {
@@ -16,8 +16,27 @@ const Sidenav = (props) => {
     textDecoration: "underline",
   };
 
+  function logMeOut(event) {
+    axios({
+      method: "PUT",
+      url:"/logout",
+      headers:{
+        "authorization": props.token
+       }
+    })
+    .then((response) => {
+      props.setToken(undefined)
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response)
+        console.log(error.response.status)
+        console.log(error.response.headers)
+        }
+    })
+  }
+
   const renderTooltip = (text) => (
-    <Tooltip id="button-tooltip">
+    <Tooltip id="button-tooltip" style={{position:"fixed"}}>
       {text}
     </Tooltip>
   );
@@ -28,31 +47,16 @@ const Sidenav = (props) => {
         <OverlayTrigger 
         placement="right" 
         delay={{ show: 10, hide: 10 }} 
-        overlay={renderTooltip("User Profile")}
-        popperConfig={{
-          modifiers: {
-            preventOverflow: {
-              enabled: false
-            }
-          }
-        }}>
+        overlay={renderTooltip("User Profile")}>
           <img src={user} className="user"/>
         </OverlayTrigger>
 
         {/* <Nav.Link className="nav-icon-container" as={Link} active={location.pathname=='/home'} to="/home"><Icon.Search className="nav-icon"/> </Nav.Link> */}
-        <Nav.Link className="nav-icon-container" as={Link} to="/home">
+        <Nav.Link className="nav-icon-container" as={Link} to="/new-project">
           <OverlayTrigger 
           placement="right" 
           delay={{ show: 10, hide: 10 }} 
-          overlay={renderTooltip("Search")}
-          popperConfig={{
-            modifiers: {
-              preventOverflow: {
-                enabled: false
-              }
-            }
-          }}
-          style={{position:"fixed"}}>
+          overlay={renderTooltip("Search")}>
             <Icon.Search className="nav-icon"/> 
           </OverlayTrigger>
 
@@ -84,7 +88,7 @@ const Sidenav = (props) => {
         </Nav>
 
         <div className='nav-lower'>
-        <Nav.Link className="nav-icon-container" as={Link} to="/home">
+        <Nav.Link className="nav-icon-container" as={Button} onClick={logMeOut}>
           <OverlayTrigger placement="right" delay={{ show: 10, hide: 10 }} overlay={renderTooltip("Log out")}>
             <Icon.DoorOpen className="nav-icon"/>
           </OverlayTrigger>
@@ -94,5 +98,6 @@ const Sidenav = (props) => {
       </div>
     );
   }
+  
 
 export default Sidenav

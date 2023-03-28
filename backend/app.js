@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var getAllRouter = require("./routes/getAll");
 var getProjectDetailsRouter = require("./routes/getProjectDetails");
+const axios = require('axios');
 
 var app = express();
 
@@ -47,10 +48,23 @@ app.post("/signin", async (req, res, next) => {
   //   return next(error);
   // }
 
+  let userList = await axios({
+    method: 'post',
+    url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getAll',
+    headers: {}, 
+  }).then(function (response) {
+    // handle success
+    console.log(response['data']);
+    return response['data']
+  })
 
+  userList = userList['users'].map((user) => {return {"email": user['userEmail'], "password": user['userPassword']}})
 
   let token;
-  if (email == 'test' && password == 'test') {
+  console.log({"email": email, "password": password})
+  console.log(userList)
+  console.log(userList.filter((user) => {return user.email == email && user.password == password}))
+  if (userList.filter((user) => {return user.email == email && user.password == password}).length == 1) {
     try {
       //Creating jwt token
       token = jwt.sign(

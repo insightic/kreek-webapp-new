@@ -64,7 +64,7 @@
   display: flex;
   flex-direction: row;
   padding: 10px 50px;
-  height:calc(100vh - 45px - 30px);
+  /* height:calc(100vh - 45px - 30px); */
   min-height: 600px;
 }
 
@@ -83,7 +83,7 @@
 .content {
   /* background-color: purple; */
   width: 90%;
-  height: 80vh;
+  height: fit-content;
 }
 
 

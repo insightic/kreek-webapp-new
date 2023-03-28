@@ -11,7 +11,6 @@
     margin:0px;
     padding:0px;
     align-items: stretch;
-    height: 80vh;
     min-height:300px;
     background-color: var(--background);
     border:none;
@@ -20,10 +19,78 @@
 .react-pdf__Page {
     margin: 0 auto;
     width: fit-content;
-    height: 500px;
+    min-height: 300px;
+    height: fit-content;
 }
 
 .react-pdf__Document {
-    height: 500px;
+    height: 520px;
+}
+
+.pdfViewer-placeholder > div{
+    text-align: left
+}
+
+.pdfViewer-placeholder {
+    margin:  10px;
+}
+
+.pdfViewer-placeholder > div {
+    font-size: 1rem;
+}
+
+.pdf-button {
+    border-radius: 15px;
+    width: 8rem;
+    margin: 0px 10px;
+}
+
+.new-project-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+    font-size: 1rem;
+}
+
+.new-project-form label {
+    float:left;
+}
+
+.new-project-form input::placeholder {
+    font-size:1rem;
+}
+
+
+.new-project-form > div {
+    margin: 5px 0px;
+}
+
+.filelist {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0px;
+    padding: 0px;
+    font-size: 1rem;
+}
+
+.filelist > div {
+    display:flex;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.preview-button {
+    cursor:pointer
+}
+
+.preview-button:hover {
+    color: blue
+}
+
+.new-project-form > button {
+    width: 5rem;
+    align-self: center;
 }
 

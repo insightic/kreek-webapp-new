@@ -51,6 +51,41 @@ const NewProject = () => {
         setPreviewFile(file);
       };
 
+      const [whitepapers, setWhitepapers] = useState([]);
+      const [codefiles, setCodefiles] = useState([]);
+
+      let handleSubmit = async (event) => {
+        event.preventDefault();
+        const projectName = event.target.projectName.value;
+        const email = event.target.email.value;
+        const projectDesc = event.target.projectDesc.value;
+        
+        alert(JSON.stringify({
+            'projectName': projectName,
+            'email': email,
+            'projectDesc': projectDesc,
+            'whitepapers': whitepapers,
+            'codefiles': codefiles
+        }))
+        
+        // try {
+        //   let res = await fetch("https://httpbin.org/post", {
+        //     method: "POST",
+        //     body: JSON.stringify({
+
+        //     }),
+        //   });
+        //   let resJson = await res.json();
+        //   if (res.status === 200) {
+
+        //   } else {
+
+        //   }
+        // } catch (err) {
+        //   console.log(err);
+        // }
+      };
+      
       return (
         <Container className="newproject-container">
         <Helmet>
@@ -69,7 +104,56 @@ const NewProject = () => {
           <tr>
             <td className="sections" xs={6} md={6} lg={6}>
             <Container>
-            <Row className='buttonRow'>
+            <Form className="new-project-form" onSubmit={handleSubmit}>
+                <Form.Group controlId="form.Name">
+                    <Form.Label>Project Name</Form.Label>
+                    <Form.Control type="text" name="projectName" placeholder="Enter Project Name" />
+                </Form.Group>
+                <Form.Group controlId="form.Email">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="email" name="email" placeholder="name@example.com" />
+                </Form.Group>
+                <Form.Group controlId="form.Textarea">
+                    <Form.Label>Project Description</Form.Label>
+                    <Form.Control as="textarea" name="projectDesc" rows={3} />
+                </Form.Group>
+                <Form.Group controlId="form.Whitepaper">
+                    <Form.Label>Whitepaper</Form.Label>
+                    <Form.Control type="file" accept=".pdf" onChange={(e) => setWhitepapers(e.target.files)} multiple />
+                    <Container className="filelist">
+                    {whitepapers.length > 0 && Array.from(whitepapers).map( (whitepaper, index) => {
+                        return (
+                            <div>
+                                <span>{String(whitepaper.name)}</span>
+                                <span className="preview-button" onClick={() => setPreviewFile(whitepaper)}>Preview</span>
+                            </div>
+                        )
+                    }
+                    )}
+                    </Container>
+                </Form.Group>
+                <Form.Group controlId="form.SourceCode">
+                    <Form.Label>Source Code Files</Form.Label>
+                    <Form.Control type="file" accept=".pdf" onChange={(e) => setCodefiles(e.target.files)} multiple />
+                    <Container className="filelist">
+                    {codefiles.length > 0 && Array.from(codefiles).map( (codefile, index) => {
+                        return (
+                            <div>
+                                <span>{String(codefile.name)}</span>
+                                <span className="preview-button" onClick={() => setPreviewFile(codefile)}>Preview</span>
+                            </div>
+                        )
+                    }
+                    )}
+                    </Container>
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Form>
+            {/* <Row className='buttonRow'>
+
+
             <Col className='buttonCol'>
                 <Form.Control type="file" ref={inputFile} accept=".*" style={{display: 'none'}} onChange={(e) => {setFile(e.target.files[0])}}/>
                 <Button className='secButton3' onClick={() => browsefile()}>
@@ -88,16 +172,22 @@ const NewProject = () => {
             </Col>
 
             {file && <Container style={{marginTop:'15px'}}>File Seclected: {file.name}</Container>}
-        </Row>
+        </Row> */}
 
         </Container>
             
             </td>
 
             <td className="preview" xs={6} md={6} lg={6}>
+                {!previewFile && <div className="pdfViewer-placeholder">
+                    <h4>PDF File Viewer</h4>
+                    <div>Step 1: Fill in the form on the left</div>                    
+                    <div>Step 2: Upload the files under Whitepapers and Source Code Files</div>
+                    <div>Step 3: Click on the Preview button to view the file</div>
+                    </div>}
                 
-                {file && (<><Document
-                    file={URL.createObjectURL(file)}
+                {previewFile && (<><Document
+                    file={URL.createObjectURL(previewFile)}
                     // options={{ workerSrc: "../../assets/sample.pdf" }}
                     onLoadSuccess={onDocumentLoadSuccess}
                 >
@@ -115,10 +205,10 @@ const NewProject = () => {
             <p>
             Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}
             </p>
-            <button type="button" disabled={pageNumber <= 1} onClick={previousPage}>
+            <button className="pdf-button" type="button" disabled={pageNumber <= 1} onClick={previousPage}>
             Previous
             </button>
-            <button type="button" disabled={pageNumber >= numPages} onClick={nextPage}>
+            <button className="pdf-button" type="button" disabled={pageNumber >= numPages} onClick={nextPage}>
             Next
             </button>
             </div>

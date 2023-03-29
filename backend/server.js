@@ -205,7 +205,11 @@ app.post("/signin", async (req, res, next) => {
   //   })
   
   app.get('/test' , (req,res) => {
-    res.send('Hello World!')
+    res.send({msg: 'Hello World!'})
+    })
+
+app.get('/' , (req,res) => {
+    res.send('Hello From homepage!')
     })
   
   // catch 404 and forward to error handler

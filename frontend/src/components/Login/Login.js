@@ -73,7 +73,7 @@ function Login(props) {
                   name="password" 
                   placeholder="Password" 
                   value={loginForm.password} />
-          {/* {msg && <div>{msg}</div>} */}
+          {msg && <div style={{color:'red', fontSize:'1.2rem'}}>{msg}</div>}
           <Link to="/signup" className='toSignup'>Sign up here!</Link>
           <button className='login-button' onClick={logMeIn}>Submit</button>
         </form>

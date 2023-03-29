@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+        "source": "/:path*",
+        "destination": "https://kreek-webapp-new-backend.vercel.app/:path*"
+    }
+]
+}

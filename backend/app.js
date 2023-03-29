@@ -212,9 +212,9 @@ function verifyToken(req, res, next) {
   })
 }
 
-app.post('/status' , verifyToken , (req,res) => {
-  res.send('You are Authorized!')
-  })
+// app.post('/status' , verifyToken , (req,res) => {
+//   res.send('You are Authorized!')
+//   })
 
 app.get('/test' , (req,res) => {
   res.send('Hello World!')

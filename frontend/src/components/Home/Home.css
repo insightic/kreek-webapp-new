@@ -44,6 +44,16 @@
     font-style: italic;
     margin-bottom: 20px;
 }
+
+.project-name button {
+    background-color: transparent;
+    color: #000000;
+    border: none;
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 20px;
+    width: 200px;
+}
   
 
 @media screen and (min-width: 992px) {

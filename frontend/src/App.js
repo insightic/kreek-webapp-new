@@ -10,6 +10,7 @@ import Home from "./components/Home/Home.js"
 import About from "./components/About/About.js"
 import FAQ from "./components/FAQ/FAQ.js"
 import Login from "./components/Login/Login.js"
+import Signup from "./components/Signup/Signup.js"
 import Cards from "./components/Cards/Cards.js"
 import NewProject from './components/NewProject/NewProject';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -51,7 +52,12 @@ function App() {
         <BrowserRouter>
         {console.log(token)}
         {!token || token== undefined || token == ""?  
-        <Login setToken={setToken} />
+          <Switch>        
+          <Route path='/login' render={(props) => <Login setToken={setToken} />} />  
+          <Route path='/signup' component={Signup}/> 
+          <Route path='/' render={(props) => <Login setToken={setToken} />}/>            
+        </Switch>
+        // <Login setToken={setToken} />
         :(
           <>
           <Header togClass={togClass} setTogClass={setTogClass}></Header>
@@ -67,7 +73,6 @@ function App() {
               <Route path='/new-project' component={NewProject}/>   
               <Route path='/about' component={About}/>               
               <Route path='/faq' component={FAQ}/>   
-              <Route path='/login' component={Login}/>  
               <Route path='/cards' component={Cards}/>  
               <Route path='/' component={Home}/>            
             </Switch>

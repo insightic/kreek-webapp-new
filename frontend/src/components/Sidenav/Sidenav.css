@@ -30,6 +30,8 @@
   padding: 5px;
   border-radius: 10px;
   margin: 5px 0px;
+  background-color: transparent;
+  border: none
 }
 
 .nav-icon-container:hover {

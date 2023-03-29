@@ -30,7 +30,7 @@ app.use('/users', usersRouter);
 app.use("/getAll", getAllRouter);
 app.use("/getProjectDetails", getProjectDetailsRouter);
 
-const withAuth = require('./middleware');
+// const withAuth = require('./middleware');
 
 // Handling post request
 app.post("/signin", async (req, res, next) => {
@@ -50,7 +50,7 @@ app.post("/signin", async (req, res, next) => {
 
   let userList = await axios({
     method: 'post',
-    url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getAll',
+    url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getAllUsers',
     headers: {}, 
   }).then(function (response) {
     // handle success
@@ -93,45 +93,86 @@ app.post("/signin", async (req, res, next) => {
       success: false,
     });
   }
- 
-
 });
- 
-// Handling post request
+
+// Handling Sign Up request
 app.post("/signup", async (req, res, next) => {
-  const { name, email, password } = req.body;
-  const newUser = User({
-    name,
-    email,
-    password,
+  let { email, password } = req.body;
+
+  let userList = await axios({
+    method: 'post',
+    url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/newUser',
+    headers: {}, 
+    data: {
+      userId: 1, 
+      userEmail:email,
+      userPassword:password,
+      projects: []
+    }
+  }).then(function (response) {
+    // handle success
+    console.log(response);
+  })
+
+  res.status(200).json({
+    success: true,
+    data: {
+      userId: 1, //existingUser.id,
+      email: email,//existingUser.email,
+      token: token,
+    },
   });
- 
-  try {
-    await newUser.save();
-  } catch {
-    const error = new Error("Error! Something went wrong.");
-    return next(error);
-  }
-  let token;
-  try {
-    token = jwt.sign(
-      { userId: newUser.id, email: newUser.email },
-      "secretkeyappearshere",
-      { expiresIn: "1h" }
-    );
-  } catch (err) {
-    const error = new Error("Error! Something went wrong.");
-    return next(error);
-  }
-  res
-    .status(201)
-    .json({
-      success: true,
-      data: { userId: newUser.id,
-          email: newUser.email, token: token },
-    });
 });
 
+// Get All Projects request
+app.post("/getAllProjects", async (req, res, next) => {
+  let { email, password } = req.body;
+
+  let projectList = await axios({
+    method: 'post',
+    url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getAllProjects',
+    headers: {}, 
+    data: {
+      userEmail:email,
+      userPassword:password,
+    }
+  }).then(function (response) {
+    // handle success
+    console.log(response['data']);
+    return response['data']
+  })
+
+  res.status(200).json({
+    success: true,
+    data: projectList
+  });
+});
+
+// Create Project
+app.post("/createProject", async (req, res, next) => {
+  let { email, password, projectId, projectName, smartContracts } = req.body;
+
+  await axios({
+    method: 'post',
+    url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/newProject',
+    headers: {}, 
+    data: {
+      userEmail:email,
+      userPassword:password,
+      projectId: projectId,
+      projectName: projectName,
+      projectType: "Unspecified",
+      smartContracts: smartContracts,
+      overallCodeQuality: "NA",
+      explanation: "NA",
+      securityAnalysis: "NA"
+    }
+  }).then(function (response) {
+    // handle success
+    return response
+  })
+});
+ 
 app.put("/logout", function (req, res) {
   const authHeader = req.headers["authorization"];
   token = jwt.sign(authHeader, "", { expiresIn: 1 } , (logout, err) => {
@@ -173,6 +214,10 @@ function verifyToken(req, res, next) {
 
 app.post('/status' , verifyToken , (req,res) => {
   res.send('You are Authorized!')
+  })
+
+app.get('/test' , (req,res) => {
+  res.send('Hello World!')
   })
 
 // catch 404 and forward to error handler

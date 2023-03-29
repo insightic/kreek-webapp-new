@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import ReactDOM from 'react-dom';
-import {Container, Row, Col, Card, CardDeck, Jumbotron, Button} from "react-bootstrap";
+import {Container, Row, Col, Card, CardDeck, Jumbotron, Button, Dropdown, DropdownButton} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Home.css";
 import { Helmet } from 'react-helmet';
@@ -21,10 +21,12 @@ const Home = () => {
     const [lineFrom, setLineFrom] = React.useState(null);
     const [lineTo, setLineTo] = React.useState(null);
     const updateXarrow = useXarrow();
+    const [project, setProject] = useState(0)
+    const [projectList, setProjectList] = useState([])
 
     const data = async () => {
         // const url = 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectName'
-        const url = 'http://localhost:9000/getSecurityRisk'
+        const url = 'http://localhost:9000/getProjects'
         const response = await fetch(url, {
             method: 'GET',
         })
@@ -32,6 +34,30 @@ const Home = () => {
         const res = await response
         alert(res)
     }
+
+
+    const getAllProjects = () => axios({
+          method: "POST",
+          url:"/getAllProjects",
+          data:{
+            email: localStorage.getItem("email"),
+            password: localStorage.getItem("password")
+           }
+        })
+        .then((response) => {
+            if (response.status == 200) {
+                setProjectList(response['data']['data']['projects'])
+          } else {
+                return []
+          }
+        }).catch((error) => {
+          if (error.response) {
+            console.log(error.response)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+            }
+        })
+
 
     let dummydata = [
         {'file': 'code1.sol', 'ADDED': [1, 2], 'REMOVED': [5,6], 'code': sample['jsx']},
@@ -86,6 +112,10 @@ const Home = () => {
         }
       }, [codeList])
 
+    useEffect(() => {
+        getAllProjects();
+    }, []);
+
       const activeItem = codeList.findIndex((elem) => elem['file'] == activeFile) != -1 ? codeList[codeList.findIndex((elem) => elem['file'] == activeFile)] : null
 
       return (
@@ -96,7 +126,16 @@ const Home = () => {
         </Helmet>
 
         <Container className='project-name'>
-            Uniswap V3
+            Project: {/* Uniswap V3 */}
+            {console.log(projectList)}
+            <DropdownButton id="dropdown-basic-button" title={projectList[project] ? projectList[project]['projectName']: "No Projects"}>
+                {projectList.map((project, index) => 
+                    (<Dropdown.Item onClick={() => setProject(index)}>{project['projectName']}</Dropdown.Item>))}
+                {/* <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
+            </DropdownButton>
+            <div>Project Type: {projectList[project] ? projectList[project]['projectType']: "NA"} </div>
         </Container>
 
         {/* <Button onClick={data}>test</Button> */}

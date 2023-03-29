@@ -12,6 +12,7 @@ import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import samplePdf from "../../assets/sample.pdf"
 import { Document, Page, pdfjs } from 'react-pdf';
+import axios from "axios";
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 
@@ -67,23 +68,34 @@ const NewProject = () => {
             'whitepapers': whitepapers,
             'codefiles': codefiles
         }))
-        
-        // try {
-        //   let res = await fetch("https://httpbin.org/post", {
-        //     method: "POST",
-        //     body: JSON.stringify({
 
-        //     }),
-        //   });
-        //   let resJson = await res.json();
-        //   if (res.status === 200) {
-
-        //   } else {
-
-        //   }
-        // } catch (err) {
-        //   console.log(err);
-        // }
+        axios({
+            method: "POST",
+            url:"/createProject",
+            data:{
+                email: localStorage.getItem("email"),
+                password: localStorage.getItem("password"),
+                projectId: 12,
+                projectName: projectName,
+                smartContracts: []
+             }
+          })
+          .then((response) => {
+              if (response.status == 200) {
+                  console.log(response)
+                  alert("Project Created Successfully")
+            } else {
+                  console.log(response)
+                    alert("Error Creating Project")
+            }
+          }).catch((error) => {
+            if (error.response) {
+              console.log(error.response)
+              console.log(error.response.status)
+              console.log(error.response.headers)
+              }
+          })
+    
       };
       
       return (

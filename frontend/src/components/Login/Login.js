@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from "axios";
 import {Container, Row, Col, Offcanvas, Button, Nav} from 'react-bootstrap'
 import './Login.css';
+import { Link } from 'react-router-dom';
 
 function Login(props) {
 
@@ -25,6 +26,8 @@ function Login(props) {
         if (response.status == 200) {
           props.setToken(response.data.data.token)
           setMsg("Login Successful")
+          localStorage.setItem('email', loginForm.email)
+          localStorage.setItem('password', loginForm.password)
         } else {
           setMsg("Invalid Credentials")
         }
@@ -70,7 +73,8 @@ function Login(props) {
                   name="password" 
                   placeholder="Password" 
                   value={loginForm.password} />
-          {msg && <div>{msg}</div>}
+          {/* {msg && <div>{msg}</div>} */}
+          <Link to="/signup" className='toSignup'>Sign up here!</Link>
           <button className='login-button' onClick={logMeIn}>Submit</button>
         </form>
         </div>

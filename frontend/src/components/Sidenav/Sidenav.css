@@ -4,6 +4,9 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  position: absolute;
+  left: 0;
+  border-right: 1px solid black;
 }
 
 .user {

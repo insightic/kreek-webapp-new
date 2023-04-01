@@ -70,6 +70,9 @@ const Home = () => {
     const [isOpen1, setIsOpen1] = useState(false)
     const [isOpen2, setIsOpen2] = useState(false)
     const [isOpen3, setIsOpen3] = useState(false)
+    const [isOpen4, setIsOpen4] = useState(false)
+    const [isOpen5, setIsOpen5] = useState(false)
+    const [isOpen6, setIsOpen6] = useState(false)
 
     const [codeList, setCodeList] = useState(dummydata)
     const firstFile = codeList.length > 0 ? codeList[0]['file'] : null
@@ -150,6 +153,7 @@ const Home = () => {
                         This is an information alert
                     </Container> */}
                 </Container>
+                
                 <Container className="label-row-box warning">
                     <Container className="label-row-title">
                         <Icon.ExclamationCircle className="label-icon"/><span>Explanations</span>
@@ -265,37 +269,24 @@ const Home = () => {
             </td>
 
             <td className="label" xs={3} md={3} lg={3}>
+                <Container className='section whitepaper'>
+                    <Button className='button-main' onClick={() => setIsOpen4(!isOpen4)}>Code Quality {isOpen4 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>} </Button>
+                    <Button id='sec1but1' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>maintainability: A</Button>
+                    <Button id='sec1but2' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>test coverage: 80%</Button>
+                    <Button id='sec1but3' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>performance: B</Button>
+                </Container>
+
+                <Container className='section regulations'>
+                    <Button className='button-main' onClick={() => setIsOpen5(!isOpen5)}>Security Analysis{isOpen5 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
+                    <Button id='sec2but1' className='button-sub' style={isOpen5 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>score: 80/100</Button>
+                    <Button id='sec2but2' className='button-sub'style={isOpen5 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>risk level: low</Button>
+                </Container>
+
+                <Container className='section industrial-standard'>
+                    <Button className='button-main' onClick={() => setIsOpen6(!isOpen6)}>Explanation{isOpen6 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
+                    <Button id='sec3but1' className='button-sub' style={isOpen6 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>BiSwap is a decentralized exchange platform that allows users to easily swap BEP-20 tokens on the Binance Smart Chain network. The platform features a three-level referral system and low transaction fees (0.1%). Our mission is to become a leading platform for token swaps in the DeFi space by offering fast, secure, and easy-to-use services.</Button>
+                </Container>
                 
-            <Container className="label-box check">
-                    <Container className="label-title">
-                        {/* <Icon.InfoCircle className="label-icon"/> */}
-                        <span className='label-indicator'>90</span>
-                        <span>Overall Code Quality</span>
-                    </Container>
-                    {/* <Container className='label-content'>
-                        This is an information alert
-                    </Container> */}
-                </Container>
-                <Container className="label-box warning">
-                    <Container className="label-title">
-                        {/* <Icon.ExclamationCircle className="label-icon"/> */}
-                        <span className='label-indicator'>40</span>
-                        <span>Explanations</span>
-                    </Container>
-                    {/* <Container className='label-content'>
-                        Explain the code in natural languages
-                    </Container> */}
-                </Container>
-                <Container className="label-box success">
-                    <Container className="label-title">
-                        {/* <Icon.CheckCircle className="label-icon"/> */}
-                        <span className='label-indicator'>90</span>
-                        <span>Success</span>
-                    </Container>
-                    {/* <Container className='label-content'>
-                        Passed # validation tests
-                    </Container> */}
-                </Container>
                 
             </td>
           </tr>

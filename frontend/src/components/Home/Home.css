@@ -130,6 +130,7 @@
 .industrial-standard > .button-sub {
     background-color: #67b365;
     border: none;
+    height: auto;
 }
 
 .industrial-standard > .button-sub:hover {

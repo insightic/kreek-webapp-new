@@ -109,6 +109,32 @@
 
 .whitepaper > .button-ter {   
     background-color: #1e887f;
+    height: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border:none
+}
+
+.whitepaper > .a {
+    background-color: #1e887f;
+    margin-bottom: -3px;
+    border:none
+}
+
+.whitepaper > .b {
+    background-color: #78099cc2;
+    margin-bottom: -3px;
+    border:none
+}
+
+.whitepaper > .c {
+    background-color: #e26bd2;
+    margin-bottom: -3px;
+    border:none
+}
+
+.whitepaper > .d {
+    background-color: #0de01f;
     border:none
 }
 
@@ -170,16 +196,13 @@
 }
 
 .button-ter {
-    width: 80%;
-    min-width: 110px;
-    max-width: 180px;
+    width: 100%;
+    min-width: 170px;
+    max-width: 280px;
     transition: all 0.2s linear;
     display:flex;
     justify-content: flex-end;
     align-items: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .browser {

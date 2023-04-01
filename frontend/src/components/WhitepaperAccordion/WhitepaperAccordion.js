@@ -29,24 +29,24 @@ const WhitepaperAccordion = (props) => {
       }
       {selectedButton && isOpen && (
         [
-          <Button className='button-ter' style={{ visibility: 'visible', opacity: '1' }}>
+          <Button className='button-ter a' style={{ visibility: 'visible', opacity: '1' }}>
             [{data.find(item => item.claimId === selectedButton).claimId}] {data.find(item => item.claimId === selectedButton).claimName}
             <br></br>
             {data.find(item => item.claimId === selectedButton).claimDescription}
           </Button>,
-          <Button className='button-ter' style={{ visibility: 'visible', opacity: '1' }}>
+          <Button className='button-ter b' style={{ visibility: 'visible', opacity: '1' }}>
             {data.find(item => item.claimId === selectedButton).fxDescription} 
             <br></br>
             File: {data.find(item => item.claimId === selectedButton).fxfilename}
             #P{data.find(item => item.claimId === selectedButton).fxpageNumber}
           </Button>,
-          <Button className='button-ter' style={{ visibility: 'visible', opacity: '1' }}>
+          <Button className='button-ter c' style={{ visibility: 'visible', opacity: '1' }}>
             {data.find(item => item.claimId === selectedButton).gxcodeDescription} 
             <br></br>
             File: {data.find(item => item.claimId === selectedButton).gxcodeFileName}
             #L{data.find(item => item.claimId === selectedButton).gxcodeLine}
           </Button>,
-          <Button className='button-ter' style={{ visibility: 'visible', opacity: '1' }}>
+          <Button className='button-ter d' style={{ visibility: 'visible', opacity: '1' }}>
             Validation Status: {data.find(item => item.claimId === selectedButton).validationStatus ? "True" : "False"} 
             <br></br>
             {data.find(item => item.claimId === selectedButton).validationDescription}

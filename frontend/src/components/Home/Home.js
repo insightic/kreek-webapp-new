@@ -11,6 +11,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import ResizableTable from '../ResizableTable/ResizableTable';
+import WhitepaperAccordion from '../WhitepaperAccordion/WhitepaperAccordion';
 import Xarrow, {useXarrow, Xwrapper} from 'react-xarrows';
 import axios from "axios";
 
@@ -67,7 +68,37 @@ const Home = () => {
         {'file': 'code5.sol', 'ADDED': [3, 5], 'REMOVED': [2,8], 'code': sample['java']}
     ]
 
-    const [isOpen1, setIsOpen1] = useState(false)
+    const claimData = [
+        {
+          id: 'sec1but1',
+          claimId: 'dex011',
+          claimName: 'Total tokens issued',
+          claimDescription: 'Tokens issued is 10,000',
+          fxDescription: 'Total tokens issued is 10,000',
+          fxfilename: 'Whitepaper.pdf',
+          fxpageNumber: 8,
+          gxcodeDescription: 'The total token supply is 10,000',
+          gxcodeFileName: 'MtToken.sol',
+          gxcodeLine: 10,
+          validationStatus: true,
+          validationDescription: 'The two outputs are the same'
+        },
+        {
+          id: 'sec1but2',
+          claimId: 'dex012',
+          claimName: 'Token vesting schedule',
+          claimDescription: 'Tokens will be vested over 12 months',
+          fxDescription: 'Tokens will be vested over 12 months',
+          fxfilename: 'Whitepaper.pdf',
+          fxpageNumber: 10,
+          gxcodeDescription: 'Vesting function releases tokens proportionally based on the time elapsed',
+          gxcodeFileName: 'MtToken.sol',
+          gxcodeLine: 20,
+          validationStatus: true,
+          validationDescription: 'The vesting function is properly implemented'
+        }
+    ]
+
     const [isOpen2, setIsOpen2] = useState(false)
     const [isOpen3, setIsOpen3] = useState(false)
     const [isOpen4, setIsOpen4] = useState(false)
@@ -197,13 +228,7 @@ const Home = () => {
         <tbody className="home">
           <tr>
             <td className="sections" xs={3} md={3} lg={3}>
-                <Container className='section whitepaper'>
-                    <Button className='button-main' onClick={() => setIsOpen1(!isOpen1)}>Whitepaper (10/50 passed) {isOpen1 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>} </Button>
-                    <Button id='sec1but1' className='button-sub' onClick={setClaim} style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Total number of tokens issued</Button>
-                    <Button id='sec1but2' className='button-sub' onClick={setClaim} style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Claim 2</Button>
-                    <Button id='sec1but3' className='button-sub' onClick={setClaim} style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Claim 3</Button>
-                    <Button id='sec1but4' className='button-sub' onClick={setClaim} style={isOpen1 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Claim 4</Button>
-                </Container>
+                <WhitepaperAccordion setClaim={setClaim} data={claimData}></WhitepaperAccordion>
 
                 <Container className='section regulations'>
                     <Button className='button-main' onClick={() => setIsOpen2(!isOpen2)}>Regulations (5/5 passed){isOpen2 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>

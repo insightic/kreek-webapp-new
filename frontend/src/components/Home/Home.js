@@ -61,42 +61,56 @@ const Home = () => {
 
 
     let dummydata = [
-        {'file': 'code1.sol', 'ADDED': [1, 2], 'REMOVED': [5,6], 'code': sample['jsx']},
-        {'file': 'code2.sol', 'ADDED': [2, 3], 'REMOVED': [4,8], 'code': sample['html']},
-        {'file': 'code3.sol', 'ADDED': [1, 3], 'REMOVED': [2,6], 'code': sample['objectivec']},
-        {'file': 'code4.sol', 'ADDED': [1, 4], 'REMOVED': [5,7], 'code': sample['python']},
-        {'file': 'code5.sol', 'ADDED': [3, 5], 'REMOVED': [2,8], 'code': sample['java']}
+        {'file': 'BSWToken.sol', 'ADDED': [1, 2], 'REMOVED': [5,6], 'code': sample['jsx']},
+        {'file': 'BiswapERC20.sol', 'ADDED': [2, 3], 'REMOVED': [4,8], 'code': sample['html']},
+        {'file': 'BiswapFactory.sol', 'ADDED': [1, 3], 'REMOVED': [2,6], 'code': sample['objectivec']},
+        {'file': 'BiswapPair.sol', 'ADDED': [1, 4], 'REMOVED': [5,7], 'code': sample['python']},
+        {'file': 'IBiswapCallee.sol', 'ADDED': [3, 5], 'REMOVED': [2,8], 'code': sample['java']}
     ]
 
     const claimData = [
         {
-          id: 'sec1but1',
-          claimId: 'dex011',
-          claimName: 'Total tokens issued',
-          claimDescription: 'Tokens issued is 10,000',
-          fxDescription: 'Total tokens issued is 10,000',
+            id: 'sec1but1',
+            claimId: 'dex011',
+            claimName: 'Token symbol',
+            claimDescription: 'Tokens symbol is BSW',
+            fxDescription: 'Ticker Symbol: BSW ',
+            fxfilename: 'Whitepaper.pdf',
+            fxpageNumber: 1,
+            gxcodeDescription: 'contract BSWToken is BEP20(\'Biswap\', \'BSW\')',
+            gxcodeFileName: 'BSWToken.sol',
+            gxcodeLine: 1021,
+            validationStatus: true,
+            validationDescription: 'The two outputs are the same'
+          },
+        {
+          id: 'sec1but2',
+          claimId: 'dex012',
+          claimName: 'Blockchain Standard',
+          claimDescription: 'BEP-20 standard',
+          fxDescription: 'Chain: BNB Chain (BEP-20)',
           fxfilename: 'Whitepaper.pdf',
-          fxpageNumber: 8,
-          gxcodeDescription: 'The total token supply is 10,000',
-          gxcodeFileName: 'MtToken.sol',
-          gxcodeLine: 10,
+          fxpageNumber: 1,
+          gxcodeDescription: 'contract BSWToken is BEP20(\'Biswap\', \'BSW\')',
+          gxcodeFileName: 'BSWToken.sol',
+          gxcodeLine: 1021,
           validationStatus: true,
           validationDescription: 'The two outputs are the same'
         },
         {
-          id: 'sec1but2',
-          claimId: 'dex012',
-          claimName: 'Token vesting schedule',
-          claimDescription: 'Tokens will be vested over 12 months',
-          fxDescription: 'Tokens will be vested over 12 months',
-          fxfilename: 'Whitepaper.pdf',
-          fxpageNumber: 10,
-          gxcodeDescription: 'Vesting function releases tokens proportionally based on the time elapsed',
-          gxcodeFileName: 'MtToken.sol',
-          gxcodeLine: 20,
-          validationStatus: true,
-          validationDescription: 'The vesting function is properly implemented'
-        }
+            id: 'sec1but3',
+            claimId: 'dex013',
+            claimName: 'Token Supply',
+            claimDescription: '700000000',
+            fxDescription: 'Max Supply: 700 000 000 BSW tokens',
+            fxfilename: 'Whitepaper.pdf',
+            fxpageNumber: 1,
+            gxcodeDescription: 'The total token supply is 10,000',
+            gxcodeFileName: 'BSWToken.sol',
+            gxcodeLine: 10,
+            validationStatus: true,
+            validationDescription: 'The two outputs are the same'
+          }
     ]
 
     const [isOpen2, setIsOpen2] = useState(false)

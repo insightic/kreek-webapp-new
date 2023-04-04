@@ -105,7 +105,7 @@ const Home = () => {
             fxDescription: 'Max Supply: 700 000 000 BSW tokens',
             fxfilename: 'Whitepaper.pdf',
             fxpageNumber: 1,
-            gxcodeDescription: 'The total token supply is 10,000',
+            gxcodeDescription: 'The total token supply is 700,000,000',
             gxcodeFileName: 'BSWToken.sol',
             gxcodeLine: 10,
             validationStatus: true,
@@ -308,20 +308,54 @@ const Home = () => {
             </td>
 
             <td className="label" xs={3} md={3} lg={3}>
-                <Container className='section whitepaper'>
+                <Container className='section code-quality'>
                     <Button className='button-main' onClick={() => setIsOpen4(!isOpen4)}>Code Quality {isOpen4 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>} </Button>
-                    <Button id='sec1but1' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>maintainability: A</Button>
-                    <Button id='sec1but2' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>test coverage: 80%</Button>
-                    <Button id='sec1but3' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>performance: B</Button>
+                    <Button id='sec1but1' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
+                        <div class="button-content">
+                            <span>maintainability: A</span>
+                            <br></br>
+                            <a href="#">createdBy: SonarQube</a>
+                        </div>
+                    </Button>
+                    <Button id='sec1but2' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
+                        <div class="button-content">
+                            <span>test coverage: 80%</span>
+                            <br></br>
+                            <a href="#">createdBy: Jest</a>
+                        </div>
+                    </Button>
+                    <Button id='sec1but3' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
+                        <div class="button-content">
+                            <span>performance: B</span>
+                            <br></br>
+                            <a href="#">createdBy: Load Impact</a>
+                        </div>
+                    </Button>
                 </Container>
 
-                <Container className='section regulations'>
+                <Container className='section security-analysis'>
                     <Button className='button-main' onClick={() => setIsOpen5(!isOpen5)}>Security Analysis{isOpen5 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
-                    <Button id='sec2but1' className='button-sub' style={isOpen5 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>score: 80/100</Button>
-                    <Button id='sec2but2' className='button-sub'style={isOpen5 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>risk level: low</Button>
+                    <Button id='sec2but1' className='button-sub' style={isOpen5 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
+                        <div class="button-content">
+                            score: 80/100
+                            <br></br>
+                            risk level: low
+                            <br></br>
+                            <a href="#">createdBy: Hacken</a>
+                        </div>
+                    </Button>
+                    <Button id='sec2but2' className='button-sub'style={isOpen5 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
+                        <div class="button-content">
+                            audits:
+                            <br></br>
+                            <a href="https://example.com/hacken_audit.pdf">createdBy: Hacken</a>
+                            <br></br>
+                            <a href="https://example.com/verazt_audit.pdf">createdBy: verazt</a>
+                        </div>
+                    </Button>
                 </Container>
 
-                <Container className='section industrial-standard'>
+                <Container className='section explanation'>
                     <Button className='button-main' onClick={() => setIsOpen6(!isOpen6)}>Explanation{isOpen6 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
                     <Button id='sec3but1' className='button-sub' style={isOpen6 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>BiSwap is a decentralized exchange platform that allows users to easily swap BEP-20 tokens on the Binance Smart Chain network. The platform features a three-level referral system and low transaction fees (0.1%). Our mission is to become a leading platform for token swaps in the DeFi space by offering fast, secure, and easy-to-use services.</Button>
                 </Container>

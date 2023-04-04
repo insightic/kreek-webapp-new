@@ -174,6 +174,71 @@
     border: none;
 }
 
+.code-quality > .button-main {   
+    background-color: #D0521C;
+    border:none
+}
+
+.code-quality > .button-sub {   
+    background-color: #e29270;
+    border:none;
+    height: auto;
+    text-align: left;
+}
+
+.code-quality .button-content a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.code-quality > .button-sub:hover {   
+    background-color: #D0521C;
+    border:none;
+    text-align: left;
+}
+
+.security-analysis > .button-main {
+    background-color: #1B53C5;
+    border: none;
+    text-align: left;
+}
+
+.security-analysis > .button-sub {
+    background-color: #3D73D1;
+    border: none;
+    height: auto;
+    text-align: left;
+}
+
+.security-analysis .button-content a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.security-analysis > .button-sub:hover {
+    background-color: #1B53C5;
+    border: none;
+    text-align: left;
+}
+
+.explanation > .button-main {
+    background-color: #11880F;
+    border: none;
+}
+
+.explanation > .button-sub {
+    background-color: #67b365;
+    border: none;
+    height: auto;
+    text-align: left;
+}
+
+.explanation > .button-sub:hover {
+    background-color: #11880F;
+    border: none;
+    text-align: left;
+}
+
 .button-main {
     width: 100%;
     min-width: 140px;

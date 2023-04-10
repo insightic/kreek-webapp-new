@@ -1,0 +1,91 @@
+.projectlist-container {
+
+    margin:0px;
+}
+
+.page-name {
+    border-bottom: 2px solid #000000;
+    display:flex;
+    justify-content:flex-start;
+    padding-bottom: 20px;
+}
+
+.page-name > span {
+    display:flex;
+    justify-content:flex-start;
+    font-weight: 600;
+    font-style: italic;
+    margin: 0px 50px 10px 0px;
+    max-width: 100% !important;
+}
+
+.projectType-dropdown {
+    margin: 0px 20px;
+}
+
+.projectType {
+    width: 100px;
+    height: 50px;
+    border-radius: 15px;
+    margin: 0px 20px;
+}
+
+.project-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 15px 0px;
+    align-items: center;
+    width: 700px;
+}
+
+.project {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width:max-content;
+    margin:0px;
+    align-items: center;
+}
+
+.project-icon {
+    border-radius: 20px;
+    border: 1px solid #000000;
+    padding: 5px
+}
+
+.projectInfo {
+    width:fit-content;
+    margin: 0px 20px 0px 20px;
+}
+
+.projectInfo > h2 {
+    font-weight: 600;
+    margin: 10px 0px;
+    font-size: 22px;
+    text-align: left;
+}
+
+.projectInfo > p {
+    font-weight: 400;
+    margin: 0px 0px;
+    font-size: 16px;
+    text-align: left;
+}
+
+.projectAction {
+    width:fit-content;
+    margin: 0px;
+}
+
+.projectAction-add-button {
+    width: 100px;
+    height: 40px;
+    margin: 0px 20px;
+}
+
+.projectAction-delete-button {
+    width: 100px;
+    height: 40px;
+    margin: 0px 20px;
+}

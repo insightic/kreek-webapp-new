@@ -16,8 +16,8 @@ const Header = (props) => {
   
     return (
       <Container className="nav-container">
-          <div className='sidenav-padding'>
-          </div>
+          {/* <div className='sidenav-padding'>
+          </div> */}
         Smart Contract Compliance Validation
         {/* <Navbar className="d-xs-none navBar" expand="lg" variant="dark">
           <Row className='nav'>

@@ -7,12 +7,11 @@
   /* border-bottom: 2px solid #e7e7e7; */
   font-weight: 600;
   font-size:30px;
+  max-width: 90% !important;
 }
 
 .sidenav-padding {
-  width: calc(10%+40px);
-  max-width: 120px;
-  min-width:100px;
+  width: 10px;
   display: flex;
   align-items: center;
   justify-content: center;

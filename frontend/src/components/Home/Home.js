@@ -164,7 +164,38 @@ const Home = () => {
         getAllProjects();
     }, []);
 
-      const activeItem = codeList.findIndex((elem) => elem['file'] == activeFile) != -1 ? codeList[codeList.findIndex((elem) => elem['file'] == activeFile)] : null
+
+    // const [sidebarWidth, setSidebarWidth] = useState(undefined);
+    // const [sidebarTop, setSidebarTop] = useState(undefined);
+
+    // useEffect(() => {
+    //     const sidebarEl = document.querySelector('.sidebar').getBoundingClientRect();
+    //     setSidebarWidth(sidebarEl.width);
+    //     setSidebarTop(sidebarEl.top);
+    //     window.addEventListener('scroll', isSticky);
+    //   }, []);
+       
+    // useEffect(() => {
+    //     if (!sidebarTop) return;
+    //     window.addEventListener('scroll', isSticky);
+    //     return () => {
+    //         window.removeEventListener('scroll', isSticky);
+    //     };
+    // }, [sidebarTop]);
+       
+    // const isSticky = (e) => {
+    //     const sidebarEl = document.querySelectorAll('.sidebar');
+    //     const scrollTop = window.scrollY;
+    //     sidebarEl.forEach(elem => { 
+    //         if (scrollTop >= sidebarTop - 20) {
+    //             elem.classList.add('is-sticky');
+    //         } else {
+    //             elem.classList.remove('is-sticky');
+    //         }
+    //     } )
+    // }
+
+    const activeItem = codeList.findIndex((elem) => elem['file'] == activeFile) != -1 ? codeList[codeList.findIndex((elem) => elem['file'] == activeFile)] : null
 
       return (
         <Container className="home-container">
@@ -241,7 +272,8 @@ const Home = () => {
         <ResizableTable resizable={true} resizeOptions={{liveDrag:true, onDrag:updateXarrow}}>
         <tbody className="home">
           <tr>
-            <td className="sections" xs={3} md={3} lg={3}>
+            <td className="sections" xs={2} md={2} lg={2}>
+                <div className="sidebar">
                 <WhitepaperAccordion setClaim={setClaim} data={claimData}></WhitepaperAccordion>
 
                 <Container className='section regulations'>
@@ -258,10 +290,10 @@ const Home = () => {
                     <Button id='sec3but2' className='button-sub' onClick={setClaim} style={isOpen3 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Reference 2</Button>
                     <Button id='sec3but3' className='button-sub' onClick={setClaim} style={isOpen3 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Reference 3</Button>
                 </Container>
-            
+                </div>
             </td>
 
-            <td className="browser" xs={6} md={6} lg={6}>
+            <td className="browser" xs={8} md={8} lg={8}>
                 
             <Container className='tabs'>
                 {   
@@ -307,8 +339,9 @@ const Home = () => {
                 
             </td>
 
-            <td className="label" xs={3} md={3} lg={3}>
-                <Container className='section code-quality'>
+            <td className="label" xs={2} md={2} lg={2}>
+                <div className='sidebar'>
+                <Container className='section-right code-quality'>
                     <Button className='button-main' onClick={() => setIsOpen4(!isOpen4)}>Code Quality {isOpen4 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>} </Button>
                     <Button id='sec1but1' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
                         <div class="button-content">
@@ -333,7 +366,7 @@ const Home = () => {
                     </Button>
                 </Container>
 
-                <Container className='section security-analysis'>
+                <Container className='section-right security-analysis'>
                     <Button className='button-main' onClick={() => setIsOpen5(!isOpen5)}>Security Analysis{isOpen5 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
                     <Button id='sec2but1' className='button-sub' style={isOpen5 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
                         <div class="button-content">
@@ -355,12 +388,12 @@ const Home = () => {
                     </Button>
                 </Container>
 
-                <Container className='section explanation'>
+                <Container className='section-right explanation'>
                     <Button className='button-main' onClick={() => setIsOpen6(!isOpen6)}>Explanation{isOpen6 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
                     <Button id='sec3but1' className='button-sub' style={isOpen6 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>BiSwap is a decentralized exchange platform that allows users to easily swap BEP-20 tokens on the Binance Smart Chain network. The platform features a three-level referral system and low transaction fees (0.1%). Our mission is to become a leading platform for token swaps in the DeFi space by offering fast, secure, and easy-to-use services.</Button>
                 </Container>
                 
-                
+                </div>
             </td>
           </tr>
 

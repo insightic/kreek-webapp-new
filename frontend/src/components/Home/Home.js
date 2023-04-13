@@ -25,6 +25,7 @@ const Home = () => {
     const [project, setProject] = useState(0)
     const [projectList, setProjectList] = useState([])
     const [tempProject, setTempProject] = useState(null)
+    const [assessmentList, setAssessmentList] = useState([])
 
     useEffect(() => {
         const p1 = axios({
@@ -69,10 +70,10 @@ const Home = () => {
             const responseThree = responses[2]
             const responseFour = responses[3]
             console.log('responses: ')
-            console.log(responseOne)
-            console.log(responseTwo)
-            console.log(responseThree)
-            console.log(responseFour)
+            console.log(responseOne['codes'])
+            console.log(responseTwo['codes'])
+            console.log(responseThree['codes'])
+            console.log(responseFour['codes'])
             setProjectList([responseOne, responseTwo, responseThree, responseFour])
             console.log([responseOne, responseTwo, responseThree, responseFour][project]['codes'])
             setCodeList([responseOne, responseTwo, responseThree, responseFour][project]['codes'])
@@ -84,6 +85,63 @@ const Home = () => {
                 console.log("Done");
             });
             console.log(projectList)
+    }, [])
+
+    useEffect(() => {
+        const p1 = axios({
+            method: 'POST',
+            url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getAssessmentByProjectId',
+            headers: {}, 
+            data: {"projectId": 1}
+          }).then(function (response) {
+            return response['data']
+          })
+    
+          const p2 = axios({
+            method: 'POST',
+            url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getAssessmentByProjectId',
+            headers: {}, 
+            data: {"projectId": 2}
+          }).then(function (response) {
+            return response['data']
+          })
+    
+          const p3 = axios({
+            method: 'POST',
+            url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getAssessmentByProjectId',
+            headers: {}, 
+            data: {"projectId": 3}
+          }).then(function (response) {
+            return response['data']
+          })
+    
+          const p4 = axios({
+            method: 'POST',
+            url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getAssessmentByProjectId',
+            headers: {}, 
+            data: {"projectId": 4}
+          }).then(function (response) {
+            return response['data']
+          })
+
+        axios.all([p1, p2, p3, p4]).then(axios.spread((...responses) => {
+            const responseOne = responses[0]
+            const responseTwo = responses[1]
+            const responseThree = responses[2]
+            const responseFour = responses[3]
+            console.log("assessment:")
+            console.log(responseOne)
+            console.log(responseTwo)
+            console.log(responseThree)
+            console.log(responseFour)
+            setAssessmentList([responseOne, responseTwo, responseThree, responseFour])
+            // use/access the results
+            })).catch(errors => {
+                console.log(errors.response.data)
+            // react on errors.
+            }).finally(() => {
+                console.log("Done");
+            });
     }, [])
 
 
@@ -187,6 +245,12 @@ const Home = () => {
             setActiveFile(newFile.current)
         }
       }, [codeList])
+
+      useEffect(() => {
+            if (projectList[project]) {
+                setCodeList(projectList[project]['codes'])
+            }
+        }, [project])
 
 
     // const [sidebarWidth, setSidebarWidth] = useState(undefined);
@@ -365,29 +429,31 @@ const Home = () => {
                 
             </td>
 
+            {console.log(assessmentList)}
+
             <td className="label" xs={2} md={2} lg={2}>
                 <div className='sidebar'>
                 <Container className='section-right code-quality'>
                     <Button className='button-main' onClick={() => setIsOpen4(!isOpen4)}>Code Quality {isOpen4 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>} </Button>
                     <Button id='sec1but1' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
                         <div class="button-content">
-                            <span>maintainability: A</span>
+                            <span>maintainability: {assessmentList[project] ? assessmentList[project]["codeQuality"]["maintainability"]['value'] : "NA"}</span>
                             <br></br>
-                            <a href="#">createdBy: SonarQube</a>
+                            <a href="#">createdBy: {assessmentList[project] ? assessmentList[project]["codeQuality"]["maintainability"]['createdBy'] : "NA"}</a>
                         </div>
                     </Button>
                     <Button id='sec1but2' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
                         <div class="button-content">
-                            <span>test coverage: 80%</span>
+                            <span>test coverage: {assessmentList[project] ? assessmentList[project]["codeQuality"]["testCoverage"]['value'] : "NA"}</span>
                             <br></br>
-                            <a href="#">createdBy: Jest</a>
+                            <a href="#">createdBy: {assessmentList[project] ? assessmentList[project]["codeQuality"]["testCoverage"]['createdBy'] : "NA"}</a>
                         </div>
                     </Button>
                     <Button id='sec1but3' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
                         <div class="button-content">
-                            <span>performance: B</span>
+                            <span>performance: {assessmentList[project] ? assessmentList[project]["codeQuality"]["performance"]['value'] : "NA"}</span>
                             <br></br>
-                            <a href="#">createdBy: Load Impact</a>
+                            <a href="#">createdBy: {assessmentList[project] ? assessmentList[project]["codeQuality"]["performance"]['createdBy'] : "NA"}</a>
                         </div>
                     </Button>
                 </Container>
@@ -416,7 +482,7 @@ const Home = () => {
 
                 <Container className='section-right explanation'>
                     <Button className='button-main' onClick={() => setIsOpen6(!isOpen6)}>Explanation{isOpen6 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
-                    <Button id='sec3but1' className='button-sub' style={isOpen6 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>BiSwap is a decentralized exchange platform that allows users to easily swap BEP-20 tokens on the Binance Smart Chain network. The platform features a three-level referral system and low transaction fees (0.1%). Our mission is to become a leading platform for token swaps in the DeFi space by offering fast, secure, and easy-to-use services.</Button>
+                    <Button id='sec3but1' className='button-sub' style={isOpen6 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>{assessmentList[project] ? assessmentList[project]["explanation"]['value'] : "NA"}</Button>
                 </Container>
                 
                 </div>

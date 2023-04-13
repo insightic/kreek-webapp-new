@@ -38,8 +38,9 @@ app.post("/signin", async (req, res, next) => {
   
     let userList = await axios({
       method: 'post',
-      url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getAllUsers',
+      url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectByProjectId',
       headers: {}, 
+      data: {"projectId": 1}
     }).then(function (response) {
       // handle success
       console.log(response['data']);

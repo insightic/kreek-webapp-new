@@ -24,49 +24,77 @@ const Home = () => {
     const updateXarrow = useXarrow();
     const [project, setProject] = useState(0)
     const [projectList, setProjectList] = useState([])
+    const [tempProject, setTempProject] = useState(null)
 
-    const data = async () => {
-        // const url = 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectName'
-        const url = 'http://localhost:9000/getProjects'
-        const response = await fetch(url, {
-            method: 'GET',
-        })
-        .then((res) => res.text())
-        const res = await response
-        alert(res)
-    }
+    useEffect(() => {
+        const p1 = axios({
+            method: 'POST',
+            url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectByProjectId',
+            headers: {}, 
+            data: {"projectId": 1}
+          }).then(function (response) {
+            return response['data']
+          })
+    
+          const p2 = axios({
+            method: 'POST',
+            url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectByProjectId',
+            headers: {}, 
+            data: {"projectId": 2}
+          }).then(function (response) {
+            return response['data']
+          })
+    
+          const p3 = axios({
+            method: 'POST',
+            url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectByProjectId',
+            headers: {}, 
+            data: {"projectId": 3}
+          }).then(function (response) {
+            return response['data']
+          })
+    
+          const p4 = axios({
+            method: 'POST',
+            url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectByProjectId',
+            headers: {}, 
+            data: {"projectId": 4}
+          }).then(function (response) {
+            return response['data']
+          })
+
+        axios.all([p1, p2, p3, p4]).then(axios.spread((...responses) => {
+            const responseOne = responses[0]
+            const responseTwo = responses[1]
+            const responseThree = responses[2]
+            const responseFour = responses[3]
+            console.log('responses: ')
+            console.log(responseOne)
+            console.log(responseTwo)
+            console.log(responseThree)
+            console.log(responseFour)
+            setProjectList([responseOne, responseTwo, responseThree, responseFour])
+            console.log([responseOne, responseTwo, responseThree, responseFour][project]['codes'])
+            setCodeList([responseOne, responseTwo, responseThree, responseFour][project]['codes'])
+            // use/access the results
+            })).catch(errors => {
+                console.log(errors.response.data)
+            // react on errors.
+            }).finally(() => {
+                console.log("Done");
+            });
+            console.log(projectList)
+    }, [])
 
 
-    const getAllProjects = () => axios({
-          method: "POST",
-          url:"/getAllProjects",
-          data:{
-            email: localStorage.getItem("email"),
-            password: localStorage.getItem("password")
-           }
-        })
-        .then((response) => {
-            if (response.status == 200) {
-                setProjectList(response['data']['data']['projects'])
-          } else {
-                return []
-          }
-        }).catch((error) => {
-          if (error.response) {
-            console.log(error.response)
-            console.log(error.response.status)
-            console.log(error.response.headers)
-            }
-        })
-
-
-    let dummydata = [
-        {'file': 'BSWToken.sol', 'ADDED': [1, 2], 'REMOVED': [5,6], 'code': sample['jsx']},
+    const dummydata = [
+        {'file': 'BSWToken.sol', 'ADDED': [1, 2], 'REMOVED': [5,6], 'code': sample['html']},
         {'file': 'BiswapERC20.sol', 'ADDED': [2, 3], 'REMOVED': [4,8], 'code': sample['html']},
         {'file': 'BiswapFactory.sol', 'ADDED': [1, 3], 'REMOVED': [2,6], 'code': sample['objectivec']},
         {'file': 'BiswapPair.sol', 'ADDED': [1, 4], 'REMOVED': [5,7], 'code': sample['python']},
         {'file': 'IBiswapCallee.sol', 'ADDED': [3, 5], 'REMOVED': [2,8], 'code': sample['java']}
     ]
+
 
     const claimData = [
         {
@@ -160,10 +188,6 @@ const Home = () => {
         }
       }, [codeList])
 
-    useEffect(() => {
-        getAllProjects();
-    }, []);
-
 
     // const [sidebarWidth, setSidebarWidth] = useState(undefined);
     // const [sidebarTop, setSidebarTop] = useState(undefined);
@@ -195,7 +219,7 @@ const Home = () => {
     //     } )
     // }
 
-    const activeItem = codeList.findIndex((elem) => elem['file'] == activeFile) != -1 ? codeList[codeList.findIndex((elem) => elem['file'] == activeFile)] : null
+    const activeItem = codeList.findIndex((elem) => elem['fileName'] == activeFile) != -1 ? codeList[codeList.findIndex((elem) => elem['fileName'] == activeFile)] : null
 
       return (
         <Container className="home-container">
@@ -206,15 +230,17 @@ const Home = () => {
 
         <Container className='project-name'>
             Project: {/* Uniswap V3 */}
-            {console.log(projectList)}
-            <DropdownButton id="dropdown-basic-button" title={projectList[project] ? projectList[project]['projectName']: "No Projects"}>
+            {/* {console.log(projectList)} */}
+            <DropdownButton id="dropdown-basic-button" title={projectList[project] ? projectList[project]['name']: "No Projects"}>
+
                 {projectList.map((project, index) => 
-                    (<Dropdown.Item onClick={() => setProject(index)}>{project['projectName']}</Dropdown.Item>))}
+                    (<Dropdown.Item onClick={() => setProject(index)}>{project['name']}</Dropdown.Item>))}
                 {/* <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
             </DropdownButton>
-            <div>Project Type: {projectList[project] ? projectList[project]['projectType']: "NA"} </div>
+            <div>Project Type: {projectList[project] ? projectList[project]['types']: "NA"} </div>
+
         </Container>
 
         {/* <Button onClick={data}>test</Button> */}
@@ -299,7 +325,7 @@ const Home = () => {
                 {   
                     codeList.length > 0 &&
                     codeList.map((item, idx) => 
-                        <Button className={activeFile == item['file'] ? 'tab tab-active' : 'tab'} onClick={() => setActiveFile(item['file'])}>{item['file']} <Icon.X onClick={() => close(idx)} className="tab-icon"/></Button>
+                        <Button className={activeFile == item['fileName'] ? 'tab tab-active' : 'tab'} onClick={() => setActiveFile(item['fileName'])}>{item['fileName']} <Icon.X onClick={() => close(idx)} className="tab-icon"/></Button>
                     )
                 }
                 {/* <Button className={activeIdx == 0 ? 'tab tab-active' : 'tab'} onClick={() => setActiveIdx(0)}>0 <Icon.X onClick={() => close(0)} className="tab-icon"/></Button>
@@ -317,15 +343,15 @@ const Home = () => {
                 lineProps={lineNumber => {
                     let id = 'end' + lineNumber
                     let style = { display: 'block' };
-                    if (activeItem['ADDED'].includes(lineNumber)) {
-                      style.backgroundColor = '#dbffdb';
-                    } else if (activeItem['REMOVED'].includes(lineNumber)) {
-                      style.backgroundColor = '#ffecec';
-                    }
+                    // if (activeItem['ADDED'].includes(lineNumber)) {
+                    //   style.backgroundColor = '#dbffdb';
+                    // } else if (activeItem['REMOVED'].includes(lineNumber)) {
+                    //   style.backgroundColor = '#ffecec';
+                    // }
                     return { style, id };
                   }}
             > 
-            {activeItem['code']}
+            {activeItem['data']}
             </SyntaxHighlighter>}
             {activeItem==null && <SyntaxHighlighter 
                 clssName='code'

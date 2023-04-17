@@ -37,13 +37,6 @@ function App() {
   const [currentTime, setCurrentTime] = useState(0);
   const [togClass, setTogClass] = useState('light');
 
-  useEffect(() => {
-    keepTheme();
-    fetch('/api/time').then(res => res.json()).then(data => {
-      setCurrentTime(data.time);
-    });
-  }, []);
-
   const HeaderWithRouter = withRouter(Header);
   const SidenavWithRouter = withRouter(Sidenav);
 
@@ -52,14 +45,13 @@ function App() {
       <header className="App-header">
         <BrowserRouter>
         {console.log(token)}
-        {!token || token== undefined || token == ""?  
+        {/* {!token || token== undefined || token == ""?  
           <Switch>        
           <Route path='/login' render={(props) => <Login setToken={setToken} />} />  
           <Route path='/signup' component={Signup}/> 
           <Route path='/' render={(props) => <Login setToken={setToken} />}/>            
         </Switch>
-        // <Login setToken={setToken} />
-        :(
+        :( */}
           <>
           <Header togClass={togClass} setTogClass={setTogClass}></Header>
         {/* <HeaderWithRouter togClass={togClass} setTogClass={setTogClass}/> */}
@@ -82,7 +74,7 @@ function App() {
         </Container>
           <Footer></Footer>
           </>
-        )}
+        {/* )} */}
         </BrowserRouter>
         </header>
     </div>

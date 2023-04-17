@@ -24,7 +24,6 @@ const Home = () => {
     const updateXarrow = useXarrow();
     const [project, setProject] = useState(0)
     const [projectList, setProjectList] = useState([])
-    const [tempProject, setTempProject] = useState(null)
     const [assessmentList, setAssessmentList] = useState([])
 
     useEffect(() => {
@@ -303,7 +302,7 @@ const Home = () => {
                 <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
             </DropdownButton>
-            <div>Project Type: {projectList[project] ? projectList[project]['types']: "NA"} </div>
+            <div>Project Type: {projectList[project] ? projectList[project]['types'].join(', '): "NA"} </div>
 
         </Container>
 
@@ -347,8 +346,8 @@ const Home = () => {
         </Row> 
 
 
-        <Xwrapper>
-        <Xarrow
+        {/* <Xwrapper> */}
+        {/* <Xarrow
                 start={lineFrom}
                 end={lineTo}
                 startAnchor={'right'}
@@ -358,7 +357,7 @@ const Home = () => {
                 showXarrow = {true}
                 strokeWidth={5}
                 // animateDrawing={1}
-        />
+        /> */}
         <ResizableTable resizable={true} resizeOptions={{liveDrag:true, onDrag:updateXarrow}}>
         <tbody className="home">
           <tr>
@@ -399,7 +398,7 @@ const Home = () => {
                 {codeList.length == 5 && <Button className={activeIdx == 4 ? 'tab tab-active' : 'tab'} onClick={() => setActiveIdx(4)}>4 <Icon.X onClick={() => close(4)} className="tab-icon"/></Button>} */}
             </Container>
             {activeItem && <SyntaxHighlighter 
-                clssName='code'
+                className='code'
                 language="javascript" 
                 style={localStorage.getItem('theme') === 'theme-light' ? docco : dark}
                 showLineNumbers = {true}
@@ -418,7 +417,7 @@ const Home = () => {
             {activeItem['data']}
             </SyntaxHighlighter>}
             {activeItem==null && <SyntaxHighlighter 
-                clssName='code'
+                className='code'
                 language="javascript" 
                 style={dark}
                 showLineNumbers = {true}
@@ -436,24 +435,24 @@ const Home = () => {
                 <Container className='section-right code-quality'>
                     <Button className='button-main' onClick={() => setIsOpen4(!isOpen4)}>Code Quality {isOpen4 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>} </Button>
                     <Button id='sec1but1' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
-                        <div class="button-content">
-                            <span>maintainability: {assessmentList[project] ? assessmentList[project]["codeQuality"]["maintainability"]['value'] : "NA"}</span>
+                        <div className="button-content">
+                            <span>maintainability: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["maintainability"]['value'] : "NA" : "NA"}</span>
                             <br></br>
-                            <a href="#">createdBy: {assessmentList[project] ? assessmentList[project]["codeQuality"]["maintainability"]['createdBy'] : "NA"}</a>
+                            <a href="#">createdBy: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["maintainability"]['createdBy'] : "NA" : "NA"}</a>
                         </div>
                     </Button>
                     <Button id='sec1but2' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
-                        <div class="button-content">
-                            <span>test coverage: {assessmentList[project] ? assessmentList[project]["codeQuality"]["testCoverage"]['value'] : "NA"}</span>
+                        <div className="button-content">
+                            <span>test coverage: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["testCoverage"]['value'] : "NA" : "NA"}</span>
                             <br></br>
-                            <a href="#">createdBy: {assessmentList[project] ? assessmentList[project]["codeQuality"]["testCoverage"]['createdBy'] : "NA"}</a>
+                            <a href="#">createdBy: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["testCoverage"]['createdBy'] : "NA" : "NA"}</a>
                         </div>
                     </Button>
                     <Button id='sec1but3' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
-                        <div class="button-content">
-                            <span>performance: {assessmentList[project] ? assessmentList[project]["codeQuality"]["performance"]['value'] : "NA"}</span>
+                        <div className="button-content">
+                            <span>performance: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["performance"]['value'] : "NA" : "NA"}</span>
                             <br></br>
-                            <a href="#">createdBy: {assessmentList[project] ? assessmentList[project]["codeQuality"]["performance"]['createdBy'] : "NA"}</a>
+                            <a href="#">createdBy: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["performance"]['createdBy'] : "NA" : "NA"}</a>
                         </div>
                     </Button>
                 </Container>
@@ -461,7 +460,7 @@ const Home = () => {
                 <Container className='section-right security-analysis'>
                     <Button className='button-main' onClick={() => setIsOpen5(!isOpen5)}>Security Analysis{isOpen5 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
                     <Button id='sec2but1' className='button-sub' style={isOpen5 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
-                        <div class="button-content">
+                        <div className="button-content">
                             score: 80/100
                             <br></br>
                             risk level: low
@@ -470,7 +469,7 @@ const Home = () => {
                         </div>
                     </Button>
                     <Button id='sec2but2' className='button-sub'style={isOpen5 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
-                        <div class="button-content">
+                        <div className="button-content">
                             audits:
                             <br></br>
                             <a href="https://example.com/hacken_audit.pdf">createdBy: Hacken</a>
@@ -482,7 +481,7 @@ const Home = () => {
 
                 <Container className='section-right explanation'>
                     <Button className='button-main' onClick={() => setIsOpen6(!isOpen6)}>Explanation{isOpen6 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
-                    <Button id='sec3but1' className='button-sub' style={isOpen6 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>{assessmentList[project] ? assessmentList[project]["explanation"]['value'] : "NA"}</Button>
+                    <Button id='sec3but1' className='button-sub' style={isOpen6 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>{assessmentList[project] ? assessmentList[project]["explanation"]["value"] : "NA"}</Button>
                 </Container>
                 
                 </div>
@@ -491,7 +490,7 @@ const Home = () => {
 
         </tbody>
       </ResizableTable>
-      </Xwrapper>
+      {/* </Xwrapper> */}
 
 
         </Container>

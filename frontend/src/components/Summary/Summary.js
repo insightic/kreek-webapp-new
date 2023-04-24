@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import ReactDOM from 'react-dom';
 import {Container, Row, Col, Card, DropdownButton, Dropdown, Button} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./ProjectList.css";
+import "./Summary.css";
 import { Helmet } from 'react-helmet';
 import * as Icon from 'react-bootstrap-icons';
 import sample from '../Home/codeblock.js';
@@ -41,27 +41,56 @@ const ProjectList = () => {
     }, [])
     
       return (
-        <Container className="projectlist-container">
+        <Container className="summary-container">
         <Helmet>
-            <title>Projects | Kreek</title>
+            <title>Summary | Kreek</title>
             {/* <meta name="description" content="CivicTech Lab at National University of Singapore is a research hub led by Dr. Weiyu Zhang. We are a team of social scientists, computer scientists, and digital cultural analysts. " /> */}
         </Helmet>
 
-        <Container className='page-name'>
-            <span>List of Projects</span>
-            <DropdownButton id="dropdown-basic-button" className="projectType-dropdown" title="ProjectType">
-            {/* <DropdownButton id="dropdown-basic-button" title={projectList[project] ? projectList[project]['projectName']: "No Projects"}> */}
-                {/* {projectList.map((project, index) => 
-                    (<Dropdown.Item onClick={() => setProject(index)}>{project['projectName']}</Dropdown.Item>))} */}
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-            </DropdownButton>
-            <Button className='projectAction-add-button' variant="outline-primary">Add</Button>
+        <Container className='project'>
+            <span>Project Name</span>
         </Container>
-        {projectList.map((project, index) => <Project project={project}/>)}
 
-        {/* <Project /> */}
+        <Container className='summary'>
+            <span>Summary</span>
+            <Container className='summary-content'>
+                <Container className='indicator'>
+                    <h5>Indicator 1</h5>
+                    <span>17</span>
+                </Container>
+
+                <Container className='indicator'>
+                    <h5>Indicator 2</h5>
+                    <span>5</span>
+                </Container>
+
+                <Container className='indicator'>
+                    <h5>Indicator 3</h5>
+                    <span>8</span>
+                </Container>
+            </Container>
+        </Container>
+
+        <Container className='actions'>
+        <span>Action</span>
+            <Container className='actions-content'>
+                <Container className='action-col'>
+                    <ActionCard type='error' />
+                    <ActionCard type='error' />
+                </Container>
+
+                <Container className='action-col'>
+                    <ActionCard type='warning' />
+                    <ActionCard type='warning' />
+                </Container>
+
+                <Container className='action-col'>
+                    <ActionCard type='message' />
+                    <ActionCard type='message' />
+                </Container>
+            </Container>
+        </Container>
+
 
         </Container>
     );
@@ -96,23 +125,39 @@ const dummyProjectList = [
 
 ]
 
-const Project = (props) => {
+const ActionCard = (props) => {
+    const style = props.type === "error" ? 
+                {
+                    "backgroundColor": "#F8D7DA",
+                } : props.type === "warning" ?
+                {
+                    "backgroundColor": "#FFF3CD",
+                } : props.type === "message" ? 
+                {
+                    "backgroundColor": "#D4EDDA",
+                } : {
+                    "backgroundColor": "#FFFFFF",
+                }
+
+    const icon = props.type === "error" ?
+                <Icon.ExclamationTriangle className="action-icon" style={{'color': '#721C24'}} size={iconSize} /> 
+                : props.type === "warning" ?
+                <Icon.ExclamationCircle className="action-icon" style={{'color': '#856404'}} size={iconSize} /> 
+                : props.type === "message" ?
+                <Icon.CheckCircle className="action-icon" style={{'color': '#155724'}} size={iconSize} />
+                : <Icon.InfoCircle className="action-icon" style={{'color': '#0C5460'}} size={iconSize} />
+
+
     return (
-        <Container className="project-container">
-            <Container className="project">
-                <img src= {props.project['icon']} className="project-icon"/>
-                <Container className="projectInfo">
-                    <h2>{props.project["name"]}</h2>
-                    <p>{props.project["tags"].join(', ')}</p>
-                    {/* <p>{props.projectInfo["projectDate"]}</p> */}
-                </Container>
-            </Container>
-            <Container className='projectAction'>
-                <Button className='projectAction-nav-button' style={{background:'linear-gradient(to right, #857BC5, #A09FFD)'}} variant="outline-primary"><Icon.HouseDoor />Main Page</Button>
-                <Button className='projectAction-nav-button' style={{background:'linear-gradient(to right, #FFB902, #FDDE01)'}} variant="outline-primary"><Icon.FileEarmarkCode />Smart Contract</Button>
-                <Button className='projectAction-nav-button' style={{background:'linear-gradient(to right, #03ACF2, #3BC8F8)'}} variant="outline-primary"><Icon.ListTask />Action Page</Button>
-                <Button className='projectAction-delete-button' variant="outline-primary">Delete</Button>
-            </Container>
+        <Container className="action-card" style={style}>
+            {icon}
+            <div>
+                <span>
+                Require 1 or more security audit report
+                    Suggest the VASP to submit at least another 
+                    security audit report within 45 days. Details....
+                </span>
+            </div>
         </Container>
     )
 }

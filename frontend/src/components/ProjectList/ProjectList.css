@@ -36,7 +36,7 @@
     justify-content: space-between;
     margin: 15px 0px;
     align-items: center;
-    width: 700px;
+    width: 1200px;
 }
 
 .project {
@@ -50,8 +50,8 @@
 
 .project-icon {
     border-radius: 20px;
-    border: 1px solid #000000;
-    padding: 5px
+    padding: 5px;
+    width: 60px;
 }
 
 .projectInfo {
@@ -74,8 +74,23 @@
 }
 
 .projectAction {
-    width:fit-content;
+    width:max-content;
     margin: 0px;
+    display:flex;
+}
+
+.projectAction-nav-button {
+    width: fit-content;
+    height: 40px;
+    margin: 0px 20px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.75);
+}
+
+.projectAction-nav-button > svg {
+    margin: 0px 5px 0px 0px;
 }
 
 .projectAction-add-button {
@@ -83,6 +98,7 @@
     height: 40px;
     margin: 0px 20px;
 }
+
 
 .projectAction-delete-button {
     width: 100px;

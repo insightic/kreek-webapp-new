@@ -1,0 +1,50 @@
+.analysis-header {
+    display:flex;
+    justify-content: flex-start;
+    margin: 10px 0px;
+    color: #fff
+}
+
+.analysis-header > h3 {
+    display:flex;
+    justify-content: flex-start;
+    margin: 0px 5px;
+    color: #fff;
+    font-size: clamp(0.5rem, 0.8rem, 1.4rem);
+    font-weight: 600;
+    align-items: center;
+}
+
+.analysis-header > svg {
+    height: 20px;
+    display:flex;
+    justify-content: flex-start;
+    margin: 0px 6px;
+    color: #fff
+}
+
+.analysis {
+    background-color: #70B1CD;
+    border-radius: 5px;
+    box-shadow: inset 0px 0px 10px 0px #0599cf;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    min-width: 140px;
+    max-width: 230px;
+    margin-right: 0px;
+    padding: 6px;
+}
+
+.button-ter {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    margin: 5px 0px;
+    font-size: clamp(0.5rem, 0.8rem, 1.4rem);
+    display: flex;
+    justify-content: center;
+    
+}

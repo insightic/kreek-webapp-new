@@ -27,12 +27,25 @@ const Home = () => {
     const [assessmentList, setAssessmentList] = useState([])
 
     useEffect(() => {
+        const p = axios({
+            method: 'POST',
+            url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getAllProjects',
+            headers: {}, 
+            data: {}
+          }).then(function (response) {
+            console.log("debug")
+            console.log(response['data'])
+            return response['data']
+          })
+
         const p1 = axios({
             method: 'POST',
             url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectByProjectId',
             headers: {}, 
             data: {"projectId": 1}
           }).then(function (response) {
+            console.log("debug1")
+            console.log(response['data'])
             return response['data']
           })
     
@@ -427,8 +440,6 @@ const Home = () => {
             </SyntaxHighlighter>}
                 
             </td>
-
-            {console.log(assessmentList)}
 
             <td className="label" xs={2} md={2} lg={2}>
                 <div className='sidebar'>

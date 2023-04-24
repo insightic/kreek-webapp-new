@@ -14,6 +14,7 @@ import Signup from "./components/Signup/Signup.js"
 import Cards from "./components/Cards/Cards.js"
 import NewProject from './components/NewProject/NewProject';
 import ProjectList from './components/ProjectList/ProjectList';
+import Summary from './components/Summary/Summary';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 //import Home from "./components/Home/Home.js"
@@ -65,7 +66,7 @@ function App() {
               <Route path='/home' component={Home}/> 
               <Route path='/new-project' component={NewProject}/>   
               <Route path='/project-list' component={ProjectList}/> 
-              <Route path='/about' component={About}/>               
+              <Route path='/summary' component={Summary}/>               
               <Route path='/faq' component={FAQ}/>   
               <Route path='/cards' component={Cards}/>  
               <Route path='/' component={Home}/>            

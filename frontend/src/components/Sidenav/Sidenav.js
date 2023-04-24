@@ -75,7 +75,7 @@ const Sidenav = (props) => {
               <Icon.Bell className="nav-icon"/>
             </OverlayTrigger>
           </Nav.Link>
-          <Nav.Link className="nav-icon-container" as={Link} to="/home">
+          <Nav.Link className="nav-icon-container" as={Link} to="/summary">
             <OverlayTrigger placement="right" delay={{ show: 10, hide: 10 }} overlay={renderTooltip("Help")}>
               <Icon.CardText className="nav-icon"/>
             </OverlayTrigger>

@@ -1,0 +1,61 @@
+.summary-container {
+    margin:0px;
+}
+
+.project {
+    border-bottom: 2px solid #000000;
+    display:flex;
+    justify-content:flex-start;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.summary, .actions {
+    border-bottom: 2px solid #000000;
+    display:flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    padding-bottom: 20px;
+}
+
+.summary > span, .actions > span {
+    display:flex;
+    justify-content:flex-start;
+    font-weight: 600;
+    margin: 0px 50px 10px 0px;
+    max-width: 100% !important;
+    font-size: clamp(1.5rem, 1.8vw, 2rem);
+}
+
+.summary-content, .actions-content {
+    display: flex;  
+    flex-direction: row;
+}
+
+.summary-content > h5 {
+    font-size: clamp(1.5rem, 1.8rem, 2rem)
+}
+
+.action-card {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 10px 0px 20px 0px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 300px;
+}
+
+.action-icon {
+    width:100px;
+    margin: 0px 10px;
+}
+
+.action-card > span {
+    font-size: 15px;
+    text-align: left;
+}
+

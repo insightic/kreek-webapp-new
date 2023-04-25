@@ -19,6 +19,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 //import Home from "./components/Home/Home.js"
 import { withRouter } from "react-router";
 import useToken from './components/useToken';
+import Overview from './components/Overview/Overview';
 
 // https://kreek-webapp-new-backend.vercel.app
 import { keepTheme } from './Theme.js';
@@ -66,7 +67,7 @@ function App() {
               <Route path='/new-project' component={NewProject}/>   
               <Route path='/project-list' component={ProjectList}/> 
               <Route path='/about' component={About}/>               
-              <Route path='/faq' component={FAQ}/>   
+              <Route path='/overview' component={Overview}/>   
               <Route path='/cards' component={Cards}/>  
               <Route path='/' component={Home}/>            
             </Switch>

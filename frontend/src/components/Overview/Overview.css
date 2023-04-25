@@ -1,0 +1,180 @@
+.overview-container {
+    margin:0px;
+}
+
+.overview {
+    border-bottom: 2px solid #000000;
+    display:flex;
+    justify-content:flex-start;
+    padding-bottom: 0px;
+}
+
+.overview > span {
+    display:flex;
+    justify-content:flex-start;
+    font-weight: 600;
+    font-style: italic;
+    margin: 0px 50px 10px 0px;
+    max-width: 100% !important;
+}
+
+.overview-header {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 0px;
+}
+
+.overview-header-left {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.overview-header-icon {
+    margin-right: 20px;
+}
+
+.overview-header-left > h2 {
+    margin-bottom: 0px;
+    font-weight: 600;
+}
+
+.overview-header-right {
+    border-radius: 35px;
+    padding:10px;
+    width:100px;
+    color: #fff;
+    background: linear-gradient(90deg, coral, lightblue);
+}
+
+.analysis {
+    display: flex;
+    flex-direction: row;
+}
+
+.analysis h3 {
+    text-decoration: underline;
+}
+
+.analysis-header {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.analysis-header > button {
+    background: linear-gradient(90deg,grey, #222222);
+}
+
+.tech1 {
+    text-align: left;
+    background-color: lightblue;
+    padding:5px;
+}
+
+.secs {
+    padding: 0px;
+}
+
+.secs > .sec {
+    width: 48%;
+    margin-top: 0px;
+}
+
+.tech h4, .market h4 {
+    font-weight: 600;
+    color: #fff;
+    font-size: clamp(1rem,2vw, 1.5rem);
+    margin-bottom: 0px;
+}
+
+.tech2 {
+    text-align: left;
+    background-color: lightgreen;
+    padding:5px;
+}
+
+.sec {
+    margin: 10px 0px;
+    background-color: #fff;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.secTitle {
+    padding: 5px;
+    margin-bottom: 3px;
+    font-weight: 600;
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+}
+
+.tech1 > *, .tech2 > *, .market1 > *, .market2 > * {
+    transition: opacity 0.1s linear, max-height 0.1s linear, visibility 0.1s linear;
+}
+
+.tech1 .secTitle {
+    border-bottom: 2px solid lightblue;
+}
+
+.tech2 .secTitle {
+    border-bottom: 2px solid lightgreen;
+}
+
+.secContent {
+    padding:5px;
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+}
+
+.technical-analysis > *, .market-analysis > * {
+    margin-bottom: 15px;
+}
+
+.secContent > h6 {
+    font-style: italic;
+    font-weight: 550;
+    margin: 10px 0px 3px 0px;
+}
+
+.tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 0px 0px 0px 0px;
+}
+
+.tags > * {
+    margin: 0px 10px 0px 0px;
+    border-radius: 2px;
+    box-shadow: 0px 0px 1px 1px #000000;
+    background-color: lightblue;
+    color: #fff;
+    padding: 2px;
+}
+
+.secs {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.market1 {
+    background-color: #E2E2E2;
+    text-align: left;
+    padding:5px;
+}
+
+.market1 .secTitle {
+    border-bottom: 2px solid #E2E2E2;
+}
+
+.market2 {
+    background-color: plum;
+    text-align: left;
+    padding: 5px;
+}
+
+.market2 .secTitle {
+    border-bottom: 2px solid plum;
+}

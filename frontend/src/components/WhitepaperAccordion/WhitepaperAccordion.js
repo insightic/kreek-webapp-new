@@ -30,7 +30,7 @@ const WhitepaperAccordion = (props) => {
       }
       {selectedButton && isOpen && 
 
-        <Container className='analysis'>
+        <Container className='analysis-home'>
           <div className="analysis-header"><Icon.Check2Square /> <h3>Analysis</h3> </div>
           <div className='button-ter' style={{ visibility: 'visible', opacity: '1' }}>
             [{data.find(item => item.claimId === selectedButton).claimId}] {data.find(item => item.claimId === selectedButton).claimName}

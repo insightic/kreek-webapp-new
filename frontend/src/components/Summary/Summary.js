@@ -47,7 +47,7 @@ const ProjectList = () => {
             {/* <meta name="description" content="CivicTech Lab at National University of Singapore is a research hub led by Dr. Weiyu Zhang. We are a team of social scientists, computer scientists, and digital cultural analysts. " /> */}
         </Helmet>
 
-        <Container className='project'>
+        <Container className='project-title'>
             <span>Project Name</span>
         </Container>
 
@@ -75,18 +75,19 @@ const ProjectList = () => {
         <span>Action</span>
             <Container className='actions-content'>
                 <Container className='action-col'>
-                    <ActionCard type='error' />
-                    <ActionCard type='error' />
+                    <ActionCard type='error' title="Require 1 or more security audit report" message="Suggest the VASP to submit at least another security audit report within 45 days. Details...."/>
+                    <ActionCard type='error' title="Code has high similarity to Uniswap" message="Suggest the VASP to further clarify the differences for not violating Business Source License. Details...."/>
+                    <ActionCard type='error' title="Core contract has been modified recently" message="Dangerous to update the core smart contract code. The audit reports may not be sufficient. Details..."/>
                 </Container>
 
                 <Container className='action-col'>
-                    <ActionCard type='warning' />
-                    <ActionCard type='warning' />
+                    <ActionCard type='warning' title="Code has not been updates for long time" message="Suggest the VASP to link Github account or submit a new code base. Details..."/>
+                    <ActionCard type='warning' title="High botting rate" message="Suggest to review the VASP’s solution on bot detection and IP restriction. Details..."/>
+                    <ActionCard type='warning' title="Orderbook Spoofing" message="There is a high chance that the order book design has no restriction on spoofing. Details..."/>
                 </Container>
 
-                <Container className='action-col'>
-                    <ActionCard type='message' />
-                    <ActionCard type='message' />
+                <Container className='action-col' title="Partnership with risky projects" message="The VASP has released a partnership announcement recently, with a risky project. Details...">
+                    <ActionCard type='message' title="Risky wallets interaction" message="The deployed contract has attracted many newly wallets. Require VASP to validate their users. Details...."/>
                 </Container>
             </Container>
         </Container>
@@ -128,35 +129,36 @@ const dummyProjectList = [
 const ActionCard = (props) => {
     const style = props.type === "error" ? 
                 {
-                    "backgroundColor": "#F8D7DA",
+                    "backgroundColor": "#E6D0D0",
+                    'color': '#EB5757'
                 } : props.type === "warning" ?
                 {
-                    "backgroundColor": "#FFF3CD",
+                    "backgroundColor": "#E7DED6",
+                    'color': '#F2994A'
                 } : props.type === "message" ? 
                 {
-                    "backgroundColor": "#D4EDDA",
+                    "backgroundColor": "#CADAE4",
+                    'color': '#2F80ED'
                 } : {
                     "backgroundColor": "#FFFFFF",
+                    'color': '#721C24'
                 }
 
     const icon = props.type === "error" ?
-                <Icon.ExclamationTriangle className="action-icon" style={{'color': '#721C24'}} size={iconSize} /> 
+                <Icon.ExclamationTriangle className="action-icon" style={{'color': '#EB5757'}} size={iconSize} /> 
                 : props.type === "warning" ?
-                <Icon.ExclamationCircle className="action-icon" style={{'color': '#856404'}} size={iconSize} /> 
+                <Icon.ExclamationCircle className="action-icon" style={{'color': '#F2994A'}} size={iconSize} /> 
                 : props.type === "message" ?
-                <Icon.CheckCircle className="action-icon" style={{'color': '#155724'}} size={iconSize} />
-                : <Icon.InfoCircle className="action-icon" style={{'color': '#0C5460'}} size={iconSize} />
+                <Icon.CheckCircle className="action-icon" style={{'color': '#2F80ED'}} size={iconSize} />
+                : <Icon.InfoCircle className="action-icon" style={{'color': '#721C24'}} size={iconSize} />
 
 
     return (
         <Container className="action-card" style={style}>
             {icon}
             <div>
-                <span>
-                Require 1 or more security audit report
-                    Suggest the VASP to submit at least another 
-                    security audit report within 45 days. Details....
-                </span>
+                <h2>{props.title}</h2>
+                <p>{props.message}</p>
             </div>
         </Container>
     )

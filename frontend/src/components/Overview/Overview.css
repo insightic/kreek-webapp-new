@@ -153,10 +153,22 @@
     margin: 10px 0px 3px 0px;
 }
 
-.secContent td {
-    max-width: 200px;
-    padding: 0px 10px 5px 0px
+.secContent th {
+    max-width: 250px;
+    padding: 5px 10px 5px 5px;
+    border-bottom: 3px double #000000;
 }
+
+.secContent td {
+    max-width: 250px;
+    padding: 5px 10px 5px 5px;
+    border-bottom: 1px solid #000000;
+}
+
+.secContent td:not(:last-child) {
+    border-right: 1px solid #000000;
+}
+
 
 .tags {
     display: flex;

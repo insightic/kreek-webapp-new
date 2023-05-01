@@ -60,7 +60,6 @@ const Overview = (props) => {
 
         <Container className='analysis'>
             <Container className='technical-analysis'>
-                <h3>Technical Analysis</h3>
                 <Container className='tech1 tech' >
                     <div className='analysis-header'>
                         <h4>Business Model Analysis</h4>
@@ -178,7 +177,6 @@ const Overview = (props) => {
             </Container>
 
             <Container className='market-analysis'>
-                <h3>Market Analysis</h3>
 
                 <Container className='market1 market'>
                         <div className='analysis-header'>

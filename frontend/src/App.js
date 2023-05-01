@@ -21,6 +21,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import useToken from './components/useToken';
 import Overview from './components/Overview/Overview';
 import OverviewEuler from './components/Overview/Overview-euler';
+import SummaryEuler from './components/Summary/Summary-euler';
 import axios from "axios";
 
 // https://kreek-webapp-new-backend.vercel.app
@@ -84,6 +85,7 @@ function App() {
               <Route path='/home' element={<Home project={projectIndex} allProjects={allProjects} setProject={setProjectIndex} />}/>        
               <Route path='/new-project' element={<NewProject allProjects={allProjects}/>} />   
               <Route path='/summary' element={<Summary allProjects={allProjects} project={projectIndex}/>}/>                           
+              <Route path='/summary-euler' element={<SummaryEuler allProjects={allProjects} project={projectIndex}/>}/>                           
               <Route path='/overview' element={<Overview allProjects={allProjects} project={projectIndex}/>}/>   
               <Route path='/overview-euler' element={<OverviewEuler allProjects={allProjects} project={projectIndex}/>}/>    
               <Route path='/' element={<ProjectList allProjects={allProjects} project={projectIndex} setProject={setProjectIndex}/>}/>            

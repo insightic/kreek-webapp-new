@@ -518,6 +518,23 @@ const Home = (props) => {
                         <Button id='sec3but1' className='button-sub'>{assessmentList[project] ? assessmentList[project]["explanation"]["value"] : "NA"}</Button>
                     </div>
                 </Container>
+
+                <div className='section-right code-check'>
+                    <h5>Code Originality</h5>
+                    <div>
+                        <h6>UniSwap</h6>
+                        <span style={{color:'red'}}>63%</span>
+                    </div>
+                    <div>
+                        <h6>PancakeSwap</h6>
+                        <span style={{color:'orange'}}>49%</span>
+                    </div>
+                    <div>
+                        <h6>ParaSwap</h6>
+                        <span style={{color:'green'}}>29%</span>
+                    </div>
+                    
+                </div>
                 
                 </div>
             </td>

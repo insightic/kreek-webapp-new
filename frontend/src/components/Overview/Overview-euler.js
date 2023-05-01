@@ -60,7 +60,6 @@ const OverviewEuler = (props) => {
 
         <Container className='analysis'>
             <Container className='technical-analysis'>
-                <h3>Technical Analysis</h3>
                 <Container className='tech1 tech' >
                     <div className='analysis-header'>
                         <h4>Business Model Analysis</h4>
@@ -92,7 +91,7 @@ const OverviewEuler = (props) => {
                                 <div>Price Oracle</div>
                             </div>
                             <h6>Related regulations</h6>
-                            <p>https://www.1.com</p>
+                            <p>[ref1], [ref2], [ref3]</p>
                         </div>
                     </div>
 
@@ -181,7 +180,6 @@ const OverviewEuler = (props) => {
             </Container>
 
             <Container className='market-analysis'>
-                <h3>Market Analysis</h3>
 
                 <Container className='market1 market'>
                         <div className='analysis-header'>

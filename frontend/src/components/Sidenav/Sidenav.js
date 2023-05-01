@@ -57,7 +57,7 @@ const Sidenav = (props) => {
           placement="right" 
           delay={{ show: 10, hide: 10 }} 
           overlay={renderTooltip("Search")}>
-            <Icon.Search className="nav-icon"/> 
+            <Icon.CardText className="nav-icon"/> 
           </OverlayTrigger>
 
         </Nav.Link>
@@ -70,7 +70,7 @@ const Sidenav = (props) => {
             </OverlayTrigger>
           </Nav.Link>
 
-          <Nav.Link className="nav-icon-container" as={Link} to="/home">
+          {/* <Nav.Link className="nav-icon-container" as={Link} to="/home">
             <OverlayTrigger placement="right" delay={{ show: 10, hide: 10 }} overlay={renderTooltip("Main Page")}>
               <Icon.CodeSquare className="nav-icon"/>
             </OverlayTrigger>
@@ -84,7 +84,7 @@ const Sidenav = (props) => {
             <OverlayTrigger placement="right" delay={{ show: 10, hide: 10 }} overlay={renderTooltip("Actions")}>
               <Icon.PersonLinesFill className="nav-icon"/>
             </OverlayTrigger>
-          </Nav.Link>
+          </Nav.Link> */}
         </Nav>
 
         <div className='nav-lower'>

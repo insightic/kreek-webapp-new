@@ -3,19 +3,6 @@
     margin:0px 15px;
 }
 
-.home {
-    display:flex;
-    justify-content: center;
-    align-items: flex-start;
-    width:100%;
-    margin:0px;
-    padding:0px;
-    align-items: stretch;
-    min-height:300px;
-    background-color: var(--background);
-    border:none;
-}
-
 .react-pdf__Page {
     margin: 0 auto;
     width: fit-content;

@@ -16,7 +16,7 @@ import axios from "axios";
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 
-const Overview = (props) => {
+const OverviewEuler = (props) => {
     const [isOpen, setIsOpen] = useState(true)
     const [isOpen2, setIsOpen2] = useState(true)
     const [isOpen3, setIsOpen3] = useState(true)
@@ -49,12 +49,12 @@ const Overview = (props) => {
 
         <Container className='overview-header'>
             <div className='overview-header-left'>
-                {allProjects.length > 0 ? <img src={selectedProject['icon']} className="project-icon"/> : ""}
-                <h2>{allProjects.length > 0 ? selectedProject['name'] : "NA"}</h2>
+                <img src='https://storage.googleapis.com/subgraph-images/1656114240805euler-transparent.png' className="project-icon"/>
+                <h2>Euler Finance</h2>
             </div>
 
             <div className='overview-header-right'>
-                B+
+                B-
             </div>            
         </Container>
 
@@ -76,14 +76,20 @@ const Overview = (props) => {
                         </h5>
                         <div className='secContent' style={isOpen11 ? {visibility:'visible', opacity:'1', maxHeight:'500px'}:{visibility:'hidden', opacity:'0', maxHeight:'0px', padding:'0', margin:'0'}}>
                             <div>
-                                Biswap is a trusted DEX platform on the BNB Chain Network with a Multi-type Referral 
-                                Program and low trade fee starting from 0.1%. Biswap is the ecosystem that offers the 
-                                best service and creates new standards in DeFi.
+                                Euler's business model revolves around providing decentralized lending and borrowing services on the Ethereum blockchain. It generates revenue through interest accrued on loans, with a portion held in reserves for bad debts. The model relies on the Euler Governance Token (EUL) for protocol management, enabling a decentralized approach.
+
+                                Euler offers a unique value proposition by enabling permissionless listings, asset tiering for risk management, tokenized debts, protected collateral, feeless flash loans, and risk-adjusted borrowing capacity. By leveraging decentralized price oracles, Euler ensures a secure and transparent experience for users, promoting capital efficiency and a user-centric approach.
                             </div>
                             <h6>Tags</h6>
                             <div className='tags'>
+                                <div>Loan</div>
                                 <div>P2P Trading</div>
+                                <div>Collateral Control</div>
                                 <div>Deposits</div>
+                                <div>Risk Management</div>
+                                <div>DAO</div>
+                                <div>Flashloan</div>
+                                <div>Price Oracle</div>
                             </div>
                             <h6>Related regulations</h6>
                             <p>https://www.1.com</p>
@@ -100,9 +106,10 @@ const Overview = (props) => {
                         </h5>
                         <div className='secContent' style={isOpen12 ? {visibility:'visible', opacity:'1', maxHeight:'500px'}:{visibility:'hidden', opacity:'0', maxHeight:'0px', padding:'0', margin:'0'}}>
                             <ul>
-                                <li>Retail investors who need to swap tokens</li>
-                                <li>Institutiona funds who conduct AMM business</li>
-                                <li>VASPs who IDO</li>
+                                <li>Individuals and institutions cryptocurrency adopters: both lender and borrowers for various purposes, such as earning interest, leveraging trading positions, liquidity provision, or covering short-term expenses.</li>
+                                <li>Developers: Those looking to build applications, products, or services on top of Euler's protocol, leveraging its features such as tokenized debts and feeless flash loans.</li>
+                                <li>Flash loans applier</li>
+                                <li>Governance participants: token holders who want to contribute to the platform's development and decision-making process by participating in governance proposals and voting.</li>
                             </ul>
                         </div>
                     </div>
@@ -126,19 +133,15 @@ const Overview = (props) => {
                                 <table>
                                     <tr>
                                         <td>Number of Pools</td>
-                                        <td>3,234,132</td>
+                                        <td>1555</td>
                                     </tr>
                                     <tr>
-                                        <td>7 Days Volume</td>
-                                        <td>$76,261,658</td>
-                                    </tr>
-                                    <tr>
-                                        <td>24 Hrs Volumne</td>
-                                        <td>$5,291,480</td>
+                                        <td>TVL</td>
+                                        <td>$113,934</td>
                                     </tr>
                                     <tr>
                                         <td>Changes</td>
-                                        <td>-61.71%</td>
+                                        <td>-11.42%</td>
                                     </tr>
                                 </table>
                             </div>
@@ -156,15 +159,15 @@ const Overview = (props) => {
                                 <table>
                                     <tr>
                                         <td>Unique Address</td>
-                                        <td>1,2888,378</td>
+                                        <td>288,378</td>
                                     </tr>
                                     <tr>
                                         <td>Bot Rate</td>
-                                        <td>21%</td>
+                                        <td>31%</td>
                                     </tr>
                                     <tr>
                                         <td>Retails / Total (volume)</td>
-                                        <td>26%</td>
+                                        <td>16%</td>
                                     </tr>
                                     <tr>
                                         <td>Retails / Total (Acct.)</td>
@@ -182,47 +185,70 @@ const Overview = (props) => {
 
                 <Container className='market1 market'>
                         <div className='analysis-header'>
-                            <h4>Social Media Analysis</h4>
+                            <h4>DAO Goverments Analysis</h4>
                             <Button onClick={() => setIsOpen3(!isOpen3)}>{isOpen3 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
                         </div>
                         <div className='market1sec1 sec' style={isOpen3 ? {visibility:'visible', opacity:'1', maxHeight:'500px'}:{visibility:'hidden', opacity:'0', maxHeight:'0px', padding:'0', margin:'0'}}>
                             <h5 className="secTitle">
-                                Twitter Analysis
+                                Governments Monitoring
                                 {isOpen31 ? 
                                     <span onClick={() => setIsOpen31(!isOpen31)}>&#9650;</span> :
                                     <span onClick={() => setIsOpen31(!isOpen31)}>&#9660;</span>
                                 }      
                             </h5>
                             <div className='secContent' style={isOpen31 ? {visibility:'visible', opacity:'1', maxHeight:'500px'}:{visibility:'hidden', opacity:'0', maxHeight:'0px', padding:'0', margin:'0'}}>
-                                <div>
-                                    Biswap is a trusted DEX platform on the BNB Chain Network with a Multi-type Referral 
-                                    Program and low trade fee starting from 0.1%. Biswap is the ecosystem that offers the 
-                                    best service and creates new standards in DeFi.
-                                </div>
-                                <h6>Tags</h6>
-                                <div className='tags'>
-                                    <div>P2P Trading</div>
-                                    <div>Deposits</div>
-                                </div>
-                                <h6>Related regulations</h6>
-                                <p>https://www.1.com</p>
+                                <table>
+                                    <tr>
+                                        <td>Number of Proposals</td>
+                                        <td>83</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Smart Contract Changes</td>
+                                        <td>6 times</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Grant Changes</td>
+                                        <td>12 times</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Skewness of voting power</td>
+                                        <td>High</td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
 
                         <div className='market1sec2 sec' style={isOpen3 ? {visibility:'visible', opacity:'1', maxHeight:'500px'}:{visibility:'hidden', opacity:'0', maxHeight:'0px', padding:'0', margin:'0'}}>
                             <h5 className="secTitle">
-                                Blog Analysis
+                                Important Events
                                 {isOpen32 ? 
                                     <span onClick={() => setIsOpen32(!isOpen32)}>&#9650;</span> :
                                     <span onClick={() => setIsOpen32(!isOpen32)}>&#9660;</span>
                                 }      
                             </h5>
                             <div className='secContent' style={isOpen32 ? {visibility:'visible', opacity:'1', maxHeight:'500px'}:{visibility:'hidden', opacity:'0', maxHeight:'0px', padding:'0', margin:'0'}}>
-                                <ul>
-                                    <li>Retail investors who need to swap tokens</li>
-                                    <li>Institutiona funds who conduct AMM business</li>
-                                    <li>VASPs who IDO</li>
-                                </ul>
+                            <table>
+                                    <tr>
+                                        <th>Event</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Contract Upgrades (eIP 14) </td>
+                                        <td>SUCCEEDED</td>
+                                        <td>Aug 12, 2022</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Move All Asset Price Oracles to Chainlink</td>
+                                        <td>SUCCEEDED</td>
+                                        <td>Sep 5, 2022</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Update the Interest Rate Model</td>
+                                        <td>SUCCEEDED</td>
+                                        <td>Feb 19, 2023</td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                 </Container>
@@ -329,4 +355,4 @@ const dummyProjectList = [
 ]
 
 
-export default Overview
+export default OverviewEuler

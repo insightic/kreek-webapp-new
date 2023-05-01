@@ -64,35 +64,35 @@ const Sidenav = (props) => {
 
         {/* <Nav activeKey={location.pathname} className="mr-auto"> */}
         <Nav className="mr-auto">
-          <Nav.Link className="nav-icon-container" as={Link} to="/home">
+          <Nav.Link className="nav-icon-container" as={Link} to="/project-list">
             <OverlayTrigger placement="right" delay={{ show: 10, hide: 10 }} overlay={renderTooltip("Home")}>
               <Icon.House className="nav-icon"/>
             </OverlayTrigger>
           </Nav.Link>
 
-          <Nav.Link className="nav-icon-container" as={Link} to="/project-list">
-            <OverlayTrigger placement="right" delay={{ show: 10, hide: 10 }} overlay={renderTooltip("Notification")}>
-              <Icon.Bell className="nav-icon"/>
-            </OverlayTrigger>
-          </Nav.Link>
-          <Nav.Link className="nav-icon-container" as={Link} to="/summary">
-            <OverlayTrigger placement="right" delay={{ show: 10, hide: 10 }} overlay={renderTooltip("Help")}>
-              <Icon.CardText className="nav-icon"/>
+          <Nav.Link className="nav-icon-container" as={Link} to="/home">
+            <OverlayTrigger placement="right" delay={{ show: 10, hide: 10 }} overlay={renderTooltip("Main Page")}>
+              <Icon.CodeSquare className="nav-icon"/>
             </OverlayTrigger>
           </Nav.Link>
           <Nav.Link className="nav-icon-container" as={Link} to="/overview">
-            <OverlayTrigger placement="right" delay={{ show: 10, hide: 10 }} overlay={renderTooltip("Setting")}>
-              <Icon.Gear className="nav-icon"/>
+            <OverlayTrigger placement="right" delay={{ show: 10, hide: 10 }} overlay={renderTooltip("Smart Contracts")}>
+              <Icon.CardText className="nav-icon"/>
+            </OverlayTrigger>
+          </Nav.Link>
+          <Nav.Link className="nav-icon-container" as={Link} to="/summary">
+            <OverlayTrigger placement="right" delay={{ show: 10, hide: 10 }} overlay={renderTooltip("Actions")}>
+              <Icon.PersonLinesFill className="nav-icon"/>
             </OverlayTrigger>
           </Nav.Link>
         </Nav>
 
         <div className='nav-lower'>
-        <Nav.Link className="nav-icon-container" as={Button} onClick={logMeOut}>
-          <OverlayTrigger placement="right" delay={{ show: 10, hide: 10 }} overlay={renderTooltip("Log out")}>
-            <Icon.DoorOpen className="nav-icon"/>
-          </OverlayTrigger>
-        </Nav.Link>
+          <Nav.Link className="nav-icon-container" as={Button} onClick={logMeOut}>
+            <OverlayTrigger placement="right" delay={{ show: 10, hide: 10 }} overlay={renderTooltip("Log out")}>
+              <Icon.DoorOpen className="nav-icon"/>
+            </OverlayTrigger>
+          </Nav.Link>
           {/* <Toggle togClass={props.togClass} setTogClass={props.setTogClass}/> */}
         </div>
       </div>

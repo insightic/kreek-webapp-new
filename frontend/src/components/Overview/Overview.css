@@ -1,5 +1,6 @@
 .overview-container {
     margin:0px;
+    overflow: hidden;
 }
 
 .overview {
@@ -31,7 +32,7 @@
     align-items: center;
 }
 
-.overview-header-icon {
+.overview-header-left > .project-icon {
     margin-right: 20px;
 }
 
@@ -45,7 +46,7 @@
     padding:10px;
     width:100px;
     color: #fff;
-    background: linear-gradient(90deg, coral, lightblue);
+    background: linear-gradient(90deg, #FFB902, #FCE401);
 }
 
 .analysis {
@@ -65,12 +66,25 @@
 }
 
 .analysis-header > button {
-    background: linear-gradient(90deg,grey, #222222);
+    background: linear-gradient(90deg,#BEBEBE, #D5D5D5);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    text-align: center;
+    aspect-ratio: 1 / 1;
+}
+
+.analysis-header .button-icon {
+    margin: 0px;
+}
+
+.tech, .market {
+    border-radius: 10px;
 }
 
 .tech1 {
     text-align: left;
-    background-color: lightblue;
+    background-color: #4F71BE;
     padding:5px;
 }
 
@@ -79,7 +93,6 @@
 }
 
 .secs > .sec {
-    width: 48%;
     margin-top: 0px;
 }
 
@@ -92,7 +105,7 @@
 
 .tech2 {
     text-align: left;
-    background-color: lightgreen;
+    background-color: #7EAB55;
     padding:5px;
 }
 
@@ -107,18 +120,22 @@
     margin-bottom: 3px;
     font-weight: 600;
     font-size: clamp(1rem, 1.5vw, 1.5rem);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .tech1 > *, .tech2 > *, .market1 > *, .market2 > * {
     transition: opacity 0.1s linear, max-height 0.1s linear, visibility 0.1s linear;
 }
 
-.tech1 .secTitle {
-    border-bottom: 2px solid lightblue;
+.tech1 .secTitle, .tech1 .secHeader {
+    border-bottom: 2px solid #4F71BE;
 }
 
 .tech2 .secTitle {
-    border-bottom: 2px solid lightgreen;
+    border-bottom: 2px solid #7EAB55;
 }
 
 .secContent {
@@ -136,6 +153,11 @@
     margin: 10px 0px 3px 0px;
 }
 
+.secContent td {
+    max-width: 200px;
+    padding: 0px 10px 5px 0px
+}
+
 .tags {
     display: flex;
     flex-direction: row;
@@ -145,7 +167,7 @@
 }
 
 .tags > * {
-    margin: 0px 10px 0px 0px;
+    margin: 0px 10px 5px 0px;
     border-radius: 2px;
     box-shadow: 0px 0px 1px 1px #000000;
     background-color: lightblue;
@@ -153,28 +175,24 @@
     padding: 2px;
 }
 
-.secs {
-    display:flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
 .market1 {
-    background-color: #E2E2E2;
+    background-color: #ACACAC;
     text-align: left;
     padding:5px;
 }
 
 .market1 .secTitle {
-    border-bottom: 2px solid #E2E2E2;
+    border-bottom: 2px solid #ACACAC;
 }
 
 .market2 {
-    background-color: plum;
+    background-color: #8440C2;
     text-align: left;
     padding: 5px;
 }
 
 .market2 .secTitle {
-    border-bottom: 2px solid plum;
+    border-bottom: 2px solid #8440C2;
 }
+
+

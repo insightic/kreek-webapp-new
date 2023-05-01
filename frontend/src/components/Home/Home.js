@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import ReactDOM from 'react-dom';
 import {Container, Row, Col, Card, CardDeck, Jumbotron, Button, Dropdown, DropdownButton} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useLocation } from 'react-router-dom';
 import "./Home.css";
 import { Helmet } from 'react-helmet';
 import * as Icon from 'react-bootstrap-icons';
@@ -15,89 +16,95 @@ import WhitepaperAccordion from '../WhitepaperAccordion/WhitepaperAccordion';
 import Xarrow, {useXarrow, Xwrapper} from 'react-xarrows';
 import axios from "axios";
 
-const Home = () => {
+const Home = (props) => {
+    let location = useLocation();
     const ADDED = [1, 2];
     const REMOVED = [6];
     const [showArrow, setShowArrow] = React.useState(false);
     const [lineFrom, setLineFrom] = React.useState(null);
     const [lineTo, setLineTo] = React.useState(null);
     const updateXarrow = useXarrow();
-    const [project, setProject] = useState(0)
-    const [projectList, setProjectList] = useState([])
+
+    console.log(location);
+    // const [projectList, setProjectList] = useState([])
     const [assessmentList, setAssessmentList] = useState([])
 
-    useEffect(() => {
-        const p = axios({
-            method: 'POST',
-            url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getAllProjects',
-            headers: {}, 
-            data: {}
-          }).then(function (response) {
-            console.log("debug")
-            console.log(response['data'])
-            return response['data']
-          })
+    let project = props.project;
+    let setProject = props.setProject;
+    let projectList = props.allProjects.length > 0 ? props.allProjects : [];
 
-        const p1 = axios({
-            method: 'POST',
-            url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectByProjectId',
-            headers: {}, 
-            data: {"projectId": 1}
-          }).then(function (response) {
-            console.log("debug1")
-            console.log(response['data'])
-            return response['data']
-          })
-    
-          const p2 = axios({
-            method: 'POST',
-            url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectByProjectId',
-            headers: {}, 
-            data: {"projectId": 2}
-          }).then(function (response) {
-            return response['data']
-          })
-    
-          const p3 = axios({
-            method: 'POST',
-            url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectByProjectId',
-            headers: {}, 
-            data: {"projectId": 3}
-          }).then(function (response) {
-            return response['data']
-          })
-    
-          const p4 = axios({
-            method: 'POST',
-            url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectByProjectId',
-            headers: {}, 
-            data: {"projectId": 4}
-          }).then(function (response) {
-            return response['data']
-          })
+    // useEffect(() => {
+    //     const p = axios({
+    //         method: 'POST',
+    //         url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getAllProjects',
+    //         headers: {}, 
+    //         data: {}
+    //       }).then(function (response) {
+    //         console.log("debug")
+    //         console.log(response['data'])
+    //         return response['data']
+    //       })
 
-        axios.all([p1, p2, p3, p4]).then(axios.spread((...responses) => {
-            const responseOne = responses[0]
-            const responseTwo = responses[1]
-            const responseThree = responses[2]
-            const responseFour = responses[3]
-            console.log('responses: ')
-            console.log(responseOne['codes'])
-            console.log(responseTwo['codes'])
-            console.log(responseThree['codes'])
-            console.log(responseFour['codes'])
-            setProjectList([responseOne, responseTwo, responseThree, responseFour])
-            console.log([responseOne, responseTwo, responseThree, responseFour][project]['codes'])
-            setCodeList([responseOne, responseTwo, responseThree, responseFour][project]['codes'])
-            // use/access the results
-            })).catch(errors => {
-                console.log(errors.response.data)
-            // react on errors.
-            }).finally(() => {
-                console.log("Done");
-            });
-            console.log(projectList)
-    }, [])
+    //     const p1 = axios({
+    //         method: 'POST',
+    //         url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectByProjectId',
+    //         headers: {}, 
+    //         data: {"projectId": 1}
+    //       }).then(function (response) {
+    //         console.log("debug1")
+    //         console.log(response['data'])
+    //         return response['data']
+    //       })
+    
+    //       const p2 = axios({
+    //         method: 'POST',
+    //         url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectByProjectId',
+    //         headers: {}, 
+    //         data: {"projectId": 2}
+    //       }).then(function (response) {
+    //         return response['data']
+    //       })
+    
+    //       const p3 = axios({
+    //         method: 'POST',
+    //         url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectByProjectId',
+    //         headers: {}, 
+    //         data: {"projectId": 3}
+    //       }).then(function (response) {
+    //         return response['data']
+    //       })
+    
+    //       const p4 = axios({
+    //         method: 'POST',
+    //         url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getProjectByProjectId',
+    //         headers: {}, 
+    //         data: {"projectId": 4}
+    //       }).then(function (response) {
+    //         return response['data']
+    //       })
+
+    //     axios.all([p1, p2, p3, p4]).then(axios.spread((...responses) => {
+    //         const responseOne = responses[0]
+    //         const responseTwo = responses[1]
+    //         const responseThree = responses[2]
+    //         const responseFour = responses[3]
+    //         console.log('responses: ')
+    //         console.log(responseOne['codes'])
+    //         console.log(responseTwo['codes'])
+    //         console.log(responseThree['codes'])
+    //         console.log(responseFour['codes'])
+    //         setProjectList([responseOne, responseTwo, responseThree, responseFour])
+    //         console.log([responseOne, responseTwo, responseThree, responseFour][project]['codes'])
+    //         setCodeList([responseOne, responseTwo, responseThree, responseFour][project]['codes'])
+    //         // use/access the results
+    //         })).catch(errors => {
+    //             console.log(errors.response.data)
+    //         // react on errors.
+    //         }).finally(() => {
+    //             console.log("Done");
+    //         });
+    //         console.log(projectList)
+    // }, [])
 
     useEffect(() => {
         const p1 = axios({
@@ -252,17 +259,24 @@ const Home = () => {
     }
 
     useEffect(() => {
+        console.log('Fruit', props)
+        if (projectList.length > 0) {
+            setCodeList(projectList[project]['codes'])
+        }
+    }, [projectList])
+
+    useEffect(() => {
         if (newFile.current != null) {
             console.log('Fruit', newFile);
             setActiveFile(newFile.current)
         }
       }, [codeList])
 
-      useEffect(() => {
-            if (projectList[project]) {
-                setCodeList(projectList[project]['codes'])
-            }
-        }, [project])
+    useEffect(() => {
+        if (projectList[project]) {
+            setCodeList(projectList[project]['codes'])
+        }
+    }, [project])
 
 
     // const [sidebarWidth, setSidebarWidth] = useState(undefined);
@@ -315,7 +329,7 @@ const Home = () => {
                 <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
             </DropdownButton>
-            <div>Project Type: {projectList[project] ? projectList[project]['types'].join(', '): "NA"} </div>
+            <div>Project Type: <span>{projectList[project] ? projectList[project]['types'].join(', '): "NA"} </span></div>
 
         </Container>
 
@@ -380,17 +394,21 @@ const Home = () => {
 
                 <Container className='section regulations'>
                     <Button className='button-main' onClick={() => setIsOpen2(!isOpen2)}>Regulations (5/5 passed){isOpen2 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
-                    <Button id='sec2but1' className='button-sub' onClick={setClaim} style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Rule 1</Button>
-                    <Button id='sec2but2' className='button-sub' onClick={setClaim} style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Rule 2</Button>
-                    <Button id='sec2but3' className='button-sub' onClick={setClaim} style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Rule 3</Button>
-                    <Button id='sec2but4' className='button-sub' onClick={setClaim} style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Rule 4</Button>
+                    <div style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
+                        <Button id='sec2but1' className='button-sub' onClick={setClaim} >Rule 1</Button>
+                        <Button id='sec2but2' className='button-sub' onClick={setClaim}>Rule 2</Button>
+                        <Button id='sec2but3' className='button-sub' onClick={setClaim}>Rule 3</Button>
+                        <Button id='sec2but4' className='button-sub' onClick={setClaim}>Rule 4</Button>
+                    </div>
                 </Container>
 
                 <Container className='section industrial-standard'>
                     <Button className='button-main' onClick={() => setIsOpen3(!isOpen3)}>Industry Standard{isOpen3 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
-                    <Button id='sec3but1' className='button-sub' onClick={setClaim} style={isOpen3 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Reference 1</Button>
-                    <Button id='sec3but2' className='button-sub' onClick={setClaim} style={isOpen3 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Reference 2</Button>
-                    <Button id='sec3but3' className='button-sub' onClick={setClaim} style={isOpen3 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>Reference 3</Button>
+                    <div style={isOpen3 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
+                        <Button id='sec3but1' className='button-sub' onClick={setClaim} >Reference 1</Button>
+                        <Button id='sec3but2' className='button-sub' onClick={setClaim}>Reference 2</Button>
+                        <Button id='sec3but3' className='button-sub' onClick={setClaim}>Reference 3</Button>
+                    </div>
                 </Container>
                 </div>
             </td>
@@ -445,54 +463,60 @@ const Home = () => {
                 <div className='sidebar'>
                 <Container className='section-right code-quality'>
                     <Button className='button-main' onClick={() => setIsOpen4(!isOpen4)}>Code Quality {isOpen4 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>} </Button>
-                    <Button id='sec1but1' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
-                        <div className="button-content">
-                            <span>maintainability: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["maintainability"]['value'] : "NA" : "NA"}</span>
-                            <br></br>
-                            <a href="#">createdBy: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["maintainability"]['createdBy'] : "NA" : "NA"}</a>
-                        </div>
-                    </Button>
-                    <Button id='sec1but2' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
-                        <div className="button-content">
-                            <span>test coverage: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["testCoverage"]['value'] : "NA" : "NA"}</span>
-                            <br></br>
-                            <a href="#">createdBy: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["testCoverage"]['createdBy'] : "NA" : "NA"}</a>
-                        </div>
-                    </Button>
-                    <Button id='sec1but3' className='button-sub' style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
-                        <div className="button-content">
-                            <span>performance: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["performance"]['value'] : "NA" : "NA"}</span>
-                            <br></br>
-                            <a href="#">createdBy: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["performance"]['createdBy'] : "NA" : "NA"}</a>
-                        </div>
-                    </Button>
+                    <div style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
+                        <Button id='sec1but1' className='button-sub' >
+                            <div className="button-content">
+                                <span>maintainability: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["maintainability"]['value'] : "NA" : "NA"}</span>
+                                <br></br>
+                                <a href="#">createdBy: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["maintainability"]['createdBy'] : "NA" : "NA"}</a>
+                            </div>
+                        </Button>
+                        <Button id='sec1but2' className='button-sub'>
+                            <div className="button-content">
+                                <span>test coverage: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["testCoverage"]['value'] : "NA" : "NA"}</span>
+                                <br></br>
+                                <a href="#">createdBy: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["testCoverage"]['createdBy'] : "NA" : "NA"}</a>
+                            </div>
+                        </Button>
+                        <Button id='sec1but3' className='button-sub'>
+                            <div className="button-content">
+                                <span>performance: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["performance"]['value'] : "NA" : "NA"}</span>
+                                <br></br>
+                                <a href="#">createdBy: {assessmentList[project] ? assessmentList[project]["codeQuality"] ? assessmentList[project]["codeQuality"]["performance"]['createdBy'] : "NA" : "NA"}</a>
+                            </div>
+                        </Button>
+                    </div>
                 </Container>
 
                 <Container className='section-right security-analysis'>
                     <Button className='button-main' onClick={() => setIsOpen5(!isOpen5)}>Security Analysis{isOpen5 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
-                    <Button id='sec2but1' className='button-sub' style={isOpen5 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
-                        <div className="button-content">
-                            score: 80/100
-                            <br></br>
-                            risk level: low
-                            <br></br>
-                            <a href="#">createdBy: Hacken</a>
-                        </div>
-                    </Button>
-                    <Button id='sec2but2' className='button-sub'style={isOpen5 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
-                        <div className="button-content">
-                            audits:
-                            <br></br>
-                            <a href="https://example.com/hacken_audit.pdf">createdBy: Hacken</a>
-                            <br></br>
-                            <a href="https://example.com/verazt_audit.pdf">createdBy: verazt</a>
-                        </div>
-                    </Button>
+                    <div style={isOpen5 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
+                        <Button id='sec2but1' className='button-sub' >
+                            <div className="button-content">
+                                score: 80/100
+                                <br></br>
+                                risk level: low
+                                <br></br>
+                                <a href="#">createdBy: Hacken</a>
+                            </div>
+                        </Button>
+                        <Button id='sec2but2' className='button-sub'>
+                            <div className="button-content">
+                                audits:
+                                <br></br>
+                                <a href="https://example.com/hacken_audit.pdf">createdBy: Hacken</a>
+                                <br></br>
+                                <a href="https://example.com/verazt_audit.pdf">createdBy: verazt</a>
+                            </div>
+                        </Button>
+                    </div>
                 </Container>
 
                 <Container className='section-right explanation'>
                     <Button className='button-main' onClick={() => setIsOpen6(!isOpen6)}>Explanation{isOpen6 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
-                    <Button id='sec3but1' className='button-sub' style={isOpen6 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>{assessmentList[project] ? assessmentList[project]["explanation"]["value"] : "NA"}</Button>
+                    <div style={isOpen6 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
+                        <Button id='sec3but1' className='button-sub'>{assessmentList[project] ? assessmentList[project]["explanation"]["value"] : "NA"}</Button>
+                    </div>
                 </Container>
                 
                 </div>

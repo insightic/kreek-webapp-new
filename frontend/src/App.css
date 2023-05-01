@@ -72,22 +72,22 @@
 }
 
 .sidenav {
-  width: 10%;
   max-width: 80px;
   min-width:60px;
-  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
   border-right: 2px solid var(--toggle-border);
   min-height: 500px;
   margin: 0;
+  padding-right: 0px;
+  border-right: 1px solid black;
 }
 
 .content {
   /* background-color: purple; */
   
-  width: 100%;
+  min-height: calc(100vh - 30px);
   height: fit-content;
   margin: 0;
 }

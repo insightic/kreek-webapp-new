@@ -2,6 +2,7 @@
     padding:0px;
     margin:0px 15px;
     max-width:100vw;
+    min-height: calc(100vh - 30px);
 }
 
 .home {
@@ -12,7 +13,7 @@
     margin:0px;
     padding:0px;
     align-items: stretch;
-    height: 75vh;
+    height: 90vh;
     min-height:300px;
     background-color: var(--background);
     border:none;
@@ -51,15 +52,28 @@
 }
 
 .project-name button {
-    background-color: transparent;
+    background-color: #A3C9E9;
     color: #000000;
     border: none;
-    font-weight: 600;
+    font-weight: 500;
     font-style: italic;
-    margin-bottom: 20px;
+    font-size: large;
     width: 200px;
+    margin: 0px 10px;
+    margin-right: 30px;
+    border-radius: 20px;
 }
-  
+
+.home tr, .home table, .home tbody{
+    min-height: calc(100vh - 30px);
+}
+
+.project-name span {
+    font-weight: 500;
+    font-style: italic;
+    font-size: large;
+    margin: 0px 10px;
+}
 
 @media screen and (min-width: 992px) {
 .sections {
@@ -93,7 +107,7 @@
     align-items: flex-start;
 }
 
-.section > button, .section-right > button {
+.section button, .section-right button {
     margin: 5px 0px;
     height: clamp(1rem, 2rem, 3rem);
     font-size: clamp(0.5rem, 0.7rem, 1.4rem);
@@ -108,12 +122,12 @@
     border:none
 }
 
-.whitepaper > .button-sub {   
+.whitepaper .button-sub {   
     background-color: #e29270;
     border:none
 }
 
-.whitepaper > .button-sub:active {   
+.whitepaper .button-sub:active {   
     background-color: #D0521C;
     border:none
 }
@@ -159,12 +173,12 @@
     border: none;
 }
 
-.regulations > .button-sub {
+.regulations .button-sub {
     background-color: #3D73D1;
     border: none;
 }
 
-.regulations > .button-sub:hover {
+.regulations .button-sub:hover {
     background-color: #1B53C5;
     border: none;
 }
@@ -174,23 +188,23 @@
     border: none;
 }
 
-.industrial-standard > .button-sub {
+.industrial-standard .button-sub {
     background-color: #67b365;
     border: none;
     height: auto;
 }
 
-.industrial-standard > .button-sub:hover {
+.industrial-standard .button-sub:hover {
     background-color: #11880F;
     border: none;
 }
 
-.code-quality > .button-main {   
+.code-quality .button-main {   
     background-color: #D0521C;
     border:none
 }
 
-.code-quality > .button-sub {   
+.code-quality .button-sub {   
     background-color: #e29270;
     border:none;
     height: auto;
@@ -211,7 +225,7 @@
     text-decoration: underline;
 }
 
-.code-quality > .button-sub:hover {   
+.code-quality .button-sub:hover {   
     background-color: #D0521C;
     border:none;
     text-align: left;
@@ -223,7 +237,7 @@
     text-align: left;
 }
 
-.security-analysis > .button-sub {
+.security-analysis .button-sub {
     background-color: #3D73D1;
     border: none;
     height: auto;
@@ -235,7 +249,7 @@
     text-decoration: underline;
 }
 
-.security-analysis > .button-sub:hover {
+.security-analysis .button-sub:hover {
     background-color: #1B53C5;
     border: none;
     text-align: left;
@@ -246,14 +260,14 @@
     border: none;
 }
 
-.explanation > .button-sub {
+.explanation .button-sub {
     background-color: #67b365;
     border: none;
     height: auto;
     text-align: left;
 }
 
-.explanation > .button-sub:hover {
+.explanation .button-sub:hover {
     background-color: #11880F;
     border: none;
     text-align: left;
@@ -282,11 +296,22 @@
     align-items: center;
 }
 
+.section > div, .section-right > div {
+    transition: all 0.15s linear;
+    width: 80%;
+}
+
+.section > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 .button-sub {
     width: 80%;
     min-width: 110px;
     max-width:180px;
-    transition: all 0.2s linear;
+
     display:flex;
     justify-content: flex-end;
     align-items: center;
@@ -324,6 +349,7 @@
     padding: 2px;
     margin: 0px 1px;
     color: #1B53C5;
+    white-space: nowrap;
 }
 
 .tab:hover {

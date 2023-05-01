@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Link, Switch, Route, useLocation} from 'react-router-dom';
+import { BrowserRouter, Link, Route, useLocation, Routes} from 'react-router-dom';
 import {Nav, Navbar, NavDropdown, Col, Row, Container, Image} from "react-bootstrap";
 import Header from "./components/Header/Header.js";
 import Footer from "./components/Footer/Footer.js";
@@ -18,9 +18,10 @@ import Summary from './components/Summary/Summary';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 //import Home from "./components/Home/Home.js"
-import { withRouter } from "react-router";
 import useToken from './components/useToken';
 import Overview from './components/Overview/Overview';
+import OverviewEuler from './components/Overview/Overview-euler';
+import axios from "axios";
 
 // https://kreek-webapp-new-backend.vercel.app
 import { keepTheme } from './Theme.js';
@@ -39,8 +40,23 @@ function App() {
   const [currentTime, setCurrentTime] = useState(0);
   const [togClass, setTogClass] = useState('light');
 
-  const HeaderWithRouter = withRouter(Header);
-  const SidenavWithRouter = withRouter(Sidenav);
+  
+  const [projectIndex, setProjectIndex] = useState(0);
+  const [allProjects, setAllProjects] = useState([]);
+
+  useEffect(() => {
+    const p = axios({
+        method: 'POST',
+        url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getAllProjects',
+        headers: {}, 
+        data: {}
+      }).then(function (response) {
+        console.log("debugApp")
+        console.log(response['data']['project_list'])
+        setAllProjects(response['data']['project_list'])
+        return response['data']
+      })
+    }, [])
 
   return (
     <div className="App">
@@ -55,7 +71,7 @@ function App() {
         </Switch>
         :( */}
           <>
-          <Header togClass={togClass} setTogClass={setTogClass}></Header>
+          {/* <Header togClass={togClass} setTogClass={setTogClass}></Header> */}
         {/* <HeaderWithRouter togClass={togClass} setTogClass={setTogClass}/> */}
         <ScrollRestoration />
         <Container className='main'>
@@ -63,14 +79,15 @@ function App() {
             <Sidenav token={token} setToken={setToken} togClass={togClass} setTogClass={setTogClass}/>
           </div>
           <div className='content'>
-            <Switch>                
-              <Route path='/home' component={Home}/> 
-              <Route path='/new-project' component={NewProject}/>   
-              <Route path='/project-list' component={ProjectList}/> 
-              <Route path='/summary' component={Summary}/>                           
-              <Route path='/overview' component={Overview}/>   
-              <Route path='/' component={Home}/>            
-            </Switch>
+            <Routes>   
+            <Route path='/project-list' element={<ProjectList allProjects={allProjects} project={projectIndex} setProject={setProjectIndex}/>}/>     
+              <Route path='/home' element={<Home project={projectIndex} allProjects={allProjects} setProject={setProjectIndex} />}/>        
+              <Route path='/new-project' element={<NewProject allProjects={allProjects}/>} />   
+              <Route path='/summary' element={<Summary allProjects={allProjects} project={projectIndex}/>}/>                           
+              <Route path='/overview' element={<Overview allProjects={allProjects} project={projectIndex}/>}/>   
+              <Route path='/overview-euler' element={<OverviewEuler allProjects={allProjects} project={projectIndex}/>}/>    
+              <Route path='/' element={<ProjectList allProjects={allProjects} project={projectIndex} setProject={setProjectIndex}/>}/>            
+            </Routes>
           </div>
         </Container>
           <Footer></Footer>

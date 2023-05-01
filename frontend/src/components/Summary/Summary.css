@@ -13,7 +13,7 @@
     font-style: italic;
 }
 
-.summary, .actions {
+.summary, .actions, .tasks {
     border-bottom: 2px solid #000000;
     display:flex;
     flex-direction: column;
@@ -21,7 +21,7 @@
     padding-bottom: 20px;
 }
 
-.summary > span, .actions > span {
+.summary > span, .actions > span, .tasks > span {
     display:flex;
     justify-content:flex-start;
     font-weight: 600;
@@ -30,7 +30,7 @@
     font-size: clamp(1.5rem, 1.8vw, 2rem);
 }
 
-.summary-content, .actions-content {
+.summary-content, .actions-content, .tasks-content {
     display: flex;  
     flex-direction: row;
 }
@@ -45,19 +45,27 @@
 
 .action-card {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     margin: 10px 0px 10px 0px;
     padding: 10px;
     border-radius: 10px;
+    height: 130px;
 }
 
 .action-icon {
-    width:60px;
+    width:30px;
     margin: 0px 10px 0px 3px;
 }
 
-.action-card h2 {
+.action-card > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.action-card h5 {
     font-size: 16px;
     text-align: left;
     font-weight: 600;
@@ -66,5 +74,80 @@
 .action-card p {
     font-size: 15px;
     text-align: left;
+    margin-left: 43px;
 }
+
+.action-card span {
+    text-decoration: underline;
+}
+
+.action-card span:hover {
+    cursor: pointer;
+    color: #000000;
+    text-decoration: underline;
+}
+
+.popup {
+    position: fixed;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100% !important;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.popup-content {
+    background-color: white;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    width: 40%;
+    padding: 20px;
+    border-radius: 5px;
+    color: #000;
+    box-shadow: inset 0px 0px 10px 3px rgba(0, 0, 0, 0.25);
+}
+
+.popup-content > h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 10px 0px 10px 10px;
+    text-align: left;
+}
+
+.popup-content > p {
+    font-size: 16px;
+    margin: 10px 0px 10px 10px;
+    text-align: left;
+}
+
+.popup-action {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.popup-action div {
+    display: flex;
+    align-items: stretch;
+}
+
+.popup-action label {
+    margin: 0px 0px 0px 10px;
+    font-size: 16px;
+}
+
+.close {
+    color: #8b8686;
+    float: right;
+}
+
+.close:hover {
+    color: #000000;
+    cursor: pointer;
+}
+
+
 

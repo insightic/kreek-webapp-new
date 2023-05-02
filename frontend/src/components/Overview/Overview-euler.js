@@ -87,11 +87,11 @@ const OverviewEuler = (props) => {
                                 <div>Deposits</div>
                                 <div>Risk Management</div>
                                 <div>DAO</div>
-                                <div>Flashloan</div>
+                                <div><a href='https://chain.link/education-hub/flash-loans'>Flashloan</a></div>
                                 <div>Price Oracle</div>
                             </div>
                             <h6>Related regulations</h6>
-                            <p>[ref1], [ref2], [ref3]</p>
+                            <p>[<a href='https://en.adgm.thomsonreuters.com/rulebook/guidance-regulation-digital-securities-activities-adgm-24-february-2020'>ref1</a>], [<a href='https://www.mas.gov.sg/regulation/explainers/a-guide-to-digital-token-offerings'>ref2</a>]</p>
                         </div>
                     </div>
 
@@ -232,17 +232,17 @@ const OverviewEuler = (props) => {
                                         <th>Date</th>
                                     </tr>
                                     <tr>
-                                        <td>Contract Upgrades (eIP 14) </td>
+                                        <td>Contract Upgrades (<a href='https://snapshot.org/#/eulerdao.eth/proposal/0xaa7cf379f95466b167b8947dd5f5f41176e635fc0a083fd5c3d273c42da34097'>eIP 14</a>) </td>
                                         <td>SUCCEEDED</td>
                                         <td>Aug 12, 2022</td>
                                     </tr>
                                     <tr>
-                                        <td>Move All Asset Price Oracles to Chainlink</td>
+                                        <td>Move All Asset <a href='https://snapshot.org/#/eulerdao.eth/proposal/0xed0cfd4efb6ac3452cbaf626e7ef806a0de5c83a70eaa6d4547d362c01d15fd5'>Price Oracles</a> to Chainlink</td>
                                         <td>SUCCEEDED</td>
                                         <td>Sep 5, 2022</td>
                                     </tr>
                                     <tr>
-                                        <td>Update the Interest Rate Model</td>
+                                        <td>Update the <a href='https://snapshot.org/#/eulerdao.eth/proposal/0x8aeb25aff28e56946c98ec2ff083b901f2710412edb73bba89714d4d96204472'>Interest Rate Model</a></td>
                                         <td>SUCCEEDED</td>
                                         <td>Feb 19, 2023</td>
                                     </tr>

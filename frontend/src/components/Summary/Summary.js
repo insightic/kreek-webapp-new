@@ -209,7 +209,7 @@ const PopUp = (props) => {
                 <Form className='popup-action'>
                     <Form.Check
                         inline
-                        label="Email to stakeholder"
+                        label="Email to VASP applicant"
                         type="checkbox"
                         id="option1"
                         value="option1"
@@ -227,7 +227,7 @@ const PopUp = (props) => {
                     />
                     <Form.Check
                         inline
-                        label="Feedback to Team"
+                        label="Feedback to internal regulator consultants"
                         type="checkbox"
                         id="option3"
                         value="option3"

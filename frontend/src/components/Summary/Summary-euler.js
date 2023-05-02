@@ -64,19 +64,28 @@ const SummaryEuler = (props) => {
         <span>Action</span>
             <Container className='actions-content'>
                 <Container className='action-col'>
-                    <ActionCard type='error' title="Require 1 or more security audit report" message="Suggest the VASP to submit at least another security audit report within 45 days. "/>
-                    <ActionCard type='error' title="Code has high similarity to Uniswap" message="Suggest the VASP to further clarify the differences for not violating Business Source License. "/>
-                    <ActionCard type='error' title="Core contract has been modified recently" message="Dangerous to update the core smart contract code. The audit reports may not be sufficient. "/>
+                    <ActionCard type='error' title="The DAO voting is highly centralized." message="10 votings events are led by a single address (> 50% weight). Request the VASP to propose a more balanced voting strategies."
+                    addElem = {<div className='addElem'>
+                        <h6>Reference:</h6>
+                        <span>[1] <a href="https://limechain.tech/blog/dao-voting-mechanisms-explained-2022-guide/"> DAO Voting Mechanisms Explained [2022 Guide] </a></span>
+                    </div>}/>
+                    
+                    <ActionCard type='error' title="The DAO voting is highly centralized." message="Request the VASP to conduct KYC for addresses, unless reducing their voting weights:" addElem={
+                        <div className='addElem'>
+                            <span>0x1A185F9F55b161E921C74FDeF3C444b8Dd2B8B16</span>
+                            <span>0x2aB8019A3191861F8235ec9FC5a9087d04682480</span>
+                            <span>0xD178F2d93B92Ac47cf51a899463Eca8acC37A8D5</span>
+                            <span>0x66cD62c6F8A4BB0Cd8720488BCBd1A6221B765F9</span>
+                        </div>}/>
+                    <ActionCard type='error' title="Core contract has been modified recently." message="Suggest the VASP to submit at least two security audit reports that covers the upgrades within 45 days."/>
                 </Container>
 
                 <Container className='action-col'>
-                    <ActionCard type='warning' title="Code has not been updates for long time" message="Suggest the VASP to link Github account or submit a new code base. "/>
-                    <ActionCard type='warning' title="High botting rate" message="Suggest to review the VASP’s solution on bot detection and IP restriction. "/>
-                    <ActionCard type='warning' title="Orderbook Spoofing" message="There is a high chance that the order book design has no restriction on spoofing. "/>
+                    <ActionCard type='warning' title="A new developer address added." message="Request the VASP to conduct KYC for the new developer. No contract modification is allowed until the KYC is verified."/>
                 </Container>
 
                 <Container className='action-col' title="Partnership with risky projects" message="The VASP has released a partnership announcement recently, with a risky project. ">
-                    <ActionCard type='message' title="Risky wallets interaction" message="The deployed contract has attracted many newly wallets. Require VASP to validate their users. "/>
+                    {/* <ActionCard type='message' title="Risky wallets interaction" message="The deployed contract has attracted many newly wallets. Require VASP to validate their users. "/> */}
                 </Container>
             </Container>
         </Container>
@@ -85,15 +94,15 @@ const SummaryEuler = (props) => {
         <span>Tasks</span>
             <Container className='tasks-content'>
                 <Container className='tasks-col'>
-                    <ActionCard type='error' title="Require 1 or more security audit report" message="Suggest the VASP to submit at least another security audit report within 45 days. "/>
+                    <ActionCard type='error' title="Add security audit report" message="Suggest the VASP to submit at least another security audit report within 45 days. "/>
                 </Container>
 
                 <Container className='tasks-col'>
-                    <ActionCard type='warning' title="Code has not been updates for long time" message="Suggest the VASP to link Github account or submit a new code base. "/>
+                    <ActionCard type='warning' title="Update code and whitepapers" message="Suggest the VASP to link Github account or submit a new code base. "/>
                 </Container>
 
-                <Container className='tasks-col' title="Partnership with risky projects" message="The VASP has released a partnership announcement recently, with a risky project. ">
-                    <ActionCard type='message' title="Risky wallets interaction" message="The deployed contract has attracted many newly wallets. Require VASP to validate their users. "/>
+                <Container className='tasks-col'>
+                    <ActionCard type='message' title="Check the interaction of the wallets" message="The deployed contract has attracted many newly wallets. Require VASP to validate their users. "/>
                 </Container>
             </Container>
         </Container>
@@ -176,7 +185,7 @@ const ActionCard = (props) => {
                 <span onClick={() => setShow(true)} variant="outline-primary">Details</span>
             </p>
             
-            {show ? <PopUp setShow={setShow} title={props.title} message={props.message} /> : null}
+            {show ? <PopUp setShow={setShow} title={props.title} message={props.message} addElem={props.addElem} /> : null}
         </Container>
     )
 }
@@ -205,11 +214,12 @@ const PopUp = (props) => {
                 </div>
                 <h3>{props.title}</h3>
                 <p>{props.message}</p>
+                {props.addElem}
 
                 <Form className='popup-action'>
                     <Form.Check
                         inline
-                        label="Email to stakeholder"
+                        label="Email to VASP applicant"
                         type="checkbox"
                         id="option1"
                         value="option1"
@@ -227,7 +237,7 @@ const PopUp = (props) => {
                     />
                     <Form.Check
                         inline
-                        label="Feedback to Team"
+                        label="Feedback to internal regulator consultants"
                         type="checkbox"
                         id="option3"
                         value="option3"

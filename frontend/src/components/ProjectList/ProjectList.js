@@ -53,7 +53,7 @@ const ProjectList = (props) => {
             </Container>
             <Container className='projectAction'>
                 <Button className='projectAction-nav-button' as={Link} to='/overview-euler' style={{background:'linear-gradient(to right, #857BC5, #A09FFD)'}} variant="outline-primary"><Icon.HouseDoor />Main Page</Button>
-                <Button className='projectAction-nav-button' as={Link} to='/home' style={{background:'linear-gradient(to right, #FFB902, #FDDE01)'}} variant="outline-primary"><Icon.FileEarmarkCode />Smart Contract</Button>
+                <Button className='projectAction-nav-button' as={Link} to='/home' style={{background:'linear-gradient(to right, #00B5A3, #00CAA4)'}} variant="outline-primary"><Icon.FileEarmarkCode />Smart Contract</Button>
                 <Button className='projectAction-nav-button' as={Link} to='/summary-euler' style={{background:'linear-gradient(to right, #03ACF2, #3BC8F8)'}} variant="outline-primary"><Icon.ListTask />Action Page</Button>
                 <Button className='projectAction-delete-button' variant="outline-primary">Delete</Button>
             </Container>
@@ -107,7 +107,7 @@ const Project = (props) => {
             </Container>
             <Container className='projectAction'>
                 <Button className='projectAction-nav-button' onClick={() => props.setProjectIdx(props.index)} as={Link} to='/overview' style={{background:'linear-gradient(to right, #857BC5, #A09FFD)'}} variant="outline-primary"><Icon.HouseDoor />Main Page</Button>
-                <Button className='projectAction-nav-button' onClick={() => props.setProjectIdx(props.index)} as={Link} to='/home' style={{background:'linear-gradient(to right, #FFB902, #FDDE01)'}} variant="outline-primary"><Icon.FileEarmarkCode />Smart Contract</Button>
+                <Button className='projectAction-nav-button' onClick={() => props.setProjectIdx(props.index)} as={Link} to='/home' style={{background:'linear-gradient(to right, #00B5A3, #00CAA4)'}} variant="outline-primary"><Icon.FileEarmarkCode />Smart Contract</Button>
                 <Button className='projectAction-nav-button' onClick={() => props.setProjectIdx(props.index)} as={Link} to='/summary' style={{background:'linear-gradient(to right, #03ACF2, #3BC8F8)'}} variant="outline-primary"><Icon.ListTask />Action Page</Button>
                 <Button className='projectAction-delete-button' variant="outline-primary">Delete</Button>
             </Container>

@@ -107,7 +107,7 @@ const OverviewEuler = (props) => {
                             <ul>
                                 <li>Individuals and institutions cryptocurrency adopters: both lender and borrowers for various purposes, such as earning interest, leveraging trading positions, liquidity provision, or covering short-term expenses.</li>
                                 <li>Developers: Those looking to build applications, products, or services on top of Euler's protocol, leveraging its features such as tokenized debts and feeless flash loans.</li>
-                                <li>Flash loans applier</li>
+                                <li><a href='https://chain.link/education-hub/flash-loans'>Flash loans</a> applier</li>
                                 <li>Governance participants: token holders who want to contribute to the platform's development and decision-making process by participating in governance proposals and voting.</li>
                             </ul>
                         </div>

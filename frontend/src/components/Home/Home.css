@@ -123,7 +123,7 @@
 }
 
 .whitepaper .button-sub {   
-    background-color: #e29270;
+    background: linear-gradient(90deg, #ee895e 0%, #D0521C 100%);
     border:none
 }
 
@@ -174,7 +174,7 @@
 }
 
 .regulations .button-sub {
-    background-color: #3D73D1;
+    background: linear-gradient(90deg, #3D73D1 0%, #1B53C5 100%);
     border: none;
 }
 
@@ -189,7 +189,7 @@
 }
 
 .industrial-standard .button-sub {
-    background-color: #67b365;
+    background: linear-gradient(90deg, #67b365 0%, #11880F 100%);
     border: none;
     height: auto;
 }
@@ -205,7 +205,7 @@
 }
 
 .code-quality .button-sub {   
-    background-color: #e29270;
+    background: linear-gradient(90deg, #ee895e 0%, #D0521C 100%);
     border:none;
     height: auto;
     text-align: left;
@@ -238,7 +238,7 @@
 }
 
 .security-analysis .button-sub {
-    background-color: #3D73D1;
+    background: linear-gradient(90deg, #3D73D1 0%, #1B53C5 100%);
     border: none;
     height: auto;
     text-align: left;
@@ -261,7 +261,7 @@
 }
 
 .explanation .button-sub {
-    background-color: #67b365;
+    background: linear-gradient(90deg, #67b365 0%, #11880F 100%);
     border: none;
     height: auto;
     text-align: left;

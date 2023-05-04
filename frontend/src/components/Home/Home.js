@@ -173,18 +173,59 @@ const Home = (props) => {
     ]
 
 
+    // const claimData = [
+    //     {
+    //         id: 'sec1but1',
+    //         claimId: 'dex011',
+    //         claimName: 'Token symbol',
+    //         claimDescription: 'Tokens symbol is BSW',
+    //         fxDescription: 'Ticker Symbol: BSW ',
+    //         fxfilename: 'Whitepaper.pdf',
+    //         fxpageNumber: 1,
+    //         gxcodeDescription: 'contract BSWToken is BEP20(\'Biswap\', \'BSW\')',
+    //         gxcodeFileName: 'BSWToken.sol',
+    //         gxcodeLine: 1021,
+    //         validationStatus: true,
+    //         validationDescription: 'The two outputs are the same'
+    //       },
+    //     {
+    //       id: 'sec1but2',
+    //       claimId: 'dex012',
+    //       claimName: 'Blockchain Standard',
+    //       claimDescription: 'BEP-20 standard',
+    //       fxDescription: 'Chain: BNB Chain (BEP-20)',
+    //       fxfilename: 'Whitepaper.pdf',
+    //       fxpageNumber: 1,
+    //       gxcodeDescription: 'contract BSWToken is BEP20(\'Biswap\', \'BSW\')',
+    //       gxcodeFileName: 'BSWToken.sol',
+    //       gxcodeLine: 1021,
+    //       validationStatus: true,
+    //       validationDescription: 'The two outputs are the same'
+    //     },
+    //     {
+    //         id: 'sec1but3',
+    //         claimId: 'dex013',
+    //         claimName: 'Token Supply',
+    //         claimDescription: '700000000',
+    //         fxDescription: 'Max Supply: 700 000 000 BSW tokens',
+    //         fxfilename: 'Whitepaper.pdf',
+    //         fxpageNumber: 1,
+    //         gxcodeDescription: 'The total token supply is 700,000,000',
+    //         gxcodeFileName: 'BSWToken.sol',
+    //         gxcodeLine: 10,
+    //         validationStatus: true,
+    //         validationDescription: 'The two outputs are the same'
+    //       }
+    // ]
+
     const claimData = [
         {
             id: 'sec1but1',
             claimId: 'dex011',
             claimName: 'Token symbol',
             claimDescription: 'Tokens symbol is BSW',
-            fxDescription: 'Ticker Symbol: BSW ',
-            fxfilename: 'Whitepaper.pdf',
-            fxpageNumber: 1,
-            gxcodeDescription: 'contract BSWToken is BEP20(\'Biswap\', \'BSW\')',
-            gxcodeFileName: 'BSWToken.sol',
-            gxcodeLine: 1021,
+            whitepaper: 'Ticker Symbol: BSW ',
+            code: 'contract BSWToken is BEP20(\'Biswap\', \'BSW\')',
             validationStatus: true,
             validationDescription: 'The two outputs are the same'
           },
@@ -193,12 +234,8 @@ const Home = (props) => {
           claimId: 'dex012',
           claimName: 'Blockchain Standard',
           claimDescription: 'BEP-20 standard',
-          fxDescription: 'Chain: BNB Chain (BEP-20)',
-          fxfilename: 'Whitepaper.pdf',
-          fxpageNumber: 1,
-          gxcodeDescription: 'contract BSWToken is BEP20(\'Biswap\', \'BSW\')',
-          gxcodeFileName: 'BSWToken.sol',
-          gxcodeLine: 1021,
+          whitepaper: 'Chain: BNB Chain (BEP-20)',
+          code: 'Contract BSWToken is BEP20(\'Biswap\', \'BSW\')',
           validationStatus: true,
           validationDescription: 'The two outputs are the same'
         },
@@ -207,15 +244,111 @@ const Home = (props) => {
             claimId: 'dex013',
             claimName: 'Token Supply',
             claimDescription: '700000000',
-            fxDescription: 'Max Supply: 700 000 000 BSW tokens',
-            fxfilename: 'Whitepaper.pdf',
-            fxpageNumber: 1,
-            gxcodeDescription: 'The total token supply is 700,000,000',
-            gxcodeFileName: 'BSWToken.sol',
-            gxcodeLine: 10,
+            whitepaper: 'Max Supply: 700 000 000 BSW tokens',
+            code: 'The total token supply is 700,000,000',
             validationStatus: true,
             validationDescription: 'The two outputs are the same'
-          }
+        },
+        {
+            id: 'sec1but4',
+            claimId: 'dex014',
+            claimName: 'Token Standard',
+            claimDescription: 'Is ERC20 Token Standard Implemented?',
+            whitepaper: 'No, BEP-20 token standard is implemented which is specific to the Binance Smart Chain (BSC) ecosystem',
+            code: 'Yes, ERC20 token standards is implemented, inherits from the BiswapERC20 contract with ERC20 interface.',
+            validationStatus: false,
+            validationDescription: 'The two outputs are not the same'
+        },
+        {
+            id: 'sec1but5',
+            claimId: 'dex015',
+            claimName: 'SwapFee Tiers',
+            claimDescription: 'How many types of Swap Fee Tiers are mentioned in code?',
+            whitepaper: 'NA',
+            code: 'There is only one swapFee tier, which can be set by calling the `setSwapFee` function. The default value of the swapFee is 1.',
+            validationStatus: true,
+            validationDescription: 'The two outputs are the same'
+        },
+        {
+            id: 'sec1but6',
+            claimId: 'dex016',
+            claimName: 'Swap Fee',
+            claimDescription: 'What is the swap fee for a single token swap?',
+            whitepaper: 'The swap fee charged when someone makes a token swap on Biswap is 0.2% or 0.1%, depending on the trading pair. For most trading pairs, the fee is 0.2%, and for some specific pairs such as BUSD-USDT, USDC-USDT, and DAI-USDT, the fee is 0.1%. ',
+            code: 'The default swap fee is 1 basis point (0.01%).',
+            validationStatus: true,
+            validationDescription: 'The two outputs are the same'
+        },
+        {
+            id: 'sec1but7',
+            claimId: 'dex017',
+            claimName: 'Swap Fee',
+            claimDescription: 'How much of the swap fee will be taken by developers by _mintFee()?',
+            whitepaper: 'Unspecfied in whitepaper, but this function mints new BSW tokens from the swap fee, which are distributed to stakeholders, including developers.',
+            code: 'The amount of the fee is calculated based on the change in the product of the reserves, and is proportional to the square root of the product of the reserves. The proportion of the fee that is taken by the developers is set by the `devFee` variable, which is also initialized to 1 in the contract. ',
+            validationStatus: true,
+            validationDescription: 'The two outputs are the same'
+        },
+        {
+            id: 'sec1but8',
+            claimId: 'dex018',
+            claimName: 'Code Applicability',
+            claimDescription: 'Is the code Applicable to AMM?',
+            whitepaper: 'The code presented in the excerpt is applicable to AMM (Automated Market Maker) protocol, which is used by the Biswap Exchange. ',
+            code: 'Yes, this code is applicable to Automated Market Maker (AMM) as it implements the core functionality of a DEX, including liquidity provision, token swaps, and fee collection.',
+            validationStatus: true,
+            validationDescription: 'The two outputs are the same'
+        },
+        {
+            id: 'sec1but9',
+            claimId: 'dex019',
+            claimName: 'Trading Pair Support',
+            claimDescription: 'Is trading pairs other than those with WBNB allowed?',
+            whitepaper: 'No clear answer but it does mention that users can swap eligible trading pairs and stake BSW to activate them in the Multi-Reward Pool to earn rewards in different tokens such as BSW, BNB, and BUSD.',
+            code: 'The provided code does not explicitly mention WBNB. However, the Biswap DEX supports trading pairs between any two ERC20 tokens, not just WBNB.',
+            validationStatus: true,
+            validationDescription: 'The two outputs are the same'
+        },
+        {
+            id: 'sec1but10',
+            claimId: 'dex0110',
+            claimName: 'Preventing frontrunning attacks',
+            claimDescription: 'Is the smart contracts capable to prevent frontrunning attacks?',
+            whitepaper: 'NA',
+            code: 'The Biswap smart contract does not have a built-in functionality to prevent frontrunning attacks. However, Biswap uses a mechanism called "time-weighted average price" (TWAP) to mitigate the impact of such attacks. This mechanism calculates the average price of a token over a certain period of time, making it more difficult for attackers to profit from short-term price movements.',
+            validationStatus: true,
+            validationDescription: 'The two outputs are the same'
+        },
+        {
+            id: 'sec1but11',
+            claimId: 'dex0111',
+            claimName: 'Token prices',
+            claimDescription: 'Is on-chain or off-chain price feeds used for the token prices?',
+            whitepaper: 'NA',
+            code: 'The Biswap smart contract does not use on-chain or off-chain price feeds for its token prices. Instead, it calculates the token prices based on the reserves of the tokens in the liquidity pool.',
+            validationStatus: true,
+            validationDescription: 'The two outputs are the same'
+        },
+        {
+            id: 'sec1but12',
+            claimId: 'dex0112',
+            claimName: 'Decentralized governance mechanism',
+            claimDescription: 'Does the smart contract implement a decentralized governance mechanism?',
+            whitepaper: 'No clear answer but it does mention that users can swap eligible trading pairs and stake BSW to activate them in the Multi-Reward Pool to earn rewards in different tokens such as BSW, BNB, and BUSD.',
+            code: 'No, the Biswap smart contract does not implement a decentralized governance mechanism.',
+            validationStatus: true,
+            validationDescription: 'The two outputs are the same'
+        },
+        {
+            id: 'sec1but13',
+            claimId: 'dex0113',
+            claimName: 'Maximum Transaction Amount or Frequency',
+            claimDescription: 'Is there a restriction on the maximum transaction amount or frequency for a given address?',
+            whitepaper: 'No clear answer but it does mention that users can swap eligible trading pairs and stake BSW to activate them in the Multi-Reward Pool to earn rewards in different tokens such as BSW, BNB, and BUSD.',
+            code: 'The Biswap smart contract does not impose any restrictions on the maximum transaction amount or frequency for a given address.',
+            validationStatus: true,
+            validationDescription: 'The two outputs are the same'
+        },
     ]
 
     const [isOpen2, setIsOpen2] = useState(false)

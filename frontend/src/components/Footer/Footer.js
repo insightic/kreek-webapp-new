@@ -40,7 +40,7 @@ export default class Footer extends React.Component {
             </Row> */}
 
             <Row className="footer-bottom" xs={12} md={10} lg={8}>
-                <span>©2023 Kreek: All Riight Reserved.</span>
+                <span>©2023 Insightic: All Riight Reserved.</span>
             </Row>
         </Col>
         </Container>

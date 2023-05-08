@@ -22,6 +22,7 @@ import useToken from './components/useToken';
 import Overview from './components/Overview/Overview';
 import OverviewEuler from './components/Overview/Overview-euler';
 import SummaryEuler from './components/Summary/Summary-euler';
+import Homenew from './components/Homenew/Homenew';
 import axios from "axios";
 
 // https://kreek-webapp-new-backend.vercel.app
@@ -89,6 +90,8 @@ function App() {
               <Route path='/overview' element={<Overview allProjects={allProjects} project={projectIndex}/>}/>   
               <Route path='/overview-euler' element={<OverviewEuler allProjects={allProjects} project={projectIndex}/>}/>    
               <Route path='/' element={<ProjectList allProjects={allProjects} project={projectIndex} setProject={setProjectIndex}/>}/>            
+              <Route path='/homenew' element={<Homenew />} />            
+
             </Routes>
           </div>
         </Container>

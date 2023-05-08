@@ -32,7 +32,7 @@ const ProjectList = (props) => {
       return (
         <Container className="projectlist-container">
         <Helmet>
-            <title>Projects | Kreek</title>
+            <title>Projects | Insightic</title>
             {/* <meta name="description" content="CivicTech Lab at National University of Singapore is a research hub led by Dr. Weiyu Zhang. We are a team of social scientists, computer scientists, and digital cultural analysts. " /> */}
         </Helmet>
 

@@ -39,7 +39,7 @@ const OverviewEuler = (props) => {
       return (
         <Container className="overview-container">
         <Helmet>
-            <title>Overview | Kreek</title>
+            <title>Overview | Insightic</title>
             {/* <meta name="description" content="CivicTech Lab at National University of Singapore is a research hub led by Dr. Weiyu Zhang. We are a team of social scientists, computer scientists, and digital cultural analysts. " /> */}
         </Helmet>
 
@@ -183,12 +183,12 @@ const OverviewEuler = (props) => {
 
                 <Container className='market1 market'>
                         <div className='analysis-header'>
-                            <h4>DAO Goverments Analysis</h4>
+                            <h4>DAO Governance Analysis</h4>
                             <Button onClick={() => setIsOpen3(!isOpen3)}>{isOpen3 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
                         </div>
                         <div className='market1sec1 sec' style={isOpen3 ? {visibility:'visible', opacity:'1', maxHeight:'500px'}:{visibility:'hidden', opacity:'0', maxHeight:'0px', padding:'0', margin:'0'}}>
                             <h5 className="secTitle">
-                                Governments Monitoring
+                                Governance Monitoring
                                 {isOpen31 ? 
                                     <span onClick={() => setIsOpen31(!isOpen31)}>&#9650;</span> :
                                     <span onClick={() => setIsOpen31(!isOpen31)}>&#9660;</span>

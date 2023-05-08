@@ -39,7 +39,7 @@ const Overview = (props) => {
       return (
         <Container className="overview-container">
         <Helmet>
-            <title>Overview | Kreek</title>
+            <title>Overview | Insightic</title>
             {/* <meta name="description" content="CivicTech Lab at National University of Singapore is a research hub led by Dr. Weiyu Zhang. We are a team of social scientists, computer scientists, and digital cultural analysts. " /> */}
         </Helmet>
 

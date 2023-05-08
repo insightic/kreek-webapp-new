@@ -350,6 +350,9 @@
     margin: 0px 1px;
     color: #1B53C5;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
 }
 
 .tab:hover {

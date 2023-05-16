@@ -37,6 +37,8 @@ function ScrollRestoration() {
   return null;
 }
 
+// scp -r -i C:/Users/ASUS/Documents/kreek-ec2.pem 'C:\Users\ASUS\Documents\Work New\web3\kreek-webapp-new\frontend\build' ubuntu@43.206.182.42:~/kreek-webapp-new/frontend
+
 function App() {
   const { token, removeToken, setToken } = useToken();
   const [currentTime, setCurrentTime] = useState(0);
@@ -77,10 +79,11 @@ function App() {
         {/* <HeaderWithRouter togClass={togClass} setTogClass={setTogClass}/> */}
         <ScrollRestoration />
         <Container className='main'>
-          <div className='sidenav'>
-            <Sidenav token={token} setToken={setToken} togClass={togClass} setTogClass={setTogClass}/>
-          </div>
-          <div className='content'>
+          
+            <Sidenav token={token} setProject={setProjectIndex} setToken={setToken} togClass={togClass} setTogClass={setTogClass}/>
+            {/* <div className='sidenav'>
+          </div> */}
+          <div className='content lg:pl-60'>
             <Routes>   
             <Route path='/project-list' element={<ProjectList allProjects={allProjects} project={projectIndex} setProject={setProjectIndex}/>}/>     
               <Route path='/home' element={<Home project={projectIndex} allProjects={allProjects} setProject={setProjectIndex} />}/>        
@@ -90,7 +93,7 @@ function App() {
               <Route path='/overview' element={<Overview allProjects={allProjects} project={projectIndex}/>}/>   
               <Route path='/overview-euler' element={<OverviewEuler allProjects={allProjects} project={projectIndex}/>}/>    
               <Route path='/' element={<ProjectList allProjects={allProjects} project={projectIndex} setProject={setProjectIndex}/>}/>            
-              <Route path='/homenew' element={<Homenew />} />            
+              <Route path='/homenew' element={<Homenew project={projectIndex} allProjects={allProjects} setProject={setProjectIndex} />} />            
 
             </Routes>
           </div>

@@ -13,6 +13,8 @@ import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import samplePdf from "../../assets/sample.pdf"
 import { Document, Page, pdfjs } from 'react-pdf';
 import axios from "axios";
+import { Fragment } from 'react'
+import { Tab } from '@headlessui/react'
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 
@@ -35,6 +37,121 @@ const Overview = (props) => {
     const projectIdx = props.project;
     const allProjects = props.allProjects;
     const selectedProject = allProjects[projectIdx];
+    
+
+    const tabs1 = [
+        {
+          name: 'Business Model Analysis',
+          features: [
+            {
+              name: 'Business model & Value Proposition',
+              description:
+                'The Organize base set allows you to configure and evolve your setup as your items and habits change. The included trays and optional add-ons are easily rearranged to achieve that perfect setup.',
+              imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-feature-06-detail-01.jpg',
+              imageAlt: 'Maple organizer base with slots, supporting white polycarbonate trays of various sizes.',
+              additionalInfo: 
+              <div>
+                <h6>Tags</h6>
+                <div className='tags'>
+                    <div>P2P Trading</div>
+                    <div>Deposits</div>
+                </div>
+                <h6>Related regulations</h6>
+                <p>https://www.1.com</p>
+              </div>
+            },
+          ],
+        },
+        {
+          name: 'Social Media Analysis',
+          features: [
+            {
+              name: 'Customers',
+              description:
+                '',
+              imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-feature-06-detail-02.jpg',
+              imageAlt:
+                'Walnut organizer base with pen, sticky note, phone, and bin trays, next to modular drink coaster attachment.',
+            additionalInfo: 
+            <div>
+                <div className='secContent' style={isOpen12 ? {visibility:'visible', opacity:'1', maxHeight:'500px'}:{visibility:'hidden', opacity:'0', maxHeight:'0px', padding:'0', margin:'0'}}>
+                    <ul>
+                        <li>Retail investors who need to swap tokens</li>
+                        <li>Institutiona funds who conduct AMM business</li>
+                        <li>VASPs who IDO</li>
+                    </ul>
+                </div>
+            </div>
+            },
+          ],
+        },
+        {
+          name: 'On-Chain Data Analysis',
+          features: [
+            {
+              name: 'Customers',
+              description:
+                '',
+              imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-feature-06-detail-02.jpg',
+              imageAlt:
+                'Walnut organizer base with pen, sticky note, phone, and bin trays, next to modular drink coaster attachment.',
+            additionalInfo: 
+            <div>
+                <div className='secContent' style={isOpen12 ? {visibility:'visible', opacity:'1', maxHeight:'500px'}:{visibility:'hidden', opacity:'0', maxHeight:'0px', padding:'0', margin:'0'}}>
+                    <ul>
+                        <li>Retail investors who need to swap tokens</li>
+                        <li>Institutiona funds who conduct AMM business</li>
+                        <li>VASPs who IDO</li>
+                    </ul>
+                </div>
+            </div>
+            },
+          ],
+        },
+        {
+          name: 'Team Background Analysis',
+          features: [
+            {
+              name: 'Customers',
+              description:
+                '',
+              imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-feature-06-detail-02.jpg',
+              imageAlt:
+                'Walnut organizer base with pen, sticky note, phone, and bin trays, next to modular drink coaster attachment.',
+            additionalInfo: 
+            <div>
+                <div className='secContent' style={isOpen12 ? {visibility:'visible', opacity:'1', maxHeight:'500px'}:{visibility:'hidden', opacity:'0', maxHeight:'0px', padding:'0', margin:'0'}}>
+                    <ul>
+                        <li>Retail investors who need to swap tokens</li>
+                        <li>Institutiona funds who conduct AMM business</li>
+                        <li>VASPs who IDO</li>
+                    </ul>
+                </div>
+            </div>
+            },
+          ],
+        }
+      ]
+
+      const stats = [
+        { name: 'Revenue', value: '$405,091.00', change: '+4.75%', changeType: 'positive' },
+        { name: 'Overdue invoices', value: '$12,787.00', change: '+54.02%', changeType: 'negative' },
+        { name: 'Outstanding invoices', value: '$245,988.00', change: '-1.39%', changeType: 'positive' },
+        { name: 'Expenses', value: '$30,156.00', change: '+10.18%', changeType: 'negative' },
+      ]
+
+      const table = [
+        { attr: 'Number of Pools', val: '3,234,132' },
+        { attr: '7 Days Volume', val: '$76,261,658' },
+        { attr: '24 Hrs Volume', val: '$5,291,480' },
+        { attr: 'Changes', val: '-61.71%' },
+
+        // More people...
+      ]
+
+      function classNames(...classes) {
+        return classes.filter(Boolean).join(' ')
+      }
 
       return (
         <Container className="overview-container">
@@ -43,20 +160,141 @@ const Overview = (props) => {
             {/* <meta name="description" content="CivicTech Lab at National University of Singapore is a research hub led by Dr. Weiyu Zhang. We are a team of social scientists, computer scientists, and digital cultural analysts. " /> */}
         </Helmet>
 
-        <Container className='overview'>
+        {/* <Container className='overview'>
             <span>Overview</span>
-        </Container>
+        </Container> */}
 
-        <Container className='overview-header'>
-            <div className='overview-header-left'>
-                {allProjects.length > 0 ? <img src={selectedProject['icon']} className="project-icon"/> : ""}
-                <h2>{allProjects.length > 0 ? selectedProject['name'] : "NA"}</h2>
+    <div className="md:flex md:items-center md:justify-between md:space-x-5 mt-2 mx-2">
+      <div className="flex items-start space-x-5">
+        <div className="flex-shrink-0">
+          <div className="relative">
+            {allProjects.length > 0 ? <img src={selectedProject['icon']} className="h-16 w-16 rounded-full project-icon"/> : ""}
+            <span className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true" />
+          </div>
+        </div>
+        {/*
+          Use vertical padding to simulate center alignment when both lines of text are one line,
+          but preserve the same layout if the text wraps without making the image jump around.
+        */}
+        <div className="pt-1.5">
+        <div className="flex items-center space-x-3">
+            <h1 className="text-2xl font-bold text-left text-gray-900">{allProjects.length > 0 ? selectedProject['name'] : "NA"}</h1>
+            <div
+            type="button"
+            className="inline-flex items-center mb-2 justify-center rounded-full px-3 py-2 text-2xl font-semibold text-gray-900 shadow-sm border-2 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+            >
+            B+
+            </div>
+        </div>
+        <p className="text-sm font-medium text-gray-500">
+            Created by{' '}
+            <a href="#" className="text-gray-900">
+              Author
+            </a>{' '}
+            on <time dateTime="2020-08-25">August 25, 2020</time>
+          </p>
+        </div>
+      </div>
+      {/* <div className="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-3 sm:space-y-0 sm:space-x-reverse md:mt-0 md:flex-row md:space-x-3">
+        <div
+          type="button"
+          className="inline-flex items-center justify-center rounded-full text-white bg-gradient-to-r from-green-400 to-blue-500 px-3 py-2 text-2xl font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+        >
+          B+
+        </div>
+      </div> */}
+    </div>
+
+      <section aria-labelledby="features-heading" className="mx-auto max-w-7xl py-2 sm:px-2 lg:px-8">
+        <div className="mx-auto max-w-2xl px-4 lg:max-w-none lg:px-0">
+
+          <Tab.Group as="div" className="mt-2">
+            <div className="-mx-4 flex sm:mx-0">
+              <div className="flex-auto border-b border-gray-200 px-4 sm:px-0">
+                <Tab.List className="-mb-px flex space-x-10">
+                  {tabs1.map((tab) => (
+                    <Tab
+                      key={tab.name}
+                      className={({ selected }) =>
+                        classNames(
+                          selected
+                            ? 'border-indigo-500 text-indigo-600'
+                            : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+                          'whitespace-nowrap border-b-2 py-6 text-sm font-medium'
+                        )
+                      }
+                    >
+                      {tab.name}
+                    </Tab>
+                  ))}
+                </Tab.List>
+              </div>
             </div>
 
-            <div className='overview-header-right'>
-                B+
-            </div>            
-        </Container>
+            <Tab.Panels as={Fragment}>
+              {tabs1.map((tab, index) => (
+                <Tab.Panel key={tab.name} className="space-y-16 pt-4 lg:pt-16">
+                  {tab.features.map((feature) => (
+                    <div key={feature.name} className="flex flex-col-reverse  lg:grid lg:grid-cols-12 lg:gap-x-8">
+                      <div className="mt-6 lg:col-span-6 lg:mt-0 border-r-2 border-solid border-grey-200">
+                        <h3 className="text-lg font-medium text-gray-900">{feature.name}</h3>
+                        <p className="mt-2 text-sm text-gray-500">{feature.description}</p>
+                        <p className="mt-2 text-sm text-gray-500">{feature.additionalInfo}</p>
+                      </div>
+                      <div className="lg:col-span-6">
+                        {index == 0 ? <div className="aspect-h-1 aspect-w-2 overflow-hidden rounded-lg sm:aspect-h-2 sm:aspect-w-5 p-2">
+                          <dl className="mx-auto grid grid-cols-1 gap-px sm:grid-cols-1 lg:grid-cols-2">
+                          {stats.map((stat) => (
+                            <div
+                              key={stat.name}
+                              className="flex flex-wrap border border-indigo-600 items-baseline shadow-md hover:shadow-lg rounded-lg justify-between gap-x-4 gap-y-2 bg-white px-1 py-1 m-2 sm:px-6 xl:px-8"
+                            >
+                              <dt className="text-sm font-bold leading-6 text-gray-500">{stat.name}</dt>
+                              {/* <dd
+                                className={classNames(
+                                  stat.changeType === 'negative' ? 'text-rose-600' : 'text-gray-700',
+                                  'text-xs font-medium'
+                                )}
+                              >
+                                {stat.change}
+                              </dd> */}
+                              <dd className="w-full flex-none text-xl font-medium leading-1 tracking-tight text-gray-900">
+                                {stat.value}
+                              </dd>
+                            </div>
+                          ))}
+                          </dl> 
+                        </div>: 
+                        <div className="mt-0 flow-root">
+                          <h5 className="text-lg font-bold text-gray-900">Pools & Volume</h5>
+                        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                          <div className="inline-block min-w-full py-0 align-middle sm:px-6 lg:px-8">
+                            <table className="min-w-full divide-y divide-gray-300">
+                              <tbody className="bg-white">
+                                {table.map((data, idx) => (
+                                  <tr key={data.attr} className={idx % 2 === 0 ? undefined : 'bg-gray-100'}>
+                                    <td className="whitespace-nowrap py-1 pl-1 pr-1 text-sm border-r-1 border-indigo-600 font-medium text-gray-900 sm:pl-3">
+                                      {data.attr}
+                                    </td>
+                                    <td className="whitespace-nowrap px-1 py-1 text-sm text-gray-500">{data.val}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                        }
+                      </div>
+                    </div>
+                  ))}
+                </Tab.Panel>
+              ))}
+            </Tab.Panels>
+          </Tab.Group>
+        </div>
+      </section>
+
 
         <Container className='analysis'>
             <Container className='technical-analysis'>

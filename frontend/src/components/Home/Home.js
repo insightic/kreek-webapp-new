@@ -15,6 +15,12 @@ import ResizableTable from '../ResizableTable/ResizableTable';
 import WhitepaperAccordion from '../WhitepaperAccordion/WhitepaperAccordion';
 import Xarrow, {useXarrow, Xwrapper} from 'react-xarrows';
 import axios from "axios";
+import { CalendarDaysIcon, CreditCardIcon, UserCircleIcon } from '@heroicons/react/20/solid'
+import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/20/solid'
+
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+  }
 
 const Home = (props) => {
     let location = useLocation();
@@ -518,7 +524,7 @@ const Home = (props) => {
                 strokeWidth={5}
                 // animateDrawing={1}
         /> */}
-        <ResizableTable resizable={true} resizeOptions={{liveDrag:true, onDrag:updateXarrow}}>
+        <ResizableTable resizable={true} resizeOptions={{liveDrag:true, onDrag:updateXarrow, widths:[300,500,400]}}>
         <tbody className="home">
           <tr>
             <td className="sections" xs={2} md={2} lg={2}>
@@ -526,7 +532,7 @@ const Home = (props) => {
                 <WhitepaperAccordion setClaim={setClaim} data={claimData}></WhitepaperAccordion>
 
                 <Container className='section regulations'>
-                    <Button className='button-main' onClick={() => setIsOpen2(!isOpen2)}>Regulations (5/5 passed){isOpen2 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
+                    <button className='button-main rounded bg-blue-100 hover:bg-blue-200' onClick={() => setIsOpen2(!isOpen2)}>Regulations (5/5 passed){isOpen2 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</button>
                     <div style={isOpen2 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
                         <Button id='sec2but1' className='button-sub' onClick={setClaim} >Rule 1</Button>
                         <Button id='sec2but2' className='button-sub' onClick={setClaim}>Rule 2</Button>
@@ -536,7 +542,7 @@ const Home = (props) => {
                 </Container>
 
                 <Container className='section industrial-standard'>
-                    <Button className='button-main' onClick={() => setIsOpen3(!isOpen3)}>Industry Standard{isOpen3 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</Button>
+                    <button className='button-main rounded bg-green-100 hover:bg-green-200' onClick={() => setIsOpen3(!isOpen3)}>Industry Standard{isOpen3 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>}</button>
                     <div style={isOpen3 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
                         <Button id='sec3but1' className='button-sub' onClick={setClaim} >Reference 1</Button>
                         <Button id='sec3but2' className='button-sub' onClick={setClaim}>Reference 2</Button>
@@ -594,7 +600,11 @@ const Home = (props) => {
 
             <td className="label" xs={2} md={2} lg={2}>
                 <div className='sidebar'>
-                <Container className='section-right code-quality'>
+                <CodeQualityStat />
+                <SecurityAnalysisStat />
+                <Explanation />
+                <CodeOriginality />
+                {/* <Container className='section-right code-quality'>
                     <Button className='button-main' onClick={() => setIsOpen4(!isOpen4)}>Code Quality {isOpen4 ? <Icon.CaretDown className="button-icon"/> : <Icon.CaretRight className="button-icon"/>} </Button>
                     <div style={isOpen4 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
                         <Button id='sec1but1' className='button-sub' >
@@ -650,9 +660,9 @@ const Home = (props) => {
                     <div style={isOpen6 ? {visibility:'visible', opacity:'1'}:{visibility:'hidden', opacity:'0', height:'0px', padding:'0'}}>
                         <Button id='sec3but1' className='button-sub'>{assessmentList[project] ? assessmentList[project]["explanation"]["value"] : "NA"}</Button>
                     </div>
-                </Container>
+                </Container> */}
 
-                <div className='section-right code-check'>
+                {/* <div className='section-right code-check'>
                     <h5>Code Originality</h5>
                     <div>
                         <h6>UniSwap</h6>
@@ -667,7 +677,7 @@ const Home = (props) => {
                         <span style={{color:'green'}}>29%</span>
                     </div>
                     
-                </div>
+                </div> */}
                 
                 </div>
             </td>
@@ -683,3 +693,99 @@ const Home = (props) => {
 }
 
 export default Home
+
+const CodeQualityStat = (props) => {
+    const stats = [
+        { name: 'Maintainability', stat:'A', creator: 'SonarCube', },
+        { name: 'Test Coverage', stat: '80%', creator: 'Jest'},
+        { name: 'Performance', stat: 'B', creator: 'GPT'},
+    ]
+    
+    return (
+      <div className="max-w-xs w-60">
+        <h3 className="text-base font-semibold leading-6 text-gray-900">Code Quality</h3>
+        <dl className="mt-2 grid grid-cols-1 divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow md:grid-cols-1 md:divide-x md:divide-y-2">
+          {stats.map((item) => (
+            <div key={item.name} className="px-1 py-0 sm:p-4">
+              <dt className="text-base text-left p-1 font-semibold text-gray-900">{item.name}</dt>
+              <dd className="mt-1 flex items-baseline p-1 justify-between md:block lg:flex">
+                <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
+                  {item.stat}
+                  <span className="ml-2 text-sm font-medium text-gray-500">created By {item.creator}</span>
+                </div>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    )
+}
+
+const CodeOriginality = (props) => {
+    const stats = [
+        { name: 'UniSwap', stat:'63%'},
+        { name: 'PancakeSwap', stat: '49%'},
+        { name: 'ParaSwap', stat: '29%'},
+    ]
+    
+    return (
+      <div className="max-w-xs w-60">
+        <h3 className="text-base font-semibold leading-6 text-gray-900">Code Quality</h3>
+        <dl className="mt-2 grid grid-cols-1 divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow md:grid-cols-1 md:divide-x md:divide-y-2">
+          {stats.map((item) => (
+            <div key={item.name} className="px-1 py-0 sm:p-4 flex flex-row justify-between">
+              <dt className="text-base text-left p-1 font-semibold text-gray-900">{item.name}</dt>
+              <dd className="mt-1 flex items-baseline p-1 justify-between md:block lg:flex">
+                <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
+                  {item.stat}
+                </div>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    )
+}
+
+const SecurityAnalysisStat = (props) => {
+    const stats = [
+        { name: 'Score', stat:'80/100', creator: 'Hacken', risi:'low'},
+        { name: 'Audits', stat: '85/100', creator: 'verazt', risk:'low'},
+    ]
+    return (
+      <div className="max-w-xs w-60">
+        <h3 className="text-base font-semibold leading-6 text-gray-900">Security Analysis</h3>
+        <dl className="mt-2 grid grid-cols-1 divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow md:grid-cols-1 md:divide-x md:divide-y-2">
+          {stats.map((item) => (
+            <div key={item.name} className="px-1 py-0 sm:p-4">
+              <dt className="text-base text-left p-1 font-semibold text-gray-900">{item.name}</dt>
+              <dd className="mt-1 flex items-baseline p-1 justify-between md:block lg:flex">
+                <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
+                  {item.stat}
+                  <span className="ml-2 text-sm font-medium text-gray-500">created By {item.creator}</span>
+                </div>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    )
+}
+
+const Explanation = (props) => {
+    const stats = [
+        { desc: 'BiSwap is a decentralized exchange platform that allows users to easily swap BEP-20 tokens on the Binance Smart Chain network. The platform features a three-level referral system and low transaction fees (0.1%). Our mission is to become a leading platform for token swaps in the DeFi space by offering fast, secure, and easy-to-use services.'},
+    ]
+    return (
+      <div className="max-w-xs w-60">
+        <h3 className="text-base font-semibold leading-6 text-gray-900">Explanation</h3>
+        <dl className="mt-2 grid grid-cols-1 divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow md:grid-cols-1 md:divide-x md:divide-y-2">
+          {stats.map((item) => (
+            <div key={item.desc} className="px-1 py-0 sm:p-4">
+              <dt className="text-sm font-normal text-left p-1 text-gray-900">{item.desc}</dt>
+            </div>
+          ))}
+        </dl>
+      </div>
+    )
+}

@@ -24,6 +24,8 @@ import OverviewEuler from './components/Overview/Overview-euler';
 import SummaryEuler from './components/Summary/Summary-euler';
 import Homenew from './components/Homenew/Homenew';
 import axios from "axios";
+import request from './utils/axios.tsx';
+
 
 // https://kreek-webapp-new-backend.vercel.app
 import { keepTheme } from './Theme.js';
@@ -49,17 +51,23 @@ function App() {
   const [allProjects, setAllProjects] = useState([]);
 
   useEffect(() => {
-    const p = axios({
-        method: 'POST',
-        url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getAllProjects',
-        headers: {}, 
-        data: {}
-      }).then(function (response) {
-        console.log("debugApp")
-        console.log(response['data']['project_list'])
-        setAllProjects(response['data']['project_list'])
-        return response['data']
-      })
+    // const p = axios({
+    //     method: 'POST',
+    //     url: 'http://ec2-18-176-37-212.ap-northeast-1.compute.amazonaws.com:8080/getAllProjects',
+    //     headers: {}, 
+    //     data: {}
+    //   }).then(function (response) {
+    //     console.log("debugApp")
+    //     console.log(response['data']['project_list'])
+    //     setAllProjects(response['data']['project_list'])
+    //     return response['data']
+    //   })
+
+    const p = request.post('/getAllProjects', {}).then(function (response) {
+      setAllProjects(response['data']['project_list'])
+      return response['data']
+    })
+  
     }, [])
 
   return (

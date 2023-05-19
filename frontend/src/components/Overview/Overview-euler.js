@@ -43,20 +43,46 @@ const OverviewEuler = (props) => {
             {/* <meta name="description" content="CivicTech Lab at National University of Singapore is a research hub led by Dr. Weiyu Zhang. We are a team of social scientists, computer scientists, and digital cultural analysts. " /> */}
         </Helmet>
 
-        <Container className='overview'>
-            <span>Overview</span>
-        </Container>
-
-        <Container className='overview-header'>
-            <div className='overview-header-left'>
-                <img src='https://storage.googleapis.com/subgraph-images/1656114240805euler-transparent.png' className="project-icon"/>
-                <h2>Euler Finance</h2>
+        <div className="md:flex md:items-center md:justify-between md:space-x-5 mt-2 mx-2">
+      <div className="flex items-start space-x-5">
+        <div className="flex-shrink-0">
+          <div className="relative">
+            <img src='https://storage.googleapis.com/subgraph-images/1656114240805euler-transparent.png' className="h-16 w-16 rounded-full project-icon"/>
+            <span className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true" />
+          </div>
+        </div>
+        {/*
+          Use vertical padding to simulate center alignment when both lines of text are one line,
+          but preserve the same layout if the text wraps without making the image jump around.
+        */}
+        <div className="pt-1.5">
+        <div className="flex items-center space-x-3">
+            <h1 className="text-2xl font-bold text-left text-gray-900">Euler Finance</h1>
+            <div
+            type="button"
+            className="inline-flex items-center mb-2 justify-center rounded-full px-3 py-2 text-2xl font-semibold text-gray-900 shadow-sm border-2 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+            >
+            B-
             </div>
-
-            <div className='overview-header-right'>
-                B-
-            </div>            
-        </Container>
+        </div>
+          <p className="text-sm font-medium text-gray-500">
+            Created by{' '}
+            <a href="#" className="text-gray-900">
+              Author
+            </a>{' '}
+            on <time dateTime="2020-08-25">August 25, 2020</time>
+          </p>
+        </div>
+      </div>
+      {/* <div className="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-3 sm:space-y-0 sm:space-x-reverse md:mt-0 md:flex-row md:space-x-3">
+        <div
+          type="button"
+          className="inline-flex items-center justify-center rounded-full text-white bg-gradient-to-r from-green-400 to-blue-500 px-3 py-2 text-2xl font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+        >
+          B+
+        </div>
+      </div> */}
+    </div>
 
         <Container className='analysis'>
             <Container className='technical-analysis'>

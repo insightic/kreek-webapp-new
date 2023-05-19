@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {Fragment, useState, useEffect, useRef} from 'react';
 import ReactDOM from 'react-dom';
 import {Container, Row, Col, Card, DropdownButton, Dropdown, Button, Form} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,6 +13,10 @@ import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import samplePdf from "../../assets/sample.pdf"
 import { Document, Page, pdfjs } from 'react-pdf';
 import axios from "axios";
+import { Dialog, Transition } from '@headlessui/react'
+import { CheckIcon } from '@heroicons/react/24/outline'
+import { ArrowDownIcon, ArrowUpIcon, ExclamationTriangleIcon, XCircleIcon, CheckCircleIcon, InformationCircleIcon } from '@heroicons/react/20/solid'
+import { ExclamationCircleIcon, DocumentCheckIcon,DocumentMagnifyingGlassIcon } from '@heroicons/react/24/outline'
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 
@@ -28,6 +32,15 @@ const SummaryEuler = (props) => {
     const projectIdx = props.project;
     const allProjects = props.allProjects;
     const selectedProject = allProjects[projectIdx];
+    const stats = [
+        { id: 1, name: 'Total Suggestion', stat: '17', icon: DocumentMagnifyingGlassIcon, change: '122', changeType: 'increase' },
+        { id: 2, name: 'Completed', stat: '5', icon: DocumentCheckIcon, change: '5.4%', changeType: 'increase' },
+        { id: 3, name: 'Action Needed', stat: '8', icon: ExclamationCircleIcon, change: '3.2%', changeType: 'decrease' },
+      ]
+
+      function classNames(...classes) {
+        return classes.filter(Boolean).join(' ')
+      }
 
       return (
         <Container className="summary-container">
@@ -36,33 +49,100 @@ const SummaryEuler = (props) => {
             {/* <meta name="description" content="CivicTech Lab at National University of Singapore is a research hub led by Dr. Weiyu Zhang. We are a team of social scientists, computer scientists, and digital cultural analysts. " /> */}
         </Helmet>
 
-        <Container className='project-title'>
-            <span>Euler Finance</span>
-        </Container>
+        {/* <Container className='project-title'>
+            <span>{allProjects.length > 0 ? selectedProject['name'] : "NA"}</span>
+        </Container> */}
 
-        <Container className='summary'>
-            <span>Summary</span>
-            <Container className='summary-content'>
-                <Container className='indicator'>
-                    <h5>Total Suggestion</h5>
-                    <span>17</span>
-                </Container>
+        <div className="md:flex md:items-center md:justify-between md:space-x-5 mt-2 mx-2">
+      <div className="flex items-start space-x-5">
+        <div className="flex-shrink-0">
+          <div className="relative">
+            <img src='https://storage.googleapis.com/subgraph-images/1656114240805euler-transparent.png' className="h-16 w-16 rounded-full project-icon"/>
+            <span className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true" />
+          </div>
+        </div>
+        {/*
+          Use vertical padding to simulate center alignment when both lines of text are one line,
+          but preserve the same layout if the text wraps without making the image jump around.
+        */}
+        <div className="pt-1.5">
+        <div className="flex items-center space-x-3">
+            <h1 className="text-2xl font-bold text-left text-gray-900">Euler Finance</h1>
+            <div
+            type="button"
+            className="inline-flex items-center mb-2 justify-center rounded-full px-3 py-2 text-2xl font-semibold text-gray-900 shadow-sm border-2 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+            >
+            B-
+            </div>
+        </div>
+          <p className="text-sm font-medium text-gray-500">
+            Created by{' '}
+            <a href="#" className="text-gray-900">
+              Author
+            </a>{' '}
+            on <time dateTime="2020-08-25">August 25, 2020</time>
+          </p>
+        </div>
+      </div>
+      {/* <div className="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-3 sm:space-y-0 sm:space-x-reverse md:mt-0 md:flex-row md:space-x-3">
+        <div
+          type="button"
+          className="inline-flex items-center justify-center rounded-full text-white bg-gradient-to-r from-green-400 to-blue-500 px-3 py-2 text-2xl font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+        >
+          B+
+        </div>
+      </div> */}
+    </div>
 
-                <Container className='indicator'>
-                    <h5>Completed</h5>
-                    <span>5</span>
-                </Container>
+        <div className='mx-2 mt-4'>
+      {/* <h3 className="text-2xl font-semibold text-gray-900 text-left">Summary</h3> */}
 
-                <Container className='indicator'>
-                    <h5>Action needed</h5>
-                    <span>8</span>
-                </Container>
-            </Container>
-        </Container>
+      <dl className="mt-1 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {stats.map((item) => (
+          <div
+            key={item.id}
+            className="relative overflow-hidden rounded-lg bg-white px-4 pb-8 pt-3 shadow sm:px-6 sm:pt-6"
+          >
+            <dt>
+              <div className="absolute rounded-md bg-indigo-500 p-3">
+                <item.icon className="h-6 w-6 text-white" aria-hidden="true" />
+              </div>
+              <p className="ml-16 truncate text-sm font-medium text-gray-500">{item.name}</p>
+            </dt>
+            <dd className="ml-16 flex items-baseline justify-center pb-6 sm:pb-7">
+              <p className="text-2xl font-semibold text-gray-900">{item.stat}</p>
+              <p
+                className={classNames(
+                  item.changeType === 'increase' ? 'text-green-600' : 'text-red-600',
+                  'ml-2 flex items-baseline text-sm font-semibold'
+                )}
+              >
+                {item.changeType === 'increase' ? (
+                  <ArrowUpIcon className="h-5 w-5 flex-shrink-0 self-center text-green-500" aria-hidden="true" />
+                ) : (
+                  <ArrowDownIcon className="h-5 w-5 flex-shrink-0 self-center text-red-500" aria-hidden="true" />
+                )}
 
-        <Container className='actions'>
-        <span>Action</span>
+                <span className="sr-only"> {item.changeType === 'increase' ? 'Increased' : 'Decreased'} by </span>
+                {item.change}
+              </p>
+              <div className="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
+                <div className="text-sm">
+                  <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                    View all<span className="sr-only"> {item.name} stats</span>
+                  </a>
+                </div>
+              </div>
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+        <div className='actions mt-5'>
+        <h3 className="text-2xl ml-2 font-semibold text-gray-900 text-left">Action</h3>
             <Container className='actions-content'>
+
                 <Container className='action-col'>
                     <ActionCard type='error' title="The DAO voting is highly centralized." message="10 votings events are led by a single address (> 50% weight). Request the VASP to propose a more balanced voting strategies."
                     addElem = {<div className='addElem'>
@@ -87,11 +167,13 @@ const SummaryEuler = (props) => {
                 <Container className='action-col' title="Partnership with risky projects" message="The VASP has released a partnership announcement recently, with a risky project. ">
                     {/* <ActionCard type='message' title="Risky wallets interaction" message="The deployed contract has attracted many newly wallets. Require VASP to validate their users. "/> */}
                 </Container>
-            </Container>
-        </Container>
 
-        <Container className='tasks'>
-        <span>Tasks</span>
+
+            </Container>
+        </div>
+
+        <div className='tasks'>
+        <h3 className="text-2xl ml-2 font-semibold text-gray-900 text-left">Task</h3>
             <Container className='tasks-content'>
                 <Container className='tasks-col'>
                     <ActionCard type='error' title="Add security audit report" message="Suggest the VASP to submit at least another security audit report within 45 days. "/>
@@ -105,7 +187,7 @@ const SummaryEuler = (props) => {
                     <ActionCard type='message' title="Check the interaction of the wallets" message="The deployed contract has attracted many newly wallets. Require VASP to validate their users. "/>
                 </Container>
             </Container>
-        </Container>
+        </div>
 
 
         </Container>
@@ -159,14 +241,22 @@ const ActionCard = (props) => {
                     'color': '#721C24'
                 }
 
-    const icon = props.type === "error" ?
-                <Icon.ExclamationTriangle className="action-icon" style={{'color': '#EB5757'}} size={iconSize} /> 
-                : props.type === "warning" ?
-                <Icon.ExclamationCircle className="action-icon" style={{'color': '#F2994A'}} size={iconSize} /> 
-                : props.type === "message" ?
-                <Icon.CheckCircle className="action-icon" style={{'color': '#2F80ED'}} size={iconSize} />
-                : <Icon.InfoCircle className="action-icon" style={{'color': '#721C24'}} size={iconSize} />
-
+        const icon = props.type === "error" ?
+            <svg className="h-6 w-6 text-red-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"></path>
+            </svg>   
+            : props.type === "warning" ?
+            <svg className="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"></path>
+            </svg>
+            : props.type === "message" ?
+            <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            : 
+            <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
     const [show, setShow] = useState(false);
 
     useEffect(() => {
@@ -174,24 +264,42 @@ const ActionCard = (props) => {
         else {document.body.style.overflow = 'unset';}
      }, [show]);
 
+    const bg = props.type === "error" ? "bg-red-50" : props.type === "warning" ? "bg-yellow-50" : props.type === "message" ? "bg-blue-50" : "bg-green-50"
+
     return (
         <Container className="action-card" style={style}>
-            <div>
+            <div className={"rounded-md p-4" + bg}>
+                <div className="flex">
+                    <div className="flex-shrink-0">
+                        {icon}
+                    </div>
+                    <div className="ml-3">
+                    <h3 className="text-sm font-bold text-yellow-800 text-left mb-0 leading-6">{props.title}</h3>
+                    <div className="mt-2 text-sm text-yellow-700">
+                        <p className="text-left">
+                        {props.message.length > 80 ? props.message.substring(0,80) + '...' : props.message}
+                        <span onClick={() => setShow(true)} variant="outline-primary">Details</span>
+                        </p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            {/* <div>
                 {icon}
                 <h5>{props.title}</h5>
             </div>
             <p>
                 {props.message.length > 80 ? props.message.substring(0,80) + '...' : props.message}
                 <span onClick={() => setShow(true)} variant="outline-primary">Details</span>
-            </p>
+            </p> */}
             
-            {show ? <PopUp setShow={setShow} title={props.title} message={props.message} addElem={props.addElem} /> : null}
+            <PopUp icon={icon} type={props.type} show={show} setShow={setShow} title={props.title} message={props.message}  addElem={props.addElem} />
         </Container>
     )
 }
 
 
-const PopUp = (props) => {
+const PopUp1 = (props) => {
     const close = () => props.setShow(false);
     const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -214,7 +322,6 @@ const PopUp = (props) => {
                 </div>
                 <h3>{props.title}</h3>
                 <p>{props.message}</p>
-                {props.addElem}
 
                 <Form className='popup-action'>
                     <Form.Check
@@ -251,5 +358,157 @@ const PopUp = (props) => {
         </Container>
     )
 }
+
+
+const PopUp = (props) => {
+    const close = () => props.setShow(false);
+    const [selectedOptions, setSelectedOptions] = useState([]);
+
+    const icon = props.type === "error" ?
+    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
+        {props.icon}
+    </div>     
+    : props.type === "warning" ?
+    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100">
+        {props.icon}
+    </div>
+    : props.type === "message" ?
+    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+        {props.icon}
+    </div>
+    : <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100"> 
+        {props.icon}
+    </div>
+
+
+    const handleCheckboxChange = (e) => {
+      const option = e.target.value;
+      const isChecked = e.target.checked;
+  
+      if (isChecked) {
+        setSelectedOptions([...selectedOptions, option]);
+      } else {
+        setSelectedOptions(selectedOptions.filter((o) => o !== option));
+      }
+    };
+
+    return (
+        <Transition.Root className="transition-all" show={props.show} as={Fragment}>
+            <Dialog as="div" className="relative z-10 transition-all" onClose={props.setShow}>
+                <Transition.Child
+                    as={Fragment}
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                >
+                    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                </Transition.Child>
+                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+                <div className="fixed inset-0 z-10 overflow-y-auto">
+                    <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                        <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        enterTo="opacity-100 translate-y-0 sm:scale-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                        leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        >
+                            <Dialog.Panel className="relative transform overflow-show rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md sm:p-6">
+                                <div>
+                                    {icon}
+                                    <div className="mt-3 text-center sm:mt-5">
+                                        <h3 className="text-base font-semibold leading-6 text-gray-900" id="modal-title">{props.title}</h3>
+                                        <div className="mt-2 text-sm text-gray-500">
+                                        <p className="text-sm text-gray-500">{props.message}</p>
+                                        {props.addElem}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <fieldset>
+                                <legend className="sr-only">Notifications</legend>
+                                    <div className="space-y-5">
+                                        <div className="relative flex items-start">
+                                        <div className="flex h-6 items-center">
+                                            <input
+                                            id="comments"
+                                            aria-describedby="comments-description"
+                                            name="comments"
+                                            type="checkbox"
+                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                            />
+                                        </div>
+                                        <div className="ml-3 text-sm leading-6">
+                                            <label htmlFor="comments" className="font-medium text-gray-900">
+                                            Email to VASP applicant
+                                            </label>
+                                            <p id="comments-description" className="text-gray-500">
+                                            Send an email to the applicants
+                                            </p>
+                                        </div>
+                                        </div>
+                                        <div className="relative mt-0 flex items-start">
+                                        <div className="flex h-6 items-center">
+                                            <input
+                                            id="candidates"
+                                            aria-describedby="candidates-description"
+                                            name="candidates"
+                                            type="checkbox"
+                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                            />
+                                        </div>
+                                        <div className="ml-3 text-sm leading-6">
+                                            <label htmlFor="candidates" className="font-medium text-gray-900">
+                                            Add to watchlist
+                                            </label>
+                                            <p id="candidates-description" className="text-gray-500">
+                                            Get notified when there is updates
+                                            </p>
+                                        </div>
+                                        </div>
+                                        <div className="relative mt-0 flex items-start">
+                                        <div className="flex h-6 items-center">
+                                            <input
+                                            id="offers"
+                                            aria-describedby="offers-description"
+                                            name="offers"
+                                            type="checkbox"
+                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                            />
+                                        </div>
+                                        <div className="ml-3 text-sm leading-6">
+                                            <label htmlFor="offers" className="font-medium text-gray-900">
+                                            Feedback to internal regulator consultants
+                                            </label>
+                                            <p id="offers-description" className="text-gray-500">
+                                            Allow the internal regulator consultants to review
+                                            </p>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div className="mt-5 sm:mt-6 flex justify-center">
+                                    <button onClick={close} type="button" className="inline-flex w-24 mx-2 justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Confirm</button>
+                                    <button onClick={close} type="button" className="inline-flex w-24 mx-2 justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cancel</button>
+                                </div>
+                            </Dialog.Panel>
+                        </Transition.Child>
+                    </div>
+                    </div>
+            </Dialog>
+        </Transition.Root>
+        
+
+    )
+}
+
+
+
 
 export default SummaryEuler

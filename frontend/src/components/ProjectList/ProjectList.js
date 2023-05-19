@@ -14,9 +14,10 @@ import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import samplePdf from "../../assets/sample.pdf"
 import { Document, Page, pdfjs } from 'react-pdf';
 import axios from "axios";
-import { Dialog, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { Dialog, Menu, Transition, Listbox } from '@headlessui/react'
+import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon, CheckIcon } from '@heroicons/react/20/solid'
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
+import MultiSelect from '../MultiSelect';
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 
@@ -24,19 +25,46 @@ const ProjectList = (props) => {
     const [file, setFile] = useState();
     const inputFile = useRef(null);
     const [previewFile, setPreviewFile] = useState();
-
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1); //setting 1 to show fisrt page
     const setProjectIdx= props.setProject;
     const projectIdx = props.project;
     const projectList = props.allProjects;
     const selectedProject = projectList[projectIdx];
-
     const statuses = {
         Complete: 'text-green-700 bg-green-50 ring-green-600/20',
         'In progress': 'text-gray-600 bg-gray-50 ring-gray-500/10',
         Archived: 'text-yellow-800 bg-yellow-50 ring-yellow-600/20',
       }
+      const people = [
+        { id: 1, name: 'Wade Cooper' },
+        { id: 2, name: 'Arlene Mccoy' },
+        { id: 3, name: 'Devon Webb' },
+        { id: 4, name: 'Tom Cook' },
+        { id: 5, name: 'Tanya Fox' },
+        { id: 6, name: 'Hellen Schmidt' },
+        { id: 7, name: 'Caroline Schultz' },
+        { id: 8, name: 'Mason Heaney' },
+        { id: 9, name: 'Claudie Smitham' },
+        { id: 10, name: 'Emil Schaefer' },
+      ]
+
+      const [selected, setSelected] = useState([people[1],people[3]]);
+      const updateSelected = (selected) => {
+        alert(JSON.stringify(selected))
+        let ids = [];
+        let unique = [];
+        selected.forEach((element) => {
+            if (!ids.includes(element.id)) {
+                ids.push(element.id);
+                unique.push(element);
+            }
+        });
+
+        alert(JSON.stringify(unique))
+        setSelected(unique);
+      }
+
       const projects = [
         {
           id: 1,
@@ -93,6 +121,9 @@ const ProjectList = (props) => {
       function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
       }
+
+      const [search, setSearch] = useState('')
+
     
       return (
         <Container className="projectlist-container">
@@ -104,11 +135,11 @@ const ProjectList = (props) => {
         {/* Sticky search header */}
         <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-6 border-b border-black/5 px-4 shadow-sm sm:px-6 lg:px-8">
             <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-                <form className="flex flex-1" action="#" method="GET">
+                <form className="flex flex-1 justify-stretch" action="#" method="GET">
                     <label htmlFor="search-field" className="sr-only text-gray-600">
                     Search
                     </label>
-                    <div className="relative w-full">
+                    <div className="relative w-1/2">
                     <MagnifyingGlassIcon
                         className="pointer-events-none absolute z-50 inset-y-0 left-2 h-full w-5 text-gray-600"
                         aria-hidden="true"
@@ -119,121 +150,40 @@ const ProjectList = (props) => {
                         placeholder="Search..."
                         type="search"
                         name="search"
+                        onChange={(e) => setSearch(e.target.value)}
                     />
                     </div>
+
+                    <div className="relative self-center h-2/3 w-1/5">
+                        <select
+                            id="status"
+                            name="Status"
+                            className="block h-full w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            placeholder='Select a Status'
+                        >
+                            <option>Completed</option>
+                            <option>In Progress</option>
+                            <option>Archived</option>
+                        </select>
+                    </div>
+                    <MultiSelect />
                 </form>
+
             </div>
         </div>
 
         <ul role="list" className="divide-y divide-gray-100 mt-3">
-            {projectList.map((project, index) => (
-                <li key={project.index} className="flex items-center justify-between gap-x-6 py-2 mt">
-                <div className="flex gap-x-4">
-                    <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={project.icon} alt="" />
-                    <div className="min-w-0">
-
-                        <div className="flex items-start gap-x-3">
-                            <p className="text-sm mb-0 font-semibold leading-6 text-gray-900">{project.name}</p>
-                            <p
-                                className={classNames(
-                                statuses["In Progress"],
-                                'rounded-md whitespace-nowrap mt-0.5 mb-0 px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset'
-                                )}
-                            >
-                                {project.status ?  project.status : "In Porgress"}
-                            </p>
-                        </div>
-                        <div className="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
-                            <p className="whitespace-nowrap">
-                                Due on <time dateTime={project.dueDateTime}>May 25, 2023</time>
-                            </p>
-                            <svg viewBox="0 0 2 2" className="h-0.5 w-0.5 fill-current">
-                                <circle cx={1} cy={1} r={1} />
-                            </svg>
-                            <p className="truncate">Created by Author</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex flex-none items-center gap-x-4">
-                    <Link
-                    onClick={() => setProjectIdx(index)} to='/overview'
-                    className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
-                    >
-                    Overview<span className="sr-only">, {project.name}</span>
-                    </Link>
-                    <Link
-                    onClick={() => setProjectIdx(index)} to='/home'
-                    className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
-                    >
-                    Assessment<span className="sr-only">, {project.name}</span>
-                    </Link>
-                    <Link
-                    onClick={() => setProjectIdx(index)} to='/summary'
-                    className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
-                    >
-                    Actions<span className="sr-only">, {project.name}</span>
-                    </Link>
-                    <Menu as="div" className="relative flex-none">
-                    <Menu.Button className="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900">
-                        <span className="sr-only">Open options</span>
-                        <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
-                    </Menu.Button>
-                    <Transition
-                        as={Fragment}
-                        enter="transition ease-out duration-100"
-                        enterFrom="transform opacity-0 scale-95"
-                        enterTo="transform opacity-100 scale-100"
-                        leave="transition ease-in duration-75"
-                        leaveFrom="transform opacity-100 scale-100"
-                        leaveTo="transform opacity-0 scale-95"
-                    >
-                        <Menu.Items className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
-                        <Menu.Item>
-                            {({ active }) => (
-                            <a
-                                href="#"
-                                className={classNames(
-                                active ? 'bg-gray-50' : '',
-                                'block px-3 py-1 text-sm leading-6 text-gray-900'
-                                )}
-                            >
-                                Edit<span className="sr-only">, {project.name}</span>
-                            </a>
-                            )}
-                        </Menu.Item>
-                        <Menu.Item>
-                            {({ active }) => (
-                            <a
-                                href="#"
-                                className={classNames(
-                                active ? 'bg-gray-50' : '',
-                                'block px-3 py-1 text-sm leading-6 text-gray-900'
-                                )}
-                            >
-                                Move<span className="sr-only">, {project.name}</span>
-                            </a>
-                            )}
-                        </Menu.Item>
-                        <Menu.Item>
-                            {({ active }) => (
-                            <a
-                                href="#"
-                                className={classNames(
-                                active ? 'bg-gray-50' : '',
-                                'block px-3 py-1 text-sm leading-6 text-gray-900'
-                                )}
-                            >
-                                Delete<span className="sr-only">, {project.name}</span>
-                            </a>
-                            )}
-                        </Menu.Item>
-                        </Menu.Items>
-                    </Transition>
-                    </Menu>
-                </div>
-                </li>
+            {projectList.filter(project => {
+                if (search.length > 0) {
+                    return project.name.toLowerCase().includes(search.toLowerCase())
+                } else {
+                    return true
+                }
+            }).map((project, index) => (
+                <Project index={index} setProjectIdx={setProjectIdx} project={project}/>
             ))}
-            </ul>
+                <ProjectEuler />
+        </ul>
 
 
 
@@ -296,23 +246,246 @@ const dummyProjectList = [
 ]
 
 const Project = (props) => {
+    const project = props.project
+    const index = props.index
+    const setProjectIdx = props.setProjectIdx
+    const statuses = {
+        Complete: 'text-green-700 bg-green-50 ring-green-600/20',
+        'In progress': 'text-gray-600 bg-gray-50 ring-gray-500/10',
+        Archived: 'text-yellow-800 bg-yellow-50 ring-yellow-600/20',
+    }
+    function classNames(...classes) {
+        return classes.filter(Boolean).join(' ')
+    }
+
     return (
-        <Container className="project-container">
-            <Container className="project">
-                <img src= {props.project['icon']} className="project-icon"/>
-                <Container className="projectInfo">
-                    <h2>{props.project["name"]}</h2>
-                    <p>{props.project["tags"].join(', ')}</p>
-                    {/* <p>{props.projectInfo["projectDate"]}</p> */}
-                </Container>
-            </Container>
-            <Container className='projectAction'>
-                <Button className='projectAction-nav-button' onClick={() => props.setProjectIdx(props.index)} as={Link} to='/overview' style={{background:'linear-gradient(to right, #857BC5, #A09FFD)'}} variant="outline-primary"><Icon.HouseDoor />Main Page</Button>
-                <Button className='projectAction-nav-button' onClick={() => props.setProjectIdx(props.index)} as={Link} to='/home' style={{background:'linear-gradient(to right, #00B5A3, #00CAA4)'}} variant="outline-primary"><Icon.FileEarmarkCode />Smart Contract</Button>
-                <Button className='projectAction-nav-button' onClick={() => props.setProjectIdx(props.index)} as={Link} to='/summary' style={{background:'linear-gradient(to right, #03ACF2, #3BC8F8)'}} variant="outline-primary"><Icon.ListTask />Action Page</Button>
-                <Button className='projectAction-delete-button' variant="outline-primary">Delete</Button>
-            </Container>
-        </Container>
+        <li key={project.index} className="flex items-center justify-between gap-x-6 py-2 mt">
+        <div className="flex gap-x-4">
+            <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={project.icon} alt="" />
+            <div className="min-w-0">
+
+                <div className="flex items-start gap-x-3">
+                    <p className="text-sm mb-0 font-semibold leading-6 text-gray-900">{project.name}</p>
+                    <p
+                        className={classNames(
+                        statuses["In Progress"],
+                        'rounded-md whitespace-nowrap mt-0.5 mb-0 px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset'
+                        )}
+                    >
+                        {project.status ?  project.status : "In Porgress"}
+                    </p>
+                </div>
+                <div className="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
+                    <p className="whitespace-nowrap">
+                        Due on <time dateTime={project.dueDateTime}>May 25, 2023</time>
+                    </p>
+                    <svg viewBox="0 0 2 2" className="h-0.5 w-0.5 fill-current">
+                        <circle cx={1} cy={1} r={1} />
+                    </svg>
+                    <p className="truncate">Created by Author</p>
+                </div>
+            </div>
+        </div>
+        <div className="flex flex-none items-center gap-x-4">
+            <Link
+            onClick={() => setProjectIdx(index)} to='/overview'
+            className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
+            >
+            Overview<span className="sr-only">, {project.name}</span>
+            </Link>
+            <Link
+            onClick={() => setProjectIdx(index)} to='/home'
+            className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
+            >
+            Assessment<span className="sr-only">, {project.name}</span>
+            </Link>
+            <Link
+            onClick={() => setProjectIdx(index)} to='/summary'
+            className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
+            >
+            Actions<span className="sr-only">, {project.name}</span>
+            </Link>
+            <Menu as="div" className="relative flex-none">
+            <Menu.Button className="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900">
+                <span className="sr-only">Open options</span>
+                <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
+            </Menu.Button>
+            <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+            >
+                <Menu.Items className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+                <Menu.Item>
+                    {({ active }) => (
+                    <a
+                        href="#"
+                        className={classNames(
+                        active ? 'bg-gray-50' : '',
+                        'block px-3 py-1 text-sm leading-6 text-gray-900'
+                        )}
+                    >
+                        Edit<span className="sr-only">, {project.name}</span>
+                    </a>
+                    )}
+                </Menu.Item>
+                <Menu.Item>
+                    {({ active }) => (
+                    <a
+                        href="#"
+                        className={classNames(
+                        active ? 'bg-gray-50' : '',
+                        'block px-3 py-1 text-sm leading-6 text-gray-900'
+                        )}
+                    >
+                        Move<span className="sr-only">, {project.name}</span>
+                    </a>
+                    )}
+                </Menu.Item>
+                <Menu.Item>
+                    {({ active }) => (
+                    <a
+                        href="#"
+                        className={classNames(
+                        active ? 'bg-gray-50' : '',
+                        'block px-3 py-1 text-sm leading-6 text-gray-900'
+                        )}
+                    >
+                        Delete<span className="sr-only">, {project.name}</span>
+                    </a>
+                    )}
+                </Menu.Item>
+                </Menu.Items>
+            </Transition>
+            </Menu>
+        </div>
+        </li>
+    )
+}
+
+const ProjectEuler = (props) => {
+    const project = props.project
+    const index = props.index
+    const setProjectIdx = props.setProjectIdx
+    const statuses = {
+        Complete: 'text-green-700 bg-green-50 ring-green-600/20',
+        'In progress': 'text-gray-600 bg-gray-50 ring-gray-500/10',
+        Archived: 'text-yellow-800 bg-yellow-50 ring-yellow-600/20',
+    }
+    function classNames(...classes) {
+        return classes.filter(Boolean).join(' ')
+    }
+
+    return (
+        <li key={4} className="flex items-center justify-between gap-x-6 py-2 mt">
+        <div className="flex gap-x-4">
+        <img src='https://storage.googleapis.com/subgraph-images/1656114240805euler-transparent.png' className="h-12 w-12 flex-none rounded-full bg-gray-50"/>
+            <div className="min-w-0">
+
+                <div className="flex items-start gap-x-3">
+                    <p className="text-sm mb-0 font-semibold leading-6 text-gray-900">Euler Finance</p>
+                    <p
+                        className={classNames(
+                        statuses["In Progress"],
+                        'rounded-md whitespace-nowrap mt-0.5 mb-0 px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset'
+                        )}
+                    >
+                        {"In Porgress"}
+                    </p>
+                </div>
+                <div className="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
+                    <p className="whitespace-nowrap">
+                        Due on <time>May 25, 2023</time>
+                    </p>
+                    <svg viewBox="0 0 2 2" className="h-0.5 w-0.5 fill-current">
+                        <circle cx={1} cy={1} r={1} />
+                    </svg>
+                    <p className="truncate">Created by Author</p>
+                </div>
+            </div>
+        </div>
+        <div className="flex flex-none items-center gap-x-4">
+            <Link
+            onClick={() => setProjectIdx(0)} to='/overview-euler'
+            className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
+            >
+            Overview<span className="sr-only">, Euler Finance</span>
+            </Link>
+            <Link
+            onClick={() => setProjectIdx(0)} to='/home'
+            className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
+            >
+            Assessment<span className="sr-only">, Euler Finance</span>
+            </Link>
+            <Link
+            onClick={() => setProjectIdx(0)} to='/summary-euler'
+            className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
+            >
+            Actions<span className="sr-only">, Euler Finance</span>
+            </Link>
+            <Menu as="div" className="relative flex-none">
+            <Menu.Button className="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900">
+                <span className="sr-only">Open options</span>
+                <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
+            </Menu.Button>
+            <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+            >
+                <Menu.Items className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+                <Menu.Item>
+                    {({ active }) => (
+                    <a
+                        href="#"
+                        className={classNames(
+                        active ? 'bg-gray-50' : '',
+                        'block px-3 py-1 text-sm leading-6 text-gray-900'
+                        )}
+                    >
+                        Edit<span className="sr-only">, Euler Finance</span>
+                    </a>
+                    )}
+                </Menu.Item>
+                <Menu.Item>
+                    {({ active }) => (
+                    <a
+                        href="#"
+                        className={classNames(
+                        active ? 'bg-gray-50' : '',
+                        'block px-3 py-1 text-sm leading-6 text-gray-900'
+                        )}
+                    >
+                        Move<span className="sr-only">, Euler Finance</span>
+                    </a>
+                    )}
+                </Menu.Item>
+                <Menu.Item>
+                    {({ active }) => (
+                    <a
+                        href="#"
+                        className={classNames(
+                        active ? 'bg-gray-50' : '',
+                        'block px-3 py-1 text-sm leading-6 text-gray-900'
+                        )}
+                    >
+                        Delete<span className="sr-only">, Euler Finance</span>
+                    </a>
+                    )}
+                </Menu.Item>
+                </Menu.Items>
+            </Transition>
+            </Menu>
+        </div>
+        </li>
     )
 }
 

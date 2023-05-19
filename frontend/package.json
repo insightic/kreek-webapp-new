@@ -24,6 +24,7 @@
     "react-scripts": "5.0.1",
     "react-syntax-highlighter": "^15.5.0",
     "react-xarrows": "^2.0.2",
+    "typescript": "^5.0.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
